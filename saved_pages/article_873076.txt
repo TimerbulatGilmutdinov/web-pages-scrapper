@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<title>Kotlin Coroutines под капотом: отмена корутин / Хабр</title>
+</head>
+<body>
+<div id="mount"><div data-async-called="true" id="app"><div class="tm-layout__wrapper"><!--[--><!-- --><div></div><!-- --><header class="tm-header" data-test-id="header"><div class="tm-page-width"><!--[--><div class="tm-header__container"><!-- --><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/"><svg class="tm-svg-img tm-header__icon" height="16" width="16"><title>Хабр</title><use xlink:href="/img/habr-logo-ru.svg#logo"></use></svg></a><span class="tm-header__beta-sign" style="display:none;">β</span></span><!--[--><div class="tm-dropdown tm-header__projects"><div class="tm-dropdown__head"><!--[--><button class="tm-header__dropdown-toggle"><svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16"><title>Открыть список</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#arrow-down"></use></svg></button><!--]--></div><!-- --></div><a class="tm-header__become-author-btn" href="/ru/sandbox/start/">Как стать автором</a><div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature"><!-- --></div><!-- --><!--]--><!-- --></div><!--]--></div></header><div class="tm-layout"><div class="tm-page-progress-bar"></div><div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true"><div class="tm-page-width"><!--[--><div class="tm-base-layout__header-wrapper"><div class="tm-main-menu"><div class="tm-main-menu__section"><nav class="tm-main-menu__section-content"><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]--></nav></div></div><div class="tm-header-user-menu tm-base-layout__user-menu"><a class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button" href="/ru/search/"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24"><title>Поиск</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#search"></use></svg></a><!-- --><!-- --><div class="tm-header-user-menu__item tm-header-user-menu__write"><div><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24"><title>Написать публикацию</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#write"></use></svg></div><!-- --></div><!--[--><div class="tm-header-user-menu__item"><button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24"><title>Настройки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#page-settings"></use></svg></button></div><a class="tm-header-user-menu__item" href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/873076/&amp;hl=ru" rel="nofollow"><!--[--><button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!-- --><!--teleport start--><!--teleport end--><!-- --></div></div><!--]--></div></div><!-- --><div class="tm-page-width"><!--[--><!--]--></div><main class="tm-layout__container"><div class="tm-page" data-async-called="true" hl="ru" style="--0c809c5a:16px;--a086013e:100%;--7c457026:0;"><div class="tm-page-width"><!--[--><!-- --><div class="tm-page__wrapper"><div class="tm-page__main_has-sidebar tm-page__main"><div class="pull-down"><!-- --><div class="pull-down__header" style="height:0px;"><div class="pull-down__content" style="bottom:10px;"><svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24"><title>Обновить</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#pull-arrow"></use></svg></div></div><!--[--><!--[--><!-- --><div class="tm-article-presenter"><!--[--><!--]--><div class="tm-article-presenter__body" data-test-id="article-body"><div class="tm-misprint-area"><div class="tm-misprint-area__wrapper"><!--[--><article class="tm-article-presenter__content tm-article-presenter__content_narrow"><!--[--><div class="tm-article-presenter__header"><!--[--><!--]--><div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet"><!--[--><!--]--><div class="tm-article-snippet__meta-container"><div class="tm-article-snippet__meta"><span class="tm-user-info tm-article-snippet__author"><a class="tm-user-info__userpic" data-test-id="user-info-pic" href="/ru/users/DmitryTsyvtsyn/" title="DmitryTsyvtsyn"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/db6/bea/5ea/db6bea5ea945afec3614eae955a8f2b1.jpeg" width="24"/></div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a class="tm-user-info__username" href="/ru/users/DmitryTsyvtsyn/">DmitryTsyvtsyn <!-- --></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-01-12T11:27:48.000Z" title="2025-01-12, 14:27">12  янв   в 14:27</time></span><!--]--></span></span></div><!-- --></div><h1 class="tm-title tm-title_h1" data-test-id="articleTitle" lang="ru"><span>Kotlin Coroutines под капотом: отмена корутин</span></h1><div class="tm-article-snippet__stats" data-test-id="articleStats"><!-- --><div class="tm-article-reading-time"><span class="tm-svg-icon__wrapper tm-article-reading-time__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Время на прочтение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#clock"></use></svg></span><span class="tm-article-reading-time__label">24 мин</span></div><span class="tm-icon-counter tm-data-icons__item"><svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24"><title>Количество просмотров</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-views"></use></svg><span class="tm-icon-counter__value" title="9445">9.4K</span></span></div><div class="tm-publication-hubs__container" data-test-id="articleHubsList"><div class="tm-publication-hubs"><!--[--><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/open_source/"><!--[--><span>Open source</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/algorithms/"><!--[--><span>Алгоритмы</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]--></div></div><!-- --><!-- --><!-- --></div></div><!--[--><!-- --><div class="tm-article-body" data-gallery-root="" lang="ru"><div><!--[--><!--]--></div><div id="post-content-body"><div><div class="article-formatted-body article-formatted-body article-formatted-body_version-2"><div xmlns="http://www.w3.org/1999/xhtml"><figure class="full-width"><img data-blurred="true" data-src="https://habrastorage.org/getpro/habr/upload_files/6d9/80d/b28/6d980db28edff29c39fad238be0c00db.jpeg" height="768" src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/6d9/80d/b28/6d980db28edff29c39fad238be0c00db.jpeg" width="1344"/></figure><p><a href="https://habr.com/en/articles/827866/" rel="noopener noreferrer nofollow">В прошлой статье</a> я разобрал как работают корутины под капотом, рекомендую ознакомиться прежде чем закапываться дальше. В этой статье мы разберем такую сущность как Job и как на самом деле под капотом отменяются корутины, в общем будет интересно, погнали!</p><h2>Знакомимся с Job и JobSupport </h2><p>Черканем небольшой пример:</p><pre><code class="kotlin">// parent coroutine
+launch { 
+    // child coroutine 1
+    launch { 
+        ...
+    }
+    // child coroutine 2
+    launch { 
+        ...
+    }
+}.cancel()</code></pre><p>По логике <a href="https://kotlinlang.org/docs/coroutines-basics.html#structured-concurrency" rel="noopener noreferrer nofollow">Structured Concurrency</a> отмена родительской корутины должна привезти к отмене дочерних корутин (1 и 2), это одно из самых базовых правил на котором строится библиотека.</p><p>Провалимся в метод <code>cancel()</code> и узнаем кому он принадлежит: </p><pre><code class="kotlin">interface Job : CoroutineContext.Element {
+    // добавляет дочернюю Job 
+    fun attachChild(child: ChildJob): ChildHandle
+  
+    // отменяет Job
+    fun cancel(cause: CancellationException? = null)
+}</code></pre><p>Метод <code>cancel()</code> принадлежит такой сущности как <code>Job</code>, это один из базовых элементов <code>CoroutineContext'а</code>, отвечающий за одно из следующих состояний корутины: </p><ol><li><p>выполняется</p></li><li><p>отменена</p></li><li><p>завершена</p></li><li><p>завершена с ошибкой</p></li><li><p>еще не начала выполняться (если это <a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y/" rel="noopener noreferrer nofollow">lazy запуск корутины</a>)</p></li></ol><p>В принципе <code>Job</code> можно назвать <a href="https://en.wikipedia.org/wiki/Finite-state_machine" rel="noopener noreferrer nofollow">конечным автоматом</a> - есть какое-то начальное состояние, например "выполняется" и есть возможные переходы в другие, например при выбросе <code>CancellationException</code> корутина перейдет в состояние "отменена" и тд.</p><p>С основными определениями разобрались, теперь переходим к базовой реализации <code>Job</code>, она содержится в <code>JobSupport</code>, здесь происходит вся работа с состоянием, также этот класс наследует сама корутина:</p><pre><code class="kotlin">abstract class AbstractCoroutine&lt;in T&gt;(
+    parentContext: CoroutineContext,
+    initParentJob: Boolean,
+    active: Boolean
+) : JobSupport(active), Job, Continuation&lt;T&gt;, CoroutineScope { ... }</code></pre><p>Класс <code>JobSupport</code> достаточно большой, более 1000 строк кода, но нас пока интересует только реализация метода <code>cancel()</code>:</p><pre><code class="kotlin">// реализация содержится в JobSupport
+override fun cancel(cause: CancellationException?) {
+    cancelInternal(cause ?: defaultCancellationException())
+}
+
+// дополнительный метод cancelInternal() нужен для переопределения
+// логики отмены в других корутинах, например в ChannelCoroutine
+open fun cancelInternal(cause: Throwable) {
+    cancelImpl(cause)
+}
+
+// для большинства корутин базовая логика отмены содержится тут
+internal fun cancelImpl(cause: Any?): Boolean {
+    var finalState: Any? = COMPLETING_ALREADY
+    if (onCancelComplete) {
+        // тут логика токо для CompletableDeferred корутин, 
+        // в этой статье я не буду в них углубляться
+    }
+    
+    if (finalState === COMPLETING_ALREADY) {
+        // нас интересует этот метод
+        finalState = makeCancelling(cause)
+    }
+    // на основе финального состояния возвращаем true, если отмена удалась 
+    // или false если произошла какая-то фигня
+    return when {
+        finalState === COMPLETING_ALREADY -&gt; true
+        finalState === COMPLETING_WAITING_CHILDREN -&gt; true
+        finalState === TOO_LATE_TO_CANCEL -&gt; false
+        else -&gt; {
+            afterCompletion(finalState)
+            true
+        }
+    }
+}
+
+// здесь происходит отмена корутины
+private fun makeCancelling(cause: Any?): Any? {
+    var causeExceptionCache: Throwable? = null // lazily init result of createCauseException(cause)
+    loopOnState { state -&gt;
+        when (state) {
+            ...
+            // Incomplete это состояние выполнения корутины
+            is Incomplete -&gt; {
+                val causeException = causeExceptionCache ?: createCauseException(cause).also { causeExceptionCache = it }
+                if (state.isActive) {
+                    // вызывается в случае отмены корутины, наш случай
+                    if (tryMakeCancelling(state, causeException)) return COMPLETING_ALREADY
+                } else {
+                    // вызывается в случае стандартного завершения корутины (не отмена)
+                    val finalState = tryMakeCompleting(state, CompletedExceptionally(causeException))
+                    when {
+                        finalState === COMPLETING_ALREADY -&gt; error("Cannot happen in $state")
+                        finalState === COMPLETING_RETRY -&gt; return@loopOnState
+                        else -&gt; return finalState
+                    }
+                }
+            }
+            else -&gt; return TOO_LATE_TO_CANCEL // already complete
+        }
+    }
+}</code></pre><p>Прежде чем идти дальше хотел бы уточнить значения следующих констант:</p><ol><li><p><code>COMPLETING_ALREADY</code> - корутина уже завершена.</p></li><li><p><code>COMPLETING_WAITING_CHILDREN</code> - корутина ожидает завершения детей.</p></li><li><p><code>COMPLETING_RETRY</code> - корутина не смогла успешно завершится и надо попробовать еще раз.</p></li><li><p><code>TOO_LATE_TO_CANCEL</code> - слишком поздно для отмены корутины.</p></li></ol><p>Это вспомогательные состояния на основе которых метод <code>cancelImpl</code> определяет итоговый результат и выполняет завершающее действие (если корутина завершилась):</p><pre><code class="kotlin">internal fun cancelImpl(cause: Any?): Boolean {
+    val finalState = ...
+  
+    return when {
+        finalState === COMPLETING_ALREADY -&gt; true
+        finalState === COMPLETING_WAITING_CHILDREN -&gt; true
+        finalState === TOO_LATE_TO_CANCEL -&gt; false
+        else -&gt; {
+            afterCompletion(finalState)
+            true
+        }
+    }
+}</code></pre><p><strong>Важный момент</strong>: вспомогательные состояния не хранятся в <code>Job'е</code>, а вычисляются на лету при выполнении методов таких как <code>cancel()</code> например.</p><p>В следующем разделе рассмотрим какие состояния хранятся в <code>Job'е</code> и как они могут быть изменены.</p><h2>Углубляемся в состояния JobSupport</h2><p>Для начала приведу простой пример, показывающий зачем вообще нужно хранить состояние для корутины:</p><pre><code class="kotlin">class Thread1 : Thread() {
+
+    private var isRunning = false
+
+    val isActive: Boolean
+        get() = isRunning
+    
+    override fun run() {
+        isRunning = true
+        while (true) {
+            // выполняем цикл пока isRunning равен true
+            if (!isRunning) break
+            ...
+        }
+    }
+    
+    fun cancel() {  
+        // завершаем цикл
+        isRunning = false
+    }
+  
+}</code></pre><p>Когда поток <code>Thread1</code> будет отменен, логика внутри него завершится, состояние станет неактивным, на основе этого состояния можно:</p><ol><li><p>Узнать завершился поток или нет.</p></li><li><p>Выполнить определенную логику для нового состояния (завершить цикл).</p></li></ol><p>Аналогично для корутин, состояние позволяет узнать что происходит с корутиной в данный момент, а также выполнить какую-то логику в зависимости от этого состояния.</p><p>Посмотрим на самые часто используемые состояния в <code>JobSupport</code>:</p><pre><code class="kotlin">// дополнительные состояния, которые вычисляются на лету (не хранятся в JobSupport)
+val COMPLETING_ALREADY = Symbol("COMPLETING_ALREADY")
+val COMPLETING_WAITING_CHILDREN = Symbol("COMPLETING_WAITING_CHILDREN")
+val COMPLETING_RETRY = Symbol("COMPLETING_RETRY")
+val TOO_LATE_TO_CANCEL = Symbol("TOO_LATE_TO_CANCEL")
+
+// при запуске корутины по умолчанию ей присваивается состояние EMPTY_ACTIVE
+val EMPTY_NEW = Empty(false) // для lazy корутин
+val EMPTY_ACTIVE = Empty(true) // для всех остальных корутин
+
+// корутина в статусе выполнения у которой нет дочерних корутин
+class Empty(override val isActive: Boolean) : Incomplete { ... }
+
+// практически тоже самое что и Empty, токо дополнительно добавляется
+// список CompletionHandler'ов, которые будут вызваны при завершении корутины
+class InactiveNodeList(
+    override val list: NodeList
+) : Incomplete { ... }
+
+// корутина в статусе выполнения у которой есть одна дочерняя корутина
+class ChildHandleNode(
+    val childJob: ChildJob
+) : JobNode(), ChildHandle { ... }
+
+// корутина в статусе выполнения у которой есть более 
+// чем одна дочерняя корутина
+class NodeList : LockFreeLinkedListHead(), Incomplete { ... }
+
+// корутина в статусе отмены или завершения
+// это не финальное состояние, об этом еще будет полноценный раздел
+class Finishing(
+    override val list: NodeList,
+    isCompleting: Boolean,
+    rootCause: Throwable?
+) : SynchronizedObject(), Incomplete { ... }
+
+// корутина была полностью завершена по причине выброса исключения: 
+// 1) CancellationException, если корутина была отменена
+// 2) любые другие ошибки
+// это финальное состояние, об этом еще будет полноценный раздел
+class CompletedExceptionally(val cause: Throwable) { ... }
+
+// JobSupport хранит состояние в atomic типе чтобы обезопасить 
+// корутину от ошибок многопоточности (race condition)
+val _state = atomic&lt;Any?&gt;(if (active) EMPTY_ACTIVE else EMPTY_NEW)</code></pre><p>В <code>JobSupport'е</code> хранится только актуальное состояние, им может быть одно из вышеперечисленных. </p><p>Если вы хотите в прикладном коде получить сведения о состоянии корутины, можете воспользоваться следующими Boolean полями:</p><pre><code class="kotlin">// доступны в корутине, так как корутина наследует JobSupport
+class JobSupport : Job {
+
+    // выполняется корутина или нет
+    override val isActive: Boolean get() {
+        val state = this.state
+        return state is Incomplete &amp;&amp; state.isActive
+    }
+
+    // завершена корутина полностью или нет (финальное состояние)
+    override val isCompleted: Boolean get() {
+        return state !is Incomplete
+    }
+
+    // отменена корутина или нет
+    override val isCancelled: Boolean get() {
+        val state = this.state
+        return state is CompletedExceptionally || (state is Finishing &amp;&amp; state.isCancelling)
+    }
+  
+}</code></pre><p>Думаю вы уже использовали одно из них, например вызывали <code>Job.ensureActive()</code> метод:</p><pre><code class="kotlin">fun Job.ensureActive(): Unit {
+    if (!isActive) throw getCancellationException()
+}</code></pre><p>С <code>JobSupport</code> состояниями более менее разобрались, можем снова возвращаться к логике:</p><pre><code class="kotlin">internal fun cancelImpl(cause: Any?): Boolean {
+    ...
+    val finalState = makeCancelling(cause)
+    ...
+}
+
+private fun makeCancelling(cause: Any?): Any? {
+    when (state) {
+        ...
+        is Incomplete -&gt; tryMakeCancelling(state, causeException)
+    }
+}                </code></pre><p>Я уже приводил код этих методов, можете вернуться в предыдущий раздел если его пропустили, главное понять цепочку вызовов, которая происходит при отмене:</p><blockquote><p>cancel() → cancelInternal() → cancelImpl() → makeCancelling() → tryMakeCancelling()</p></blockquote><p>По итогу вызывается метод <code>JobSupport.tryMakeCancelling()</code>, давайте провалимся туда:</p><pre><code class="kotlin">private fun tryMakeCancelling(state: Incomplete, rootCause: Throwable): Boolean {
+    assert { state !is Finishing } // only for non-finishing states
+    assert { state.isActive } // only for active states
+    // берем дочерние Job'ы из текущего состояния корутины
+    val list = getOrPromoteCancellingList(state) ?: return false
+    // создаем новое состояние - состояние отмены корутины
+    val cancelling = Finishing(list, false, rootCause)
+    // состояние обновляется через потокобезопасный алгоритм "Сравнение с обменом"
+    // у меня был пост на этот счет: https://t.me/android_under_the_hood/86 
+    if (!_state.compareAndSet(state, cancelling)) return false
+    // пробрасываем дальше отмену
+    notifyCancelling(list, rootCause)
+    return true
+}</code></pre><p>Давайте по порядку, при отмене корутины происходят следующие вещи:</p><ol><li><p>Получение дочерних <code>Job</code> (не забывайте что сама корутина наследует <code>JobSupport</code> и следовательно тоже является <code>Job'ой</code>).</p></li><li><p>Создание нового состояния <code>Finishing</code> и его применение.</p></li><li><p>Уведомление родителя и дочерних <code>Job</code> об отмене.</p></li></ol><p>Разберемся подробнее с 1 и 3 пунктами.</p><h2>Получение дочерних Job</h2><p>Вспомним вот такой код в <code>AbstractCoroutine</code>:</p><pre><code class="kotlin">// при создании новой корутины она добавляется в родительскую Job
+init {
+    if (initParentJob) initParentJob(parentContext[Job])
+}
+
+protected fun initParentJob(parent: Job?) {
+    assert { parentHandle == null }
+    if (parent == null) {
+        parentHandle = NonDisposableHandle
+        return
+    }
+    parent.start() 
+    // parent.attachChild() добавляет в состояние parent'а 
+    // ссылку на дочернюю Job'у
+    val handle = parent.attachChild(this)
+    // parentHandle нужен для отмены родительской корутины,
+    // еще вернемся к этому
+    parentHandle = handle
+    // если корутина была завершена то все зануляем
+    if (isCompleted) {
+        handle.dispose()
+        parentHandle = NonDisposableHandle // release it just in case, to aid GC
+    }
+}</code></pre><p>Когда создается корутина происходят следующие вещи:</p><ol><li><p>Из <code>CoroutineContext'а</code> берется родительская <code>Job'а</code> и если она есть то добавляет корутину в качестве дочерней <code>Job'ы</code>.</p></li><li><p>В корутине сохраняется <code>ChildHandle</code>, специальный обработчик который отменит родительскую <code>Job'у</code> если будет выброшена ошибка.</p></li></ol><p>Таким образом между корутинами образуется связь "родитель - ребенок", давайте теперь узнаем как дочерние <code>Job'ы</code> хранятся в родительской и как они извлекаются оттуда:</p><pre><code class="kotlin">// дочерние Job'ы берутся из текущего состояния корутины (JobSupport)
+fun getOrPromoteCancellingList(state: Incomplete): NodeList? = state.list ?:
+    when (state) {
+        is Empty -&gt; NodeList()
+        is JobNode -&gt; state.toSingleNodeList()
+        else -&gt; error("State should have list: $state")
+    }
+
+// при добавлении дочерней Job'ы у родительской меняется состояние
+fun attachChild(child: ChildJob): ChildHandle {
+    val node = ChildHandleNode(child)
+    node.parentJob = this
+    val state = _state.value
+    when (state) {
+        is Empty -&gt; { 
+            _state.value = node
+        }
+        is Incomplete -&gt; {
+            _state.value = when (val list = state.list) {
+                null -&gt; node.toSingleNodeList()
+                else -&gt; list + node.toSingleNodeList()
+            }
+        }
+    }
+}</code></pre><p>Я упростил <code>JobSupport.attachChild()</code> для понимания сути, если интересно узнать все подробности работы этого метода качайте исходники).</p><p>По итогу все сводится к единому состоянию <code>JobSupport</code>, где и хранятся дочерние <code>Job'ы</code>, какое состояние и в каком случае использовать определяется примерно по следующей логике:</p><ol><li><p>Если у корутины нет дочерних <code>Job</code> то она находится в состоянии <code>Empty</code>.</p></li><li><p>Если у корутины есть одна дочерняя <code>Job</code> то она находится в состоянии <code>JobNode</code> (конкретный класс <code>ChildHandleNode</code>).</p></li><li><p>Если у корутины несколько дочерних <code>Job</code> то она находится в состоянии <code>NodeList</code>, который хранит дочерние <code>JobNode</code> элементы в связанном списке.</p></li></ol><p>Что ж теперь мы знаем как можно извлечь дочерние <code>Job'ы</code> и знаем о ссылке на родителя <code>parentHandle</code>, теперь остается только уведомить их об отмене.</p><h2>Уведомление родителя и дочерних Job об отмене</h2><p>Перед тем как зарываться в исходники важно понять что корутина может отмениться по двум разным причинам:</p><ol><li><p>Корутина может отменится штатно, через вызов <code>Job.cancel()</code> метода, в таком случае создастся / выбросится <code>CancellationException</code>, отменится текущая корутина и отменятся дочерние, в родительскую ничего не будет проброшено.</p></li><li><p>Корутина может отменится внештатно, например вывалится любое исключение отличное от <code>CancellationException</code>, в таком случае отменится текущая корутина, отменятся дочерние и если у вас не указан <code>SupervisorJob</code> то отмена также будет прокинута родителю.</p></li></ol><p>Посмотрим как это реализовано в коде:</p><pre><code class="kotlin">private fun tryMakeCancelling(state: Incomplete, rootCause: Throwable): Boolean {
+    ...
+    // уведомляем родителя и детей об отмене
+    // list это список Job, взятый из текущего состояния корутины (JobSupport)
+    notifyCancelling(list, rootCause)
+    return true
+}
+
+private fun notifyCancelling(list: NodeList, cause: Throwable) {
+    ...
+    // прокидывание отмены в дочерние Job'ы
+    notifyHandlers(list, cause) { it.onCancelling }
+    // прокидывание отмены в родительскую Job'у
+    cancelParent(cause)
+}
+
+// уведомление дочерних Job об отмене
+private inline fun notifyHandlers(list: NodeList, cause: Throwable?, predicate: (JobNode) -&gt; Boolean) {
+    var exception: Throwable? = null
+    list.forEach { node -&gt;
+        // пробегаемся по дочерним Job'ам и отменяем их
+        // как мы уже знаем конкретным JobNode узлом для 
+        // дочерних корутин является ChildHandleNode
+        if (node is JobNode &amp;&amp; predicate(node)) {
+            try {
+                node.invoke(cause)
+            } catch (ex: Throwable) {
+                exception?.apply { addSuppressed(ex) } ?: run {
+                    exception = CompletionHandlerException("Exception in completion handler $node for $this", ex)
+                }
+            }
+        }
+    }
+    // если при оповещении дочерних JobNode узлов об отмене произошло 
+    // какое-то исключение, то оно обработается в CoroutineExceptionHandler'е, 
+    // реализация которого по умолчанию завершает программу со stacktrace'ом
+    exception?.let { handleOnCompletionException(it) }
+}
+
+// уведомление родительской Job'ы об отмене
+private fun cancelParent(cause: Throwable): Boolean {
+    // isScopedCoroutine равен true только для корутин, созданных 
+    // через coroutineScope { ... } билдер, такие корутины работают 
+    // как suspend блок: пробрасывают исключение через конструкцию 
+    // throw exception, поэтому нет необходимости обращаться к 
+    // родительской корутине через parentHandle
+    if (isScopedCoroutine) return true
+
+    // простая проверка: штатная отмена или нет
+    val isCancellation = cause is CancellationException
+    val parent = parentHandle
+    // если родителя нет, ничего с ним делать не надо
+    if (parent === null || parent === NonDisposableHandle) {
+        return isCancellation
+    }
+
+    // оповещаем родительскую Job'у об отмене
+    return parent.childCancelled(cause) || isCancellation
+}</code></pre><p>В конечном итоге будут вызваны:</p><ol><li><p><code>ChildHandleNode.invoke()</code> для оповещения дочерних <code>Job</code> об отмене - дочерние <code>ChildHandleNode</code> узлы хранятся в текущем состоянии <code>JobSupport</code>.</p></li><li><p><code>ChildHandleNode.childCancelled()</code> для оповещения родительской <code>Job'ы</code> об отмене - родительский <code>ChildHandleNode</code> узел хранится в поле <code>parentHandle</code>, которое принадлежит классу <code>JobSupport</code>.</p></li></ol><p>Рассмотрим поближе класс <code>ChildHandleNode</code>:</p><pre><code class="kotlin">class ChildHandleNode(
+    @JvmField val childJob: ChildJob
+) : JobNode(), ChildHandle {
+    override val parent: Job get() = job
+    override val onCancelling: Boolean get() = true
+    // при вызове invoke() отменяется дочерняя Job'а
+    override fun invoke(cause: Throwable?) = childJob.parentCancelled(job)
+    // при вызове childCancelled() отменяется родительская Job'а
+    override fun childCancelled(cause: Throwable): Boolean = job.childCancelled(cause)
+}
+
+open class JobSupport constructor(active: Boolean) : Job, ChildJob, ParentJob {
+
+    // вызывается дочерней Job'ой для отмены родительской
+    open fun childCancelled(cause: Throwable): Boolean {
+        // родительская Job'а отменяется только в случае внештатной отмены
+        if (cause is CancellationException) return true
+        return cancelImpl(cause) &amp;&amp; handlesException
+    }
+
+    // вызывается родительской Job'ой для отмены дочерних
+    override fun parentCancelled(parentJob: ParentJob) {
+        // дочерняя Job'а отменяется всегда когда отменяется родительская
+        cancelImpl(parentJob)
+    }
+
+}
+
+// класс JobImpl наследует JobSupport
+class SupervisorJobImpl(parent: Job?) : JobImpl(parent) {
+
+    // в SupervisorJob родительская Job'а никогда не отменяется
+    override fun childCancelled(cause: Throwable): Boolean = false
+  
+}</code></pre><p>Возвращаясь к двум возможным вариантам отмены корутины, приведенных в начале раздела, можем сделать следующие выводы: </p><ol><li><p><strong>Штатная отмена</strong>: отмена корутины приведет к вызову <code>JobSupport.cancelImpl()</code> у дочерних <code>Job</code>, которые будут прокидывать отмену все ниже и ниже по дереву пока не отменятся все дочерние корутины, по итогу отмененные корутины будут находиться в состоянии <code>Finishing</code> - то есть в состоянии отмены.</p></li><li><p><strong>Внештатная отмена</strong>: отмена корутины приведет в вызову <code>JobSupport.cancelImpl()</code> у дочерних <code>Job</code>, которые отменятся аналогично штатной отмене, в добавок если вы не указали <code>SupervisorJob</code> отмена будет прокидываться родителям все выше и выше по дереву пока не дойдет до самого главного, где исключение будет прокинуто в <code>CoroutineExceptionHandler</code> (по умолчанию установлен <code>CoroutineExceptionHandler</code>, который крашит программу со stacktrace'ом). </p></li></ol><p>Вроде бы разобрались с отменой, но как будто чего-то не хватает, да мы сбросили состояние корутины на <code>Finishing</code>, но не разобрались как происходит фактическая отмена определенной работы, например как отменяется функция <code>delay()</code> или как отменяются suspend функции, что ж пора и в этом разобраться.</p><h2>Как отменяется функция delay()</h2><p>Освежу память простейшим примером:</p><pre><code class="kotlin">val job = launch {
+    // должен отменится через 200 миллисекунд
+    delay(1_000)
+}
+delay(200)
+// отменяем корутину вместе с delay() вызовом
+job.cancel()</code></pre><p>В прошлых разделах мы узнали что в самой корутине нет никакой фактической отмены логики, а только управление состоянием и проброс отмены родительской / дочерним корутинам, поэтому лезем в исходники <code>delay()</code> функции:</p><pre><code class="kotlin">suspend fun delay(timeMillis: Long) {
+    if (timeMillis &lt;= 0) return
+    // приостанавливает корутину до тех пор пока 
+    // не вызовется Continuation.resumeWith(), это произойдет
+    // спустя некоторое время timeMillis, так в принципе и работает delay()
+    return suspendCancellableCoroutine sc@ { cont: CancellableContinuation&lt;Unit&gt; -&gt;
+        // if timeMillis == Long.MAX_VALUE then just wait forever like awaitCancellation, don't schedule.
+        if (timeMillis &lt; Long.MAX_VALUE) {
+            cont.context.delay.scheduleResumeAfterDelay(timeMillis, cont)
+        }
+    }
+}
+
+// реализация delay() из Android диспатчера HandlerContext, 
+// который работает на главном потоке приложения
+override fun scheduleResumeAfterDelay(timeMillis: Long, continuation: CancellableContinuation&lt;Unit&gt;) {
+    val block = Runnable {
+        with(continuation) { resumeUndispatched(Unit) }
+    }
+    // ставим задачу в очередь главного потока, второй параметр
+    // определяет через сколько миллисекунд она будет выполнена
+    if (handler.postDelayed(block, timeMillis.coerceAtMost(MAX_DELAY))) {
+        // CancellableContinuation позволяет добавить обработчик,
+        // который будет вызван при отмене корутины, 
+        // в нашем случае это нужно для удаления задачи из очереди
+        continuation.invokeOnCancellation { handler.removeCallbacks(block) }
+    }
+}</code></pre><p>Осталось только узнать кто вызывает обработчик отмены, добавленный через <code>CancellableContinuation.invokeOnCancellation()</code> метод. Чтобы разобраться в этом провалимся в функцию <code>suspendCancellableCoroutine</code>:</p><pre><code class="kotlin">suspend inline fun &lt;T&gt; suspendCancellableCoroutine(
+    crossinline block: (CancellableContinuation&lt;T&gt;) -&gt; Unit
+): T =
+    suspendCoroutineUninterceptedOrReturn { uCont -&gt;
+        // создается отменяемый Continuation и в него оборачивается текущий,
+        // чтобы в дальнейшем вернуть результат обратно
+        val cancellable = CancellableContinuationImpl(uCont.intercepted(), resumeMode = MODE_CANCELLABLE)
+        // тут происходит добавление CancellableContinuationImpl в качестве
+        // дочернего JobNode узла для текущей корутины
+        cancellable.initCancellability()
+        block(cancellable)
+        // если можем сразу вернуть результат возвращаем его 
+        // или приостанавливаем корутину если это невозможно
+        cancellable.getResult()
+    }
+
+// метод из CancellableContinuationImpl
+fun initCancellability() {
+    val handle = installParentHandle() ?: return 
+    ...
+}
+
+// метод из CancellableContinuationImpl
+private fun installParentHandle(): DisposableHandle? {
+    // берем родительскую Job'у, ей является корутина
+    val parent = context[Job] ?: return null
+    // добавляем в состояние родительской Job'ы новый узел ChildContinuation
+    val handle = parent.invokeOnCompletion(handler = ChildContinuation(this))
+    _parentHandle.compareAndSet(null, handle)
+    return handle
+}
+
+private class ChildContinuation(
+    @JvmField val child: CancellableContinuationImpl&lt;*&gt;
+) : JobNode() {
+    override val onCancelling get() = true
+
+    // этот метод будет вызван когда родительская Job'а
+    // начнет отменяться, вспомните как корутина уведомляет 
+    // об отмене родителей и детей
+    override fun invoke(cause: Throwable?) {
+        // отменяется CancellableContinuationImpl
+        child.parentCancelled(child.getContinuationCancellationCause(job))
+    }
+}</code></pre><p>Как вы уже знаете при отмене корутины возьмутся все дочерние <code>JobNode</code> узлы из ее текущего состояния и у каждого узла будет вызван метод <code>JobNode.invoke()</code>, в данном случае <code>ChildContinuation</code> является абсолютно таким же узлом, как и <code>ChildHandleNode</code>:</p><pre><code class="kotlin">class ChildContinuation(val child: CancellableContinuationImpl&lt;*&gt;) : JobNode() {
+    override fun invoke(cause: Throwable?) {
+        // при вызове JobNode.invoke() у CancellationContinuation будет
+        // вызван метод parentCancelled()
+        child.parentCancelled(child.getContinuationCancellationCause(job))
+    }
+}
+
+// метод из CancellableContinuationImpl
+internal fun parentCancelled(cause: Throwable) {
+    if (cancelLater(cause)) return
+    // по итогу произойдет обычная отмена через 
+    // CancellableContinuationImpl.cancel() метод
+    cancel(cause)
+    // Even if cancellation has failed, we should detach child to avoid potential leak
+    detachChildIfNonResuable()
+}</code></pre><p>Ну и собственно как происходит отмена обработчиков в <code>CancellableContinuationImpl</code>:</p><pre><code class="kotlin">// метод из CancellableContinuationImpl
+override fun cancel(cause: Throwable?): Boolean {
+    _state.loop { state -&gt;
+        if (state !is NotCompleted) return false // false if already complete or cancelling
+        // состояние меняется на отмененное
+        val update = CancelledContinuation(this, cause, handled = state is CancelHandler || state is Segment&lt;*&gt;)
+        if (!_state.compareAndSet(state, update)) return@loop
+        // вызывает обработчик отмены, зарегистрированный через 
+        // invokeOnCancellation() метод
+        when (state) {
+            is CancelHandler -&gt; callCancelHandler(state, cause)
+            is Segment&lt;*&gt; -&gt; callSegmentOnCancellation(state, cause)
+        }
+        ...
+        return true
+    }
+}
+
+override fun invokeOnCancellation(handler: CompletionHandler) =
+    // добавляет в CancellableContinuationImpl обработчик,
+    // вызываемый при отмене корутины
+    invokeOnCancellation(CancelHandler.UserSupplied(handler))</code></pre><p>Суммируем как происходит отмена функции <code>delay()</code>:</p><ol><li><p>Сначала отменяется сама корутина - извлекаются дочерние <code>JobNode</code> узлы из текущего состояния и оно меняется на <code>Finishing</code>.</p></li><li><p>Для каждого дочернего <code>JobNode</code> узла вызывается <code>JobNode.invoke()</code> метод - <code>JobNode</code> узлы содержат ссылки не только на корутиновские <code>Job'ы</code>, но и на <code>CancellableContinuation</code> сущности, <code>CancellableContinuation</code> используется в функции <code>delay()</code>.</p></li><li><p>При вызове <code>JobNode.invoke()</code> для <code>CancellableContinuation</code>, будут вызваны все обработчики, добавленные через <code>CancellableContinuation.invokeOnCancellation()</code> метод, в том числе и обработчик добавленный в функции <code>delay()</code>.</p></li><li><p>Обработчик в функции <code>delay()</code> отменит задержку - в Android реализации для этого используется <code>Handler.removeCallbacks()</code> метод, он удалит задачу из очереди главного потока.</p></li></ol><h2>Как отменяются suspend функции</h2><p>Важно понимать что не во всех ситуациях suspend функции могут быть отменены, например здесь это невозможно:</p><pre><code class="kotlin">suspend fun sleep() {
+    Thread.sleep(500)
+}
+
+suspend fun welcome() {
+    println("Welcome!")
+}
+
+val job = launch(Dispatchers.IO) {
+    sleep()
+    welcome()
+}
+
+delay(100)
+
+// ничего не отменится, выполнится sleep() вместе с welcome()
+job.cancel()</code></pre><p>Так происходит потому что ни одна из suspend функций не возвращает состояния приостановки и следовательно код в suspend блоке выполняется синхронно. Если вы уже забыли из <a href="https://habr.com/en/articles/827866/" rel="noopener noreferrer nofollow">прошлой статьи</a>, напоминаю что для каждого suspend блока, запущенного в корутине будет сгенерирован специальный switch case, в нашем случае он будет вот таким:</p><pre><code class="kotlin">class GeneratedContinuationImplementation(...) : ... {
+
+    override fun resumeWith(result: Result&lt;Any?&gt;) {
+        val outcome: Result&lt;Any?&gt; =
+            try {
+                // при хорошо спроектированных suspend функциях,
+                // каждый вызов должен приводить к COROUTINE_SUSPENDED состоянию
+                // после того как функция завершит свое выполнение она вызовет 
+                // Continuation.resumeWith() этого Continuation'а и выполнится 
+                // следующая suspend функция в switch case блоке
+                val outcome = invokeSuspend(param)
+                if (outcome === COROUTINE_SUSPENDED) return
+                Result.success(outcome)
+            } catch (exception: Throwable) {
+                Result.failure(exception)
+        }
+        // после завершения suspend блока должна завершится сама корутина
+        coroutine.resumeWith(outcome)
+    }
+
+    fun sleep(cont: Continuation&lt;Any?&gt;): Any {
+        Thread.sleep(500)
+        // нет состояния приостановки COROUTINE_SUSPENDED,
+        // код выполняется синхронно
+        return Unit
+    }
+
+    fun welcome(cont: Continuation&lt;Any?&gt;): Any {
+        // тут также нет состояния приостановки
+        println("Welcome!")
+        return Unit
+    }
+
+    // я убрал switch case для простоты, логика абсолютно такая же
+    override fun invokeSuspend(result: Result&lt;Any?&gt;): Any {
+        // так как нет состояния приостановки все методы 
+        // выполняются друг за другом
+        sleep(this)
+        welcome(this)
+        // завершение suspend блока
+        return result
+    }
+
+}</code></pre><p>Обязательно вернитесь к <a href="https://habr.com/en/articles/827866/" rel="noopener noreferrer nofollow">прошлой статье</a> если ничего непонятно по suspend блоку, там подробно это разжевано, ну а мы попробуем починить этот код чтобы он стал отменяемым:</p><pre><code class="kotlin">suspend fun sleep() {
+    // я только добавил withContext вызов
+    withContext(Dispatchers.IO) {
+        Thread.sleep(500)
+    }
+}
+
+suspend fun welcome() {
+    println("Welcome!")
+}
+
+val job = launch {
+    sleep()
+    welcome()
+}
+
+delay(100)
+
+// выполнится только sleep(), а welcome() будет отменен
+job.cancel()</code></pre><p>Вуаля! Мы добавили <code>withContext()</code> вызов, который под капотом создает <code>DispatchedCoroutine</code>, где выполняется suspend блок с <code>Thread.sleep()</code> вызовом, смотрим как это будет работать:</p><pre><code class="kotlin">class GeneratedContinuationImplementation(...) : ... {
+
+    override fun resumeWith(result: Result&lt;Any?&gt;) {
+        val outcome: Result&lt;Any?&gt; =
+            try {
+                // при хорошо спроектированных suspend функциях,
+                // каждый вызов должен приводить к COROUTINE_SUSPENDED состоянию
+                // после того как функция завершит свое выполнение она вызовет 
+                // Continuation.resumeWith() этого Continuation'а и выполнится 
+                // следующая suspend функция в switch case блоке
+                val outcome = invokeSuspend(param)
+                if (outcome === COROUTINE_SUSPENDED) return
+                Result.success(outcome)
+            } catch (exception: Throwable) {
+                // вот тут обрабатывается CancellationException,
+                // поэтому если вы напишите свой try / catch в suspend блоке
+                // и перехватите это исключение, у вас может сломаться 
+                // отмена корутины
+                Result.failure(exception)
+        }
+        // после завершения suspend блока должна завершится сама корутина
+        coroutine.resumeWith(outcome)
+    }
+
+    fun sleep(cont: Continuation&lt;Any?&gt;): Any {
+        // создаем DispatchedCoroutine, под капотом она добавится
+        // как дочерняя Job'а в родительскую корутину
+        val coroutine = DispatchedCoroutine(...)
+        // для простоты не стал расписывать логику диспатчеризации, 
+        // она есть в прошлой статье 
+        coroutine.runSuspendBlockInIOThread {
+            // выполняем какую-то работу на IO потоке
+            Thread.sleep(500)
+            // также упростил логику возвращения на предыдущий поток
+            coroutine.runResumeInPreviousThread {
+                // выходим из состояния приостановки
+                // result вычисляется на основе текущего состояния 
+                // DispatchedCoroutine  
+                cont.resumeWith(result)
+            }
+        }
+        // до вызова cont.resumeWith() метод будет находиться 
+        // в состоянии приостановки
+        return COROUTINE_SUSPENDED
+    }
+
+    fun welcome(cont: Continuation&lt;Any?&gt;): Any {
+        // эта функция остается без изменений
+        println("Welcome!")
+        return Unit
+    }
+
+    var label = 0
+  
+    override fun invokeSuspend(result: Result&lt;Any?&gt;): Any {
+        when(label) {
+            0 -&gt; {
+                result.throwOnFailure()
+                sleep(this)
+                return COROUTINE_SUSPENDED
+            }
+            1 -&gt; {
+                // result может содержать исключение CancellationException,
+                // которое должно будет прокинуться выше и отменить выполнение
+                // suspend блока
+                result.throwOnFailure()
+                welcome()
+            }
+        }
+        return result
+    }
+
+}</code></pre><p>В чем собственно заключается отмена? Да все просто, любая suspend функция, которая хочет отменить дальнейшее выполнение других функций в suspend блоке должна вернуть результат с исключением:</p><pre><code class="kotlin">fun welcome(continuation: Continuation&lt;Any&gt;): Any {
+    continuation.resumeWith(Result.failure(CancellationException("Отмени suspend блок!")))
+    return COROUTINE_SUSPENDED
+}</code></pre><p>Как мы уже выяснили такое возможно только если такая функция находится в состоянии приостановки, в противном случае suspend блок продолжит выполняться.</p><p>После того как <code>Continuation</code>, сгенерированный для suspend блока, получил результат с исключением, он выбросит это исключение через вызов <code>Result.throwOnFailure()</code> и завершит выполнение всего switch case блока.</p><p>Остается только найти место где возвращается результат с исключением, в нашем случае это находится вот тут:</p><pre><code class="kotlin">fun sleep(cont: Continuation&lt;Any?&gt;): Any {
+    val coroutine = DispatchedCoroutine(...)
+    coroutine.runSuspendBlockInIOThread {
+        Thread.sleep(500)
+        coroutine.runResumeInPreviousThread {
+            // result берется из текущего состояния DispatchedCoroutine
+            // и он как раз содержит CancellationException, когда корутина
+            // была отменена
+            cont.resumeWith(result)
+        }
+    }  
+    return COROUTINE_SUSPENDED
+}
+
+val job = launch {
+    // в sleep() создается DispatchedCoroutine и добавляется 
+    // как дочерний узел ChildHandleNode в текущую корутину
+    sleep()
+}
+
+delay(100)
+
+// при отмене корутины как вы уже знаете все дочерние узлы ChildHandleNode
+// тоже буду отменяться, следовательно DispatchedCoroutine перейдет в состояние
+// Finishing, содержащее CancellationException, это исключение 
+// и пробросится в сгенерированный Continuation для suspend блока
+job.cancel()</code></pre><p>Вот таким нехитрым способом происходит отмена suspend функций, хотя скорее suspend блока, не забывайте что отмениться может только запланированный код (следующие suspend функции) и только в случае состояния приостановки текущей.</p><p>Получается, что никакой магии нет.</p><h2>Finishing это не последнее состояние корутины?</h2><p>Из предыдущего раздела мы увидели что после отмены корутины, отменится дальнейшее выполнение suspend блока, а результат вернется обратно в корутину:</p><pre><code class="kotlin">class GeneratedContinuationImplementation(...) : ... {
+
+    override fun resumeWith(result: Result&lt;Any?&gt;) {
+        val outcome: Result&lt;Any?&gt; = ...
+        // возвращаем результат обратно в корутину
+        coroutine.resumeWith(outcome)
+    }
+
+    ...
+}</code></pre><p>Это сделано для того чтобы корутина выполнила завершающие действия и перешла в конечное состояние:</p><pre><code class="kotlin">override fun resumeWith(result: Result&lt;T&gt;) {
+    val state = makeCompletingOnce(result.toState())
+    if (state === COMPLETING_WAITING_CHILDREN) return
+    afterResume(state)
+}
+
+fun makeCompletingOnce(proposedUpdate: Any?): Any? {
+    loopOnState { state -&gt;
+        val finalState = tryMakeCompleting(state, proposedUpdate)
+        ...
+    }
+}
+
+// я упростил логику до одного tryMakeCompleting() метода,
+// если хотите досконально разобраться во всех нюансах 
+// читайте исходники JobSupport.tryMakeCompleting()
+fun tryMakeCompleting(state: Any?, result: Any?) {
+    if (state !is Incomplete) return COMPLETING_ALREADY
+
+    // получаем дочерние Job'ы
+    val list = getOrPromoteCancellingList(state) ?: return COMPLETING_RETRY
+
+    // получаем состояние завершения или создаем новое для отмены дочерних узлов
+    val finishing = state as? Finishing ?: Finishing(list, false, null)
+
+    // тут извлекается искючение либо из текущего состояния корутины state 
+    // либо из пришедшего результата result, его может не быть если
+    // корутина завершается сама без отмен и ошибок
+    val notifyRootCause: Throwable? = ...
+
+    // если пришло исключение отмены или внештатная ошибка 
+    // нужно отменить дочерние Job'ы 
+    notifyRootCause?.let { notifyCancelling(list, it) }
+
+    // текущая корутина будет ждать пока выполняться / отменятся дочерние корутины
+    val child = list.nextChild()
+    if (child != null &amp;&amp; tryWaitForChild(finishing, child, proposedUpdate))
+        return COMPLETING_WAITING_CHILDREN
+
+    // вычисляются финальное исключение и финальное состояние, 
+    // обычно если корутина завершается штатно конечным состоянием будет:
+    // Unit для launch корутин, 
+    // Any для withContext корутин, 
+    // если с ошибкой / отменой то CompletedExceptionally
+    val finalException = ...
+    val finalState = ...
+       
+    if (finalException != null) {
+        // для отмены cancelParent() всегда возращает true,
+        // в случае 
+        // внештатного исключения оно будет прокидываться до главного 
+        // родителя, где вызовется метод handleJobException() и
+        // исключение обработается через CoroutineExceptionHandler:
+        // по умолчанию установлен CoroutineExceptionHandler,
+        // который крашит программу со stacktrace'ом
+        val handled = cancelParent(finalException) || handleJobException(finalException)
+        if (handled) (finalState as CompletedExceptionally).makeHandled()
+    }
+
+    // устанавливаем финальное состояние
+    _state.compareAndSet(state, finalState.boxIncomplete())
+      
+    return finalState
+}</code></pre><p>В итоге после завершения корутины у нее будет одно из следующих состояний:</p><ol><li><p>Unit - для штатного завершения корутин, запущенных через launch билдер (<code>StandaloneCoroutine</code>).</p></li><li><p><code>CompletedExceptionally</code> - для отмененной корутины или завершенной внештатно (исключение отличное от <code>CancellationException</code>).</p></li><li><p>Любой другой тип - для корутин, запущенных через withContext билдер (<code>DispatchedCorotuine</code>).</p></li></ol><p>С финальным состоянием разобрались, теперь посмотрим как родительская корутина дожидается завершения своих детей, предположим у нас есть следующий код:</p><pre><code class="kotlin">// корутина 1
+launch {
+    // корутина 2
+    launch(Dispatchers.IO) {
+        ...
+    }
+    // корутина 3
+    launch(Dispatchers.IO) {
+        ...
+    }
+}</code></pre><p>Не секрет что запуск корутин 2 и 3 произойдет без приостановки так как тут не надо дожидаться результата, а это значит что suspend блок корутины 1 сразу вернет управление через вызов <code>Continuation.resumeWith()</code>, где как мы уже выяснили корутина должна будет завершится. </p><p>Чтобы корутина 1 дождалась детей, есть специальная логика:</p><pre><code class="kotlin">fun tryMakeCompleting(state: Any?, result: Any?) {
+    ...
+  
+    // текущая корутина будет ждать пока выполняться / отменятся дочерние корутины
+    val child = list.nextChild()
+    if (child != null &amp;&amp; tryWaitForChild(finishing, child, proposedUpdate))
+        return COMPLETING_WAITING_CHILDREN
+
+    ...
+  
+    // только после завершения детей корутина поменяет свое состояние 
+    // на полностью завершенное
+    _state.compareAndSet(state, finalState.boxIncomplete())
+
+    ...
+}
+
+private tailrec fun tryWaitForChild(state: Finishing, child: ChildHandleNode, proposedUpdate: Any?): Boolean {
+    // в дочернюю Job'у будет добавлен специальный CompletionHandler,
+    // который вызовется когда она будет завершаться
+    val handle = child.childJob.invokeOnCompletion(
+        invokeImmediately = false,
+        handler = ChildCompletion(this, state, child, proposedUpdate)
+    )
+    // если дочерняя Job'а еще не завершена ждем
+    if (handle !== NonDisposableHandle) return true // child is not complete and we've started waiting for it
+    // иначе смотрим следующую дочернюю Job'у
+    val nextChild = child.nextChild() ?: return false
+    return tryWaitForChild(state, nextChild, proposedUpdate)
+}
+
+private class ChildCompletion(
+    private val parent: JobSupport,
+    private val state: Finishing,
+    private val child: ChildHandleNode,
+    private val proposedUpdate: Any?
+) : JobNode() {
+    override val onCancelling get() = false
+    // когда дочерняя Job'а будет завершаться она вызовет этот обработчик
+    override fun invoke(cause: Throwable?) {
+        // родительская корутина продолжит завершаться 
+        parent.continueCompleting(state, child, proposedUpdate)
+    }
+}</code></pre><p>Родительская корутина будет ждать завершения детей и пока последняя дочерняя корутина не вызовет  <code>ChildCompletion.invoke()</code> обработчик, она не перейдет в финальное состояние.</p><p>P.S. Спасибо чуваку <a class="mention" href="/users/manwtein">@manwtein</a> что упомянул в комментах про ожидание дочерних корутин в родителе! </p><h2>Итоги</h2><p>Ух, думал не выдержу до конца этого длинного текста, но чем заниматься в Новогодние праздники если не писать суперсложную техническую статью?).</p><p>Давайте подведем итоги:</p><ol><li><p><code>Job</code> - элемент <code>CoroutineContext'а</code>, отвечающий за хранение одного из состояний корутины: выполнение, отмена, завершение, завершение с ошибкой, для lazy корутин есть еще состояние "не начала выполняться".  </p></li><li><p>В <code>Job</code> есть специальные Boolean поля, которые могут дать информацию о текущем состоянии корутины: isActive - выполняется корутина или нет, isCompleted - завершена корутина полностью или нет, isCancelled - отменена корутина или нет. </p></li><li><p><code>JobSupport</code> - это одна из базовых реализаций <code>Job'ы</code>, от которой наследуются другие реализации такие как <code>SupervisorJob</code> например.</p></li><li><p><code>JobSupport</code> может содержать ссылку на родительскую <code>Job'у</code>, если у корутины есть родитель, это нужно для пробрасывания отмены родителю в случае внештатной отмены.</p></li><li><p><code>JobSupport</code> состояние хранит в себе дочерние <code>Job’ы</code> по следующей логике: если нет дочерних <code>Job</code>, хранится <code>Empty</code> состояние; если есть одна дочерняя <code>Job'а</code> хранится <code>JobNode</code> узел, конкретный класс - <code>ChildHandleNode</code>; если несколько дочерних <code>Job</code> хранится состояние <code>NodeList</code>, где дочерние <code>JobNode</code> элементы лежат в связанном списке.</p></li><li><p>Класс корутины <code>StandaloneCoroutine</code> является наследником <code>JobSupport</code>, поэтому вся логика из <code>JobSupport</code> доступна корутине.</p></li><li><p>Отмена корутины может быть штатной, например при вызове <code>Job.cancel()</code>, в таком случае отменятся только дочерние корутины, отмена не будет пробрасываться родителю.</p></li><li><p>Отмена корутины может быть внештатной, например при выбросе любого исключения отличного от <code>CancellationException</code>, в таком случае отменятся дочерние корутины и отмена будет проброшена родителю, который может либо не пробрасывать дальше отмену (если это <code>SupervisorJob</code>), либо пробросить ее до самого главного родителя, где исключение будет обработано <code>CoroutineExceptionHandler'ом</code>.</p></li><li><p>По умолчанию установлен <code>CoroutineExceptionHandler</code>, который крашит программу со stacktrace'ом.</p></li><li><p>Фактическая отмена логики осуществляется не в самой корутине, а в правильно организованных suspend функциях таких как <code>delay()</code> или в suspend блоках, содержащих такие функции.</p></li><li><p>Функция <code>delay()</code> под капотом использует <code>CancellableContinuation</code>, который добавляется в родительскую корутину как дочерняя <code>Job'а</code> и при отмене корутины аналогично дочерним корутинам отменяется. Самая главная фишка <code>CancellableContinuation</code> в том что при отмене он вызывает специальные обработчики, их можно добавить через метод <code>CancellableContinuation.invokeOnCancellation()</code>, в функции <code>delay()</code> такой обработчик отменяет задержку.</p></li><li><p>Отменить можно только тот suspend блок где suspend функции могут быть в приостановленном состоянии, в противном случае код выполнится как один большой метод.</p></li><li><p>После отмены или завершения корутины она переходит в одно из финальных состояний: Unit - для штатного завершения корутин, запущенных через launch билдер (<code>StandaloneCoroutine</code>), <code>CompletedExceptionally</code> - для отмененной корутины или завершенной внештатно, любой другой тип - для корутин, запущенных через withContext билдер (<code>DispatchedCorotuine</code>).</p></li></ol><p>Полезные ссылки:</p><ol><li><p><a href="https://t.me/android_under_the_hood" rel="noopener noreferrer nofollow">Мой технический телеграм канал</a></p></li><li><p><a href="https://t.me/dimych_notes" rel="noopener noreferrer nofollow">Мой личный блог обо всем</a></p></li><li><p><a href="https://habr.com/en/articles/827866/" rel="noopener noreferrer nofollow">Предыдущая статья по корутинам</a></p></li><li><p><a href="https://www.youtube.com/watch?v=YD2GeSEJQtI" rel="noopener noreferrer nofollow">Курс по корутинам от Android Broadcast</a></p></li><li><p><a href="https://kotlinlang.org/docs/coroutines-overview.html" rel="noopener noreferrer nofollow">Официальная дока</a></p></li><li><p><a href="https://www.youtube.com/watch?v=rB5Q3y73FTo" rel="noopener noreferrer nofollow">Крутой доклад от создателя библиотеки</a></p></li><li><p><a href="https://github.com/Kotlin/kotlinx.coroutines" rel="noopener noreferrer nofollow">Исходный код корутин</a></p></li></ol><p>Пишите в комментах ваше мнение и всем хорошего кода!</p><p></p></div></div></div><!-- --><!-- --></div><!-- --><!-- --></div><!--]--><!-- --><div class="tm-article-presenter__meta" data-test-id="article-meta-links"><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Теги:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[kotlin]"><span>kotlin</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[coroutines]"><span>coroutines</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[android]"><span>android</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[internals]"><span>internals</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[kotlin+coroutines]"><span>kotlin coroutines</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[coroutines+internals]"><span>coroutines internals</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[kotlin+coroutines+internals]"><span>kotlin coroutines internals</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[computer+science]"><span>computer science</span></a><!--]--></li><!--]--><!-- --></ul></div><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Хабы:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/open_source/"><!--[--><span>Open source</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/algorithms/"><!--[--><span>Алгоритмы</span><!--]--></a><!--]--></li><!--]--><!-- --></ul></div></div><!-- --><!--]--></article><!--]--></div><!-- --></div><div class="tm-article-sticky-panel" data-test-id="article-sticky-panel" style=""><div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons"><div class="tm-article-rating tm-data-icons__item"><div class="tm-votes-meter tm-article-rating__votes-switcher"><svg class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon tm-votes-meter__icon_appearance-article" height="24" width="24"><title>Всего голосов 13: ↑12 и ↓1</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-rating"></use></svg><span class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating tm-votes-meter__value" data-test-id="votes-meter-value" title="Всего голосов 13: ↑12 и ↓1">+13</span></div><!--teleport start--><!--teleport end--><!-- --></div><!-- --><!-- --><button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Добавить в закладки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-favorite"></use></svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">71</span></button><div class="tm-sharing tm-data-icons__item" title="Поделиться"><button class="tm-sharing__button" type="button"><svg class="tm-sharing__icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z" fill="currentColor"></path></svg></button><!--teleport start--><!--teleport end--></div><div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии"><a class="tm-article-comments-counter-link__link" data-test-id="counter-comments" href="/ru/articles/873076/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value">0</span><!--]--></a><!-- --></div><!--[--><!--[--><!--[--><!-- --><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!-- --></div></div></div><!--[--><!--]--><div class="tm-article-presenter__footer"><!--[--><!--[--><div class="tm-article-blocks"><!-- --><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><!-- --><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-balanced"><!--[--><div class="tm-article-author" data-test-id="article-author-info"><!--[--><!--]--><div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true"><div class="tm-user-card__info-container"><div class="tm-user-card__header"><div class="tm-user-card__header-data"><a class="tm-user-card__userpic tm-user-card__userpic_size-40" href="/ru/users/DmitryTsyvtsyn/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/db6/bea/5ea/db6bea5ea945afec3614eae955a8f2b1.jpeg"/></div></a><div class="tm-user-card__meta"><div class="tm-counter-container tm-karma tm-karma" title=" 24 голоса "><div class="tm-counter-container__header"><!--[--><div class="karma-display positive" data-v-7635202e="">20</div><!-- --><!--]--></div><div class="tm-counter-container__footer"><!--[--><div class="tm-karma__text">Карма</div><!--teleport start--><!--teleport end--><!--]--></div></div><div class="tm-counter-container" title="Рейтинг пользователя"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">4</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div></div></div></div><div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info"><div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title"><span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Dmitry Tsyvtsyn</span><a class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article" href="/ru/users/DmitryTsyvtsyn/"> @DmitryTsyvtsyn</a><!-- --></div><p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Android developer, photographer and traveler</p></div></div><div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons"><!-- --><div class="tm-user-card__button"><div class="tm-button-follow tm-user-card__button-follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div></div><!-- --><div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations"><svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16"><title>Отправить сообщение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#mail"></use></svg></div><!-- --></div><!-- --></div><!-- --></div><!--]--></div><!--]--><!-- --></section><!-- --><!--[--><div class="banner-wrapper leaderboard tm-page-article__banner" data-v-ad758baa="" style="--467224fc:200px;--58ff5eba:auto;"><!--[--><div class="placeholder-wrapper placeholder" data-v-ad758baa=""><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca=""><div class="image loads" data-v-12f7bcca=""></div><div class="lines" data-v-12f7bcca=""><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div></div></div><!-- --></div><div class="tm-adfox-banner" data-v-ad758baa="" id="adfox_164725660339535756"></div><!--]--></div><!--]--><!--]--><div class="tm-article-blocks__comments"><div class="tm-article-page-comments" id="publication-comments"><div><!--[--><div class="tm-article-comments-counter-link tm-article-comments-counter-button"><a class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments" href="/ru/articles/873076/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span><!--]--></a><!-- --></div><!--]--></div></div></div><!--[--><!--[--><!--]--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header tm-block__header_variant-borderless"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim"><!--[--><!--[--><div class="tm-tabs tm-tabs"><div class=""><!--[--><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]--></div><!-- --></div><div class="similar-and-daily__tab-view"><div class="daily-articles-list"><ul class="tm-article-card-list"><!--[--><!--]--><div class="tm-bordered-card"><!-- --><!--[--><!--]--></div></ul><div class="daily-articles-block__button-container"><button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button></div></div><!-- --></div><!--]--><!--]--></div><!--]--><!-- --></section><!--[--><div><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-promo"><div class="tm-placeholder-promo__header"><div class="tm-placeholder__line tm-placeholder__line_promo-title"></div></div><div class="tm-placeholder-promo__body"><div class="tm-placeholder-promo__posts"><div class="tm-placeholder-promo__post"><div class="tm-placeholder-promo__image"></div><div class="tm-placeholder__line tm-placeholder__line_post-title"></div></div><div class="tm-placeholder-promo__post"><div class="tm-placeholder-promo__image"></div><div class="tm-placeholder__line tm-placeholder__line_post-title"></div></div><div class="tm-placeholder-promo__post"><div class="tm-placeholder-promo__image"></div><div class="tm-placeholder__line tm-placeholder__line_post-title"></div></div></div><div class="tm-placeholder-promo__dots"><div class="tm-placeholder-promo__dot"></div><div class="tm-placeholder-promo__dot"></div><div class="tm-placeholder-promo__dot"></div></div></div></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div></div><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-inset tm-placeholder-courses"><div class="tm-placeholder-inset__header"><div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div></div><div class="tm-placeholder-inset__body"><ul class="tm-placeholder-list"><!--[--><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__company-avatar"></div><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__company-avatar"></div><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__company-avatar"></div><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__company-avatar"></div><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__company-avatar"></div><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><!--]--></ul></div><div class="tm-placeholder-inset__footer"><div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div></div></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!--]--><!-- --><!--[--><!--]--><!--]--></div><!--]--><!--]--></div></div><!--]--><!--]--></div></div><div class="tm-page__sidebar"><!--[--><div class="tm-layout-sidebar"><div class="tm-layout-sidebar__placeholder_initial"></div><div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;"><!--[--><!--]--><!-- --><div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads"><div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" data-v-ad758baa="" style="--467224fc:600px;--58ff5eba:auto;"><!--[--><div class="placeholder-wrapper placeholder" data-v-ad758baa=""><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="adfox-banner-placeholder half-page" data-v-12f7bcca=""><div class="image loads" data-v-12f7bcca=""></div><div class="lines" data-v-12f7bcca=""><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div></div></div><!-- --></div><div class="tm-adfox-banner" data-v-ad758baa="" id="adfox_164725680533065327"></div><!--]--></div></div><!--[--><!-- --><section class="tm-block tm-block tm-block_spacing-around tm-stories-block" data-async-called="true" data-navigatable="" tabindex="0"><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Истории</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-equal"><!--[--><div class="tm-stories-empty"><!--[--><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><!--]--></div><!-- --><!--]--></div><!--]--><!-- --></section><section class="tm-block tm-block tm-block_spacing-around" data-async-called="true"><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Работа</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body"><!--[--><!--[--><div class="tm-vacancies-block__item"><a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/android_developer" target="_blank">Android разработчик </a><div class="tm-vacancies-block__vacancies-count">10
+    вакансий</div></div><!--]--><!--]--></div><!--]--><footer class="tm-block__footer"><!--[--><a class="tm-block-extralink" href="https://career.habr.com/catalog">Все вакансии</a><!--]--></footer></section><section class="tm-block tm-block tm-block_spacing-around block" data-async-called="true" data-v-ebf6a21b=""><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body"><!--[--><div class="swiper-container slider" data-v-ebf6a21b="" style="--swiper-space-between:22px;"><div class="swiper-wrapper"><!--[--><!--[--><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="588" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/588/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/f79/1fc/79d/f791fc79d0d9fdda84397ed0c0717764.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/f79/1fc/79d/f791fc79d0d9fdda84397ed0c0717764.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/f79/1fc/79d/f791fc79d0d9fdda84397ed0c0717764.png, https://habrastorage.org/getpro/habr/upload_files/f79/1fc/79d/f791fc79d0d9fdda84397ed0c0717764.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>17  февраля   – 24  марта  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/588/"><span>Конкурс «Снежный код» от Хекслета. Три гранта на бесплатное 10-месячное обучение</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#588">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-development"><span>Разработка</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="596" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/596/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/b14/cd3/772/b14cd3772bc67698c8fbfd846e23824a.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/b14/cd3/772/b14cd3772bc67698c8fbfd846e23824a.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/b14/cd3/772/b14cd3772bc67698c8fbfd846e23824a.png, https://habrastorage.org/getpro/habr/upload_files/b14/cd3/772/b14cd3772bc67698c8fbfd846e23824a.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>20  марта  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/596/"><span>Офлайн-конференция Хабр х K-team: как удерживать таланты в 2025 году</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Москва</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#596">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-other"><span>Другое</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="604" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/604/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/733/9ef/194/7339ef1945f3ee6906daf89db79829d4.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/733/9ef/194/7339ef1945f3ee6906daf89db79829d4.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/733/9ef/194/7339ef1945f3ee6906daf89db79829d4.png, https://habrastorage.org/getpro/habr/upload_files/733/9ef/194/7339ef1945f3ee6906daf89db79829d4.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>20  марта  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/604/"><span>IX HappyWorkForum | Аутентичность и ментальное здоровье персонала</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Москва</span><span class="tm-event-card__places-separator"> • </span></span><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#604">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-other"><span>Другое</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="612" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/612/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/38f/10d/f4c/38f10df4c7f9d7c5d4610fe426af0ab4.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/38f/10d/f4c/38f10df4c7f9d7c5d4610fe426af0ab4.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/38f/10d/f4c/38f10df4c7f9d7c5d4610fe426af0ab4.png, https://habrastorage.org/getpro/habr/upload_files/38f/10d/f4c/38f10df4c7f9d7c5d4610fe426af0ab4.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>20  марта  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/612/"><span>Вебинар «Мастерская бюджета: как управлять затратами на облачные ресурсы»</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#612">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-development"><span>Разработка</span></div><div class="event-category__label event-category__label_type-admin"><span>Администрирование</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="616" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/616/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/523/7fb/13a/5237fb13ad7fb6fb483c49691aaec836.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/523/7fb/13a/5237fb13ad7fb6fb483c49691aaec836.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/523/7fb/13a/5237fb13ad7fb6fb483c49691aaec836.png, https://habrastorage.org/getpro/habr/upload_files/523/7fb/13a/5237fb13ad7fb6fb483c49691aaec836.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>21  марта  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/616/"><span>Бизнес-конференция «Digital Brand Day 2025: Орбита 2025»</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Москва</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#616">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-marketing"><span>Маркетинг</span></div><div class="event-category__label event-category__label_type-other"><span>Другое</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="606" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/606/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/400/0cb/fb8/4000cbfb86e5b97097f11d84cc50f089.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/400/0cb/fb8/4000cbfb86e5b97097f11d84cc50f089.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/400/0cb/fb8/4000cbfb86e5b97097f11d84cc50f089.png, https://habrastorage.org/getpro/habr/upload_files/400/0cb/fb8/4000cbfb86e5b97097f11d84cc50f089.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>24  марта  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/606/"><span>Серия вебинаров «DevOps Middle: AvitoTech vs X5 Tech»</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#606">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-development"><span>Разработка</span></div><div class="event-category__label event-category__label_type-admin"><span>Администрирование</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="608" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/608/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/8fd/e04/ddd/8fde04ddd9ba3f6bcd515aa6209f96b7.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/8fd/e04/ddd/8fde04ddd9ba3f6bcd515aa6209f96b7.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/8fd/e04/ddd/8fde04ddd9ba3f6bcd515aa6209f96b7.png, https://habrastorage.org/getpro/habr/upload_files/8fd/e04/ddd/8fde04ddd9ba3f6bcd515aa6209f96b7.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>27  марта  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/608/"><span>Вебинар «Контент-маркетинг здорового человека: как привлечь внимание аудитории»</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#608">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-marketing"><span>Маркетинг</span></div><div class="event-category__label event-category__label_type-other"><span>Другое</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="618" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/618/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/f76/0f9/a82/f760f9a827b851a5eeca4802c643a91d.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/f76/0f9/a82/f760f9a827b851a5eeca4802c643a91d.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/f76/0f9/a82/f760f9a827b851a5eeca4802c643a91d.png, https://habrastorage.org/getpro/habr/upload_files/f76/0f9/a82/f760f9a827b851a5eeca4802c643a91d.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>3  апреля  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/618/"><span>Реалити для разработчиков: узнайте, как строится новое публичное облако MWS</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#618">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-development"><span>Разработка</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="620" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/620/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/eba/c37/879/ebac378793b959ebce42f41713e7b67f.jpg" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/eba/c37/879/ebac378793b959ebce42f41713e7b67f.jpg" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/eba/c37/879/ebac378793b959ebce42f41713e7b67f.jpg, https://habrastorage.org/getpro/habr/upload_files/eba/c37/879/ebac378793b959ebce42f41713e7b67f.jpg 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>3  апреля  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/620/"><span>Открытая встреча «System Analysis Meetup SberHealth»</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Москва</span><span class="tm-event-card__places-separator"> • </span></span><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#620">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-analytics"><span>Аналитика</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="590" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/590/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/31b/e68/295/31be6829578e7934fbc944396eb330b1.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/31b/e68/295/31be6829578e7934fbc944396eb330b1.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/31b/e68/295/31be6829578e7934fbc944396eb330b1.png, https://habrastorage.org/getpro/habr/upload_files/31b/e68/295/31be6829578e7934fbc944396eb330b1.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>10  апреля  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/590/"><span>«GoCloud 2025» — масштабная IT-конференция про облака и AI</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Москва</span><span class="tm-event-card__places-separator"> • </span></span><span class="tm-event-card__places-item"><span>Онлайн</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#590">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-development"><span>Разработка</span></div><div class="event-category__label event-category__label_type-admin"><span>Администрирование</span></div><div class="event-category__label event-category__label_type-management"><span>Менеджмент</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="516" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/516/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/0e9/3a8/3ec/0e93a83ecea09f806d1df907ddb036a4.jpg" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/0e9/3a8/3ec/0e93a83ecea09f806d1df907ddb036a4.jpg" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/0e9/3a8/3ec/0e93a83ecea09f806d1df907ddb036a4.jpg, https://habrastorage.org/getpro/habr/upload_files/0e9/3a8/3ec/0e93a83ecea09f806d1df907ddb036a4.jpg 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>25 – 26  апреля  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/516/"><span>IT-конференция Merge Tatarstan 2025</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Казань</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#516">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-development"><span>Разработка</span></div><div class="event-category__label event-category__label_type-marketing"><span>Маркетинг</span></div><div class="event-category__label event-category__label_type-other"><span>Другое</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><div class="swiper-slide" data-v-ebf6a21b=""><!--[--><section class="tm-block tm-block tm-block_spacing-none" data-v-ebf6a21b="" id="610" tabindex="-1"><!-- --><!--[--><div class="tm-event-card tm-event-card_is-widget"><a class="" href="/ru/events/610/"><img alt="" class="tm-event-card__image" data-src="https://habrastorage.org/getpro/habr/upload_files/652/12d/998/65212d998fb4939d9787bd9c726d2acb.png" loading="eager" src="https://habrastorage.org/r/w390/getpro/habr/upload_files/652/12d/998/65212d998fb4939d9787bd9c726d2acb.png" srcset="https://habrastorage.org/r/w390/getpro/habr/upload_files/652/12d/998/65212d998fb4939d9787bd9c726d2acb.png, https://habrastorage.org/getpro/habr/upload_files/652/12d/998/65212d998fb4939d9787bd9c726d2acb.png 2x"/></a><!-- --><div class="tm-event-card__info"><div class="tm-event-card__date"><!-- --><div class="tm-event-card__day"><span>20 – 22  июня  </span></div></div><a class="tm-event-card__title-link" href="/ru/events/610/"><span>Летняя айти-тусовка Summer Merge</span></a><div class="tm-event-card__places"><div class="tm-event-card__places-list"><!--[--><span class="tm-event-card__places-item"><span>Ульяновская область</span><!-- --></span><!--]--></div></div></div><div class="tm-event-card__footer tm-event-card__footer_widget"><a class="tm-event-card__link" href="/ru/events/#610">Больше событий в календаре</a><div class="tm-event-card__categories"><!--[--><div class="event-category__label event-category__label_type-development"><span>Разработка</span></div><div class="event-category__label event-category__label_type-other"><span>Другое</span></div><!--]--></div></div></div><!--]--><!-- --></section><!--]--></div><!--]--><!--]--></div><!-- --><!--[--><button class="swiper-button-prev"><span class="tm-svg-icon__wrapper swiper-button-icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Влево</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#arrow-back"></use></svg></span></button><button class="swiper-button-next"><span class="tm-svg-icon__wrapper swiper-button-icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Вправо</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#arrow-back"></use></svg></span></button><!--]--></div><!--]--></div><!--]--><!-- --></section><!--]--><div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" data-v-ad758baa="" style="--467224fc:250px;--58ff5eba:auto;"><!--[--><div class="placeholder-wrapper placeholder" data-v-ad758baa=""><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca=""><div class="image loads" data-v-12f7bcca=""></div><div class="lines" data-v-12f7bcca=""><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div></div></div><!-- --></div><div class="tm-adfox-banner" data-v-ad758baa="" id="adfox_164725691003361602"></div><!--]--></div></div></div><!--]--></div></div><!-- --><!--]--></div></div></main><!-- --></div><div class="tm-footer-menu"><div class="tm-page-width"><!--[--><div class="tm-footer-menu__container"><!--[--><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Ваш аккаунт</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/873076/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/873076/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Разделы</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/articles/">Статьи</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/news/">Новости</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/hubs/">Хабы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/companies/">Компании</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/users/">Авторы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/sandbox/">Песочница</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Информация</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/help/">Устройство сайта</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/authors/codex/">Для авторов</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/companies/corpblogs/">Для компаний</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/docs/transparency/">Документы</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Услуги</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]--></ul></div></div><!--]--></div><!--]--></div></div><div class="tm-footer"><div class="tm-page-width"><!--[--><div class="tm-footer__container"><!-- --><div class="tm-footer__social"><!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Facebook</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Twitter</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>VK</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Telegram</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Youtube</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Яндекс Дзен</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use></svg></a><!--]--></div><!--teleport start--><!--teleport end--><button class="tm-footer__link"><!-- --> Настройка языка</button><a class="tm-footer__link" href="/ru/feedback/">Техническая поддержка</a><div class="tm-footer-copyright"><span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span></div></div><!--]--></div></div><!-- --><!--]--></div><!-- --></div></div>
+<div id="overlays"><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--></div>
+</body>
+</html>

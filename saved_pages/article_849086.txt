@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<title>Туториал по Spring Data Envers для начинающих / Хабр</title>
+</head>
+<body>
+<div id="mount"><div data-async-called="true" id="app"><div class="tm-layout__wrapper"><!--[--><!-- --><div></div><!-- --><header class="tm-header" data-test-id="header"><div class="tm-page-width"><!--[--><div class="tm-header__container"><!-- --><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/"><svg class="tm-svg-img tm-header__icon" height="16" width="16"><title>Хабр</title><use xlink:href="/img/habr-logo-ru.svg#logo"></use></svg></a><span class="tm-header__beta-sign" style="display:none;">β</span></span><!--[--><div class="tm-dropdown tm-header__projects"><div class="tm-dropdown__head"><!--[--><button class="tm-header__dropdown-toggle"><svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16"><title>Открыть список</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#arrow-down"></use></svg></button><!--]--></div><!-- --></div><a class="tm-header__become-author-btn" href="/ru/sandbox/start/">Как стать автором</a><div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature"><!-- --></div><!-- --><!--]--><!-- --></div><!--]--></div></header><div class="tm-layout"><div class="tm-page-progress-bar"></div><div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true"><div class="tm-page-width"><!--[--><div class="tm-base-layout__header-wrapper"><div class="tm-main-menu"><div class="tm-main-menu__section"><nav class="tm-main-menu__section-content"><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]--></nav></div></div><div class="tm-header-user-menu tm-base-layout__user-menu"><a class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button" href="/ru/search/"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24"><title>Поиск</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#search"></use></svg></a><!-- --><!-- --><div class="tm-header-user-menu__item tm-header-user-menu__write"><div><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24"><title>Написать публикацию</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#write"></use></svg></div><!-- --></div><!--[--><div class="tm-header-user-menu__item"><button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24"><title>Настройки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#page-settings"></use></svg></button></div><a class="tm-header-user-menu__item" href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/spring_aio/articles/849086/&amp;hl=ru" rel="nofollow"><!--[--><button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!-- --><!--teleport start--><!--teleport end--><!-- --></div></div><!--]--></div></div><!-- --><div class="tm-page-width"><!--[--><!--]--></div><main class="tm-layout__container"><div class="tm-page" companyname="spring_aio" data-async-called="true" hl="ru" style="--0c809c5a:16px;--a086013e:100%;--7c457026:0;"><div class="tm-page-width"><!--[--><div class="tm-page__header"><!--[--><!--]--></div><div class="tm-page__wrapper"><div class="tm-page__main_has-sidebar tm-page__main"><div class="pull-down"><!-- --><div class="pull-down__header" style="height:0px;"><div class="pull-down__content" style="bottom:10px;"><svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24"><title>Обновить</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#pull-arrow"></use></svg></div></div><!--[--><!--[--><div class="tm-article-presenter"><!--[--><!--[--><!-- --><div class="tm-company-profile-card tm-company-article__profile-card"><div class="tm-company-card tm-company-profile-card__info"><div class="tm-company-card__header"><a class="tm-company-card__avatar" href="/ru/companies/spring_aio/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/8f1/91a/458/8f191a4584b8fab12d15af23e447a1d5.png" width="48"/></div></a><!--[--><!-- --><div class="tm-counter-container tm-company-card__rating"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">77.73</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div><!-- --><!--]--></div><div class="tm-company-card__info"><a class="tm-company-card__name" href="/ru/companies/spring_aio/profile/"><span>Spring АйО</span></a><!-- --></div></div><div class="tm-company-profile-card__buttons"><div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div><!-- --><!-- --><!-- --></div></div><!-- --><!--]--><!--]--><div class="tm-article-presenter__body" data-test-id="article-body"><div class="tm-misprint-area"><div class="tm-misprint-area__wrapper"><!--[--><article class="tm-article-presenter__content tm-article-presenter__content_narrow"><!--[--><div class="tm-article-presenter__header"><!--[--><!--]--><div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet"><!--[--><!--]--><div class="tm-article-snippet__meta-container"><div class="tm-article-snippet__meta"><span class="tm-user-info tm-article-snippet__author"><a class="tm-user-info__userpic" data-test-id="user-info-pic" href="/ru/users/spring_aio/" title="spring_aio"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/8e0/5e8/a1c/8e05e8a1c5fd4560f661efb2cb00e77e.png" width="24"/></div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a class="tm-user-info__username" href="/ru/users/spring_aio/">spring_aio <!-- --></a><!--[--><span class="tm-article-datetime-published"><time datetime="2024-10-08T13:06:35.000Z" title="2024-10-08, 16:06">8  окт  2024 в 16:06</time></span><!--]--></span></span></div><!-- --></div><h1 class="tm-title tm-title_h1" data-test-id="articleTitle" lang="ru"><span>Туториал по Spring Data Envers для начинающих</span></h1><div class="tm-article-snippet__stats" data-test-id="articleStats"><div class="tm-article-complexity tm-article-complexity_complexity-low"><span class="tm-svg-icon__wrapper tm-article-complexity__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Уровень сложности</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#complexity-low"></use></svg></span><span class="tm-article-complexity__label">Простой</span></div><div class="tm-article-reading-time"><span class="tm-svg-icon__wrapper tm-article-reading-time__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Время на прочтение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#clock"></use></svg></span><span class="tm-article-reading-time__label">9 мин</span></div><span class="tm-icon-counter tm-data-icons__item"><svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24"><title>Количество просмотров</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-views"></use></svg><span class="tm-icon-counter__value" title="6945">6.9K</span></span></div><div class="tm-publication-hubs__container" data-test-id="articleHubsList"><div class="tm-publication-hubs"><!--[--><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/companies/spring_aio/articles/"><!--[--><span>Блог компании Spring АйО</span><!-- --><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/programming/"><!--[--><span>Программирование</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/java/"><!--[--><span>Java</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]--></div></div><div class="tm-article-labels" data-test-id="articleLabels"><div class="tm-article-labels__container"><div class="tm-publication-label tm-publication-label_variant-tutorial"><span>Туториал</span></div><!--[--><div class="tm-publication-label tm-publication-label_variant-translation"><span>Перевод</span></div><!--]--></div></div><!-- --><!-- --></div></div><!--[--><div class="tm-article-presenter__origin"><a class="tm-article-presenter__origin-link" href="https://vladmihalcea.com/spring-data-envers/" target="_blank">Автор оригинала: <span>Vlad Mihalcea</span></a></div><div class="tm-article-body" data-gallery-root="" lang="ru"><div><!--[--><!--]--></div><div id="post-content-body"><div><div class="article-formatted-body article-formatted-body article-formatted-body_version-2"><div xmlns="http://www.w3.org/1999/xhtml"><p>Команда <a href="https://t.me/+QmrKn0wA8CdkNjAy">Spring АйО</a> перевела статью, которая отлично подойдёт тем, кто ещё не знаком со Spring Data Envers. В статье на простых примерах объясняется, как отслеживать изменения данных в приложении, используя этот инструмент.</p><hr/><h3>Введение</h3><p>В этой статье мы рассмотрим проект Spring Data Envers и разберемся, как извлечь из него максимум пользы.</p><p><a href="https://hibernate.org/orm/envers/"><u>Hibernate Envers</u></a> — это расширение Hibernate ORM, которое позволяет отслеживать изменения сущностей с минимальными изменениями на уровне приложения.</p><p>Так же, как Envers интегрируется с Hibernate ORM для ведения журнала изменений сущностей, проект Spring Data Envers подключается к Spring Data JPA, чтобы добавить возможность ведения журнала изменений с использованием JPA репозиториев.</p><h3>Доменная модель</h3><p>Предположим, у нас есть сущность <code>Post</code>, которая отмечена аннотацией <code>@Audited</code> из проекта Hibernate Envers:</p><pre><code class="java">@Entity
+@Table(name = "post",
+       uniqueConstraints = @UniqueConstraint(
+               name = "UK_POST_SLUG", columnNames = "slug"
+       )
+)
+@Audited
+public class Post { ⠀
+   @Id
+   @GeneratedValue
+   private Long id; ⠀
+   @Column(length = 100)
+   private String title; ⠀
+   @NaturalId
+   @Column(length = 75)
+   private String slug; ⠀
+   @Enumerated(EnumType.ORDINAL)
+   @Column(columnDefinition = "NUMERIC(2)")
+   private PostStatus status;
+}</code></pre><p>Сущность <code>Post</code> имеет дочернюю сущность <code>PostComment</code>, которая также аннотирована <code>@Audited</code>:</p><pre><code class="java">@Entity
+@Table(name = "post_comment")
+@Audited
+public class PostComment { ⠀
+   @Id
+   @GeneratedValue
+   private Long id; ⠀
+   @Column(length = 250)
+   private String review; ⠀
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(foreignKey = @ForeignKey(name = "FK_POST_COMMENT_POST_ID"))
+   private Post post;
+}</code></pre><details class="spoiler"><summary>Скрытый текст</summary><div class="spoiler__content"><p><em>Как я объяснял в </em><a href="https://vladmihalcea.com/the-best-way-to-implement-an-audit-log-using-hibernate-envers/"><em><u>этой статье</u></em></a><em>, мы будем использовать стратегию </em><code>ValidityAuditStrategy</code><em>, так как она может ускорить выполнение запросов связанных с журналом изменений.</em></p><p><em>Чтобы включить стратегию </em><code>ValidityAuditStrategy</code><em>, необходимо установить следующее свойство Hibernate-конфигурации:</em></p><pre><code class="java">properties.setProperty(
+       EnversSettings.AUDIT_STRATEGY,
+       ValidityAuditStrategy.class.getName()
+);</code></pre><p></p></div></details><p>При генерации схемы с использованием <a href="https://vladmihalcea.com/hibernate-hbm2ddl-auto-schema/"><u>инструмента hbm2ddl</u></a>, Hibernate создаст следующие таблицы в базе данных:</p><figure class="full-width"><img data-src="https://habrastorage.org/getpro/habr/upload_files/80d/946/57b/80d94657b74f4b6c3cd93ac1e86435b4.png" height="1600" src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/80d/946/57b/80d94657b74f4b6c3cd93ac1e86435b4.png" width="1526"/></figure><p>Каждый раз, когда транзакция завершается, создается ревизия, которая сохраняется в таблице <code>revinfo</code>.</p><p>Таблица <code>post_aud</code> отслеживает изменения записей в таблице <code>post</code>, а таблица <code>post_comment_aud</code> хранит информацию о журнале изменений для таблицы <code>post_comment</code>.</p><h3>Spring Data Envers Репозитории</h3><p>Проект Spring Data Envers предоставляет интерфейс <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/history/RevisionRepository.html">RevisionRepository</a>, который ваши JPA-репозитории могут расширять, чтобы добавить возможность выполнения запросов связанных с журналом изменений.</p><p>Например, репозиторий <code>PostRepository</code> расширяет <code>JpaRepository</code> из Spring Data JPA и <code>RevisionRepository</code> из Spring Data Envers:</p><pre><code class="java">@Repository
+public interface PostRepository extends JpaRepository&lt;Post, Long&gt;, 
+                                        RevisionRepository&lt;Post, Long, Long&gt; {
+
+}</code></pre><p>Точно так же <code>PostCommentRepository</code> расширяет как <code>JpaRepository</code>, так и <code>RevisionRepository</code> из Spring Data Envers:</p><pre><code>@Repository
+public interface PostCommentRepository extends JpaRepository&lt;PostComment, Long&gt;,
+                                  RevisionRepository&lt;PostComment, Long, Long&gt; {
+   void deleteByPost(Post post);
+}</code></pre><p>На сервисном слое у нас есть класс <code>PostService</code>, который предоставляет методы для сохранения и удаления сущностей <code>Post</code> и <code>PostComment</code>. Эти методы помогут нам увидеть, как работает механизм ведения журнала изменений:</p><pre><code class="java">@Transactional(readOnly = true)
+public class PostService {
+   @Autowired
+   private PostRepository postRepository;
+   @Autowired
+   private PostCommentRepository postCommentRepository;
+
+
+   @Transactional
+   public Post savePost(Post post) {
+       return postRepository.save(post);
+   }
+
+
+   @Transactional
+   public Post savePostAndComments(Post post,
+                                   PostComment... comments) {
+       post = postRepository.save(post);
+       if (comments.length &gt; 0) {
+           postCommentRepository.saveAll(Arrays.asList(comments));
+       }
+       return post;
+   }
+
+
+   @Transactional
+   public void deletePost(Post post) {
+       postCommentRepository.deleteByPost(post);
+       postRepository.delete(post);
+   }
+}
+</code></pre><h3>Отслеживание операций INSERT, UPDATE и DELETE</h3><p>При создании родительской сущности <code>Post</code> вместе с двумя дочерними сущностями <code>PostComment</code>:</p><pre><code class="java">Post post = new Post()
+       .setTitle("High-Performance Java Persistence 1st edition")
+       .setSlug("high-performance-java-persistence")
+       .setStatus(PostStatus.APPROVED);
+postService.savePostAndComments(
+       post,
+       new PostComment()
+               .setPost(post)
+               .setReview("A must-read for every Java developer!"),
+       new PostComment()
+               .setPost(post)
+               .setReview("Best book on JPA and Hibernate!")
+);</code></pre><p>Hibernate сгенерирует следующие SQL-запросы:</p><pre><code class="sql">SELECT nextval('post_SEQ')
+SELECT nextval('post_comment_SEQ')
+SELECT nextval('post_comment_SEQ')
+
+
+INSERT INTO post (slug, status, title, id)
+VALUES ( 'high-performance-java-persistence', 1, 'High-Performance Java Persistence 1st edition', 1 )
+
+
+INSERT INTO post_comment (post_id, review, id)
+VALUES ( 1, 'A must-read for every Java developer!', 1 ),
+      ( 1, 'Best book on JPA and Hibernate!', 2 )
+
+
+SELECT nextval('REVINFO_SEQ')
+
+
+INSERT INTO REVINFO (REVTSTMP, REV)
+VALUES (1726724588078, 1)
+
+
+INSERT INTO post_AUD (REVEND, REVTYPE, slug, status, title, REV, id)
+VALUES ( null, 0, 'high-performance-java-persistence', 1, 'High-Performance Java Persistence 1st edition', 1, 1 )
+
+
+INSERT INTO post_comment_AUD (REVEND, REVTYPE, post_id, review, REV, id)
+VALUES ( null, 0, 1, 'A must-read for every Java developer!', 1, 1 ),
+      ( null, 0, 1, 'Best book on JPA and Hibernate!', 1, 2 )</code></pre><p>В то время как Hibernate ORM выполняет INSERT-запросы для записей в таблицах <code>post</code> и <code>post_comment</code>, Hibernate Envers создает записи в таблицах <code>REVINFO</code>, <code>post_AUD</code> и <code>post_comment_AUD</code>.</p><p>При изменении сущности <code>Post</code>:</p><pre><code class="java">post.setTitle("High-Performance Java Persistence 2nd edition");
+postService.savePost(post);</code></pre><p>Hibernate сгенерирует следующие запросы:</p><pre><code class="sql">SELECT p1_0.id, p1_0.slug, p1_0.status, p1_0.title
+FROM post p1_0
+WHERE p1_0.id = 1 UPDATE post
+
+
+SET status = 1, title = 'High-Performance Java Persistence 2nd edition'
+WHERE id = 1
+
+
+SELECT nextval('REVINFO_SEQ')
+
+
+INSERT INTO REVINFO (REVTSTMP, REV)
+VALUES (1726724799884, 2)
+
+
+INSERT INTO post_AUD (REVEND, REVTYPE, slug, status, title, REV, id)
+VALUES ( null, 1, 'high-performance-java-persistence', 1, 'High-Performance Java Persistence 2nd edition', 2, 1 )
+
+
+UPDATE post_AUD
+SET REVEND = 2
+WHERE id = 1 AND REV &lt;&gt; 2 AND REVEND IS NULL</code></pre><p>Обратите внимание, что была создана новая запись в <code>REVINFO</code>, которая связана с записью в <code>post_AUD</code>.</p><p>А при удалении сущности <code>Post</code>:</p><pre><code class="sql">postService.deletePost(post);</code></pre><p>Hibernate выполнит следующие запросы:</p><pre><code class="sql">SELECT pc1_0.id, pc1_0.post_id, pc1_0.review
+FROM post_comment pc1_0
+WHERE pc1_0.post_id = 1
+
+
+SELECT p1_0.id,p1_0.slug,p1_0.status,p1_0.title
+FROM post p1_0
+WHERE p1_0.id = 1
+
+
+DELETE
+FROM post_comment
+WHERE id = 1
+
+
+DELETE
+FROM post_comment
+WHERE id = 2
+
+
+DELETE
+FROM post
+WHERE id = 1
+
+
+INSERT
+INTO REVINFO (REVTSTMP, REV)
+VALUES (1726724982890, 3)
+
+
+INSERT
+INTO post_comment_AUD (REVEND, REVTYPE, post_id, review, REV, id)
+VALUES ( null, 2, null, null, 3, 1 ),
+      ( null, 2, null, null, 3, 2 )
+
+
+INSERT
+INTO post_AUD (REVEND, REVTYPE, slug, status, title, REV, id)
+VALUES ( null, 2, null, null, null, 3, 1 )
+
+
+UPDATE post_comment_AUD
+SET REVEND = 3
+WHERE id = 1 AND REV &lt;&gt; 3 AND REVEND IS NULL
+
+
+UPDATE post_comment_AUD
+SET REVEND = 3
+WHERE id = 2 AND REV &lt;&gt; 3 AND REVEND IS NULL
+
+
+UPDATE post_AUD
+SET REVEND = 3
+WHERE id = 1 AND REV &lt;&gt; 3 AND REVEND IS NULL</code></pre><h3>Загрузка ревизий с использованием Spring Data Envers</h3><p>Интерфейс <code>RevisionRepository</code> из Spring Data Envers предоставляет несколько методов для загрузки ревизий сущностей.</p><p>Например, если вы хотите загрузить последнюю ревизию сущности <code>Post</code>, можно использовать метод <code>findLastChangeRevision</code>, который унаследован от <code>RevisionRepository</code>:</p><pre><code class="java">Revision&lt;Long, Post&gt; latestRevision = postRepository.findLastChangeRevision(post.getId())
+       .orElseThrow();
+LOGGER.info("The latest Post entity operation was [{}] at revision [{}]", latestRevision.getMetadata()
+       .getRevisionType(), latestRevision.getRevisionNumber()
+       .orElseThrow());</code></pre><p>При запуске примера вы увидите следующее сообщение в логах:</p><pre><code class="1c">The latest Post entity operation was [DELETE] at revision [3]</code></pre><p>Чтобы загрузить все ревизии для сущности, можно использовать метод <code>findRevisions</code>, который также унаследован от <code>RevisionRepository</code>:</p><pre><code class="java">for (Revision&lt;Long, Post&gt; revision : postRepository.findRevisions(post.getId())) {
+   LOGGER.info(
+           "At revision [{}], the Post entity state was: [{}]",
+           revision.getRevisionNumber().orElseThrow(),
+           revision.getEntity()
+   );
+}</code></pre><p>При запуске этого кода в логах появятся следующие записи:</p><pre><code class="bash">At revision [1], the Post entity state was: [
+   { id = 1, 
+     title = 'High-Performance Java Persistence 1st edition',
+     slug = 'high-performance-java-persistence', 
+     status = APPROVED
+   }
+]
+At revision [2], the Post entity state was: [
+   { id = 1, 
+     title = 'High-Performance Java Persistence 2nd edition', 
+     slug = 'high-performance-java-persistence', 
+     status = APPROVED
+   }
+]
+At revision [3], the Post entity state was: [
+   { id = 1, 
+     title = null, 
+     slug = null, 
+     status = null
+   }
+]</code></pre><h3>Загрузка ревизий с использованием постраничной выборки</h3><p>Предположим, мы создали несколько ревизий для сущности <code>Post</code>:</p><pre><code class="java">Post post = new Post()
+       .setTitle("Hypersistence Optimizer, version 1.0.0")
+       .setSlug("hypersistence-optimizer")
+       .setStatus(PostStatus.APPROVED);
+postService.savePost(post);
+
+for (int i = 1; i &lt; 20; i++) {
+   post.setTitle(String.format(
+           "Hypersistence Optimizer, version 1.%d.%d",
+           i / 10,
+           i % 10)
+   );
+   postService.savePost(post);
+}</code></pre><p>Мы можем загружать ревизии с постраничной выборкой с помощью метода <code>findRevisions(ID id, Pageable pageable)</code>.</p><p>Например, чтобы получить первую страницу с ревизиями в порядке убывания, можно использовать <code>PageRequest</code>, как показано в следующем примере:</p><pre><code class="java">int pageSize = 10;
+Page&lt;Revision&lt;Long, Post&gt;&gt; firstPage = postRepository.findRevisions(
+       post.getId(),
+       PageRequest.of(0, pageSize, RevisionSort.desc())
+);
+logPage(firstPage);</code></pre><p>При запуске этого кода для первой страницы мы увидим следующие ревизии:</p><details class="spoiler"><summary>Скрытый текст</summary><div class="spoiler__content"><pre><code class="bash">At revision [23], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.9',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [22], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.8',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [21], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.7',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [20], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.6',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [19], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.5',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [18], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.4',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [17], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.3',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [16], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.2',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [15], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.1',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [14], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.1.0',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+</code></pre><p></p></div></details><p>При логировании ревизий, полученных для второй страницы:</p><pre><code class="java">Page&lt;Revision&lt;Long, Post&gt;&gt; secondPage = postRepository.findRevisions(
+       post.getId(),
+       PageRequest.of(1, pageSize, RevisionSort.desc())
+);
+logPage(secondPage);</code></pre><p>В логах появятся следующие записи:</p><details class="spoiler"><summary>Скрытый текст</summary><div class="spoiler__content"><pre><code class="bash">At revision [13], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.9',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [12], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.8',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [11], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.7',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [10], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.6',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [09], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.5',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [08], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.4',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [07], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.3',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [06], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.2',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [05], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.1',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+At revision [04], the Post entity state was: [
+   Post{id=2,
+        title='Hypersistence Optimizer,
+        version 1.0.0',
+        slug='hypersistence-optimizer',
+        status=APPROVED
+   }
+]
+</code></pre><p></p></div></details><p>Здорово, правда?</p><h3>Заключение</h3><p>Хотя существует множество <a href="https://vladmihalcea.com/a-beginners-guide-to-cdc-change-data-capture/"><u>CDC (Change Data Capture)</u></a> решений для отслеживания изменений сущностей, Envers, вероятно, является самым простым вариантом, если вы уже используете Hibernate ORM.</p><p>А если вы используете Spring Data JPA, то с помощью Spring Data Envers можно добавить в ваши репозитории возможность работы с ревизиями.</p><figure class="full-width"><img data-src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/725/c0c/ddb/725c0cddbe78ce9d7a9dd868c3632ad6.png" height="334" src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/725/c0c/ddb/725c0cddbe78ce9d7a9dd868c3632ad6.png" width="1560"/></figure><p>Присоединяйтесь к русскоязычному сообществу разработчиков на Spring Boot в телеграм — <a href="https://t.me/+oBwACbkvJ19iODAy">Spring АйО</a>, чтобы быть в курсе последних новостей из мира разработки на Spring Boot и всего, что с ним связано.</p><p>Ждем всех, <a href="https://t.me/+oBwACbkvJ19iODAy">присоединяйтесь</a></p></div></div></div><!-- --><!-- --></div><!-- --><!-- --></div><!--]--><!-- --><div class="tm-article-presenter__meta" data-test-id="article-meta-links"><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Теги:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[spring]"><span>spring</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[spring-boot]"><span>spring-boot</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[java]"><span>java</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[kotlin]"><span>kotlin</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[hibernate]"><span>hibernate</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[envers]"><span>envers</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[spring+data]"><span>spring data</span></a><!--]--></li><!--]--><!-- --></ul></div><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Хабы:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/companies/spring_aio/articles/"><!--[--><span>Блог компании Spring АйО</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/programming/"><!--[--><span>Программирование</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/java/"><!--[--><span>Java</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><!--]--></a><!--]--></li><!--]--><!-- --></ul></div></div><!-- --><!--]--></article><!--]--></div><!-- --></div><div class="tm-article-sticky-panel" data-test-id="article-sticky-panel" style=""><div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons"><div class="tm-article-rating tm-data-icons__item"><div class="tm-votes-meter tm-article-rating__votes-switcher"><svg class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon tm-votes-meter__icon_appearance-article" height="24" width="24"><title>Всего голосов 8: ↑8 и ↓0</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-rating"></use></svg><span class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating tm-votes-meter__value" data-test-id="votes-meter-value" title="Всего голосов 8: ↑8 и ↓0">+10</span></div><!--teleport start--><!--teleport end--><!-- --></div><!-- --><!-- --><button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Добавить в закладки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-favorite"></use></svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">56</span></button><div class="tm-sharing tm-data-icons__item" title="Поделиться"><button class="tm-sharing__button" type="button"><svg class="tm-sharing__icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z" fill="currentColor"></path></svg></button><!--teleport start--><!--teleport end--></div><div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии"><a class="tm-article-comments-counter-link__link" data-test-id="counter-comments" href="/ru/companies/spring_aio/articles/849086/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value">2</span><!--]--></a><!-- --></div><!--[--><!--[--><!--[--><!-- --><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!-- --></div></div></div><!--[--><!--]--><div class="tm-article-presenter__footer"><!--[--><!--[--><div class="tm-article-blocks"><!-- --><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><!-- --><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-balanced"><!--[--><div class="tm-article-author" data-test-id="article-author-info"><!--[--><!--[--><div class="tm-article-author__company"><div class="tm-article-author__company-card"><div class="tm-company-snippet"><a class="tm-company-snippet__logo-link" href="/ru/companies/spring_aio/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/8f1/91a/458/8f191a4584b8fab12d15af23e447a1d5.png" width="40"/></div></a><div class="tm-company-snippet__info"><a class="tm-company-snippet__title" data-test-id="company-title" href="/ru/companies/spring_aio/profile/"><span>Spring АйО</span></a><div class="tm-company-snippet__description">Компания</div></div></div><div class="tm-article-author__buttons"><!-- --><!-- --></div></div><div class="tm-article-author__company-contacts"><!--[--><a class="tm-article-author__contact" href="https://telegram.me/spring_aio" rel="noopener" target="_blank">Telegram</a><a class="tm-article-author__contact" href="https://www.springnow.ru" rel="noopener" target="_blank">Сайт</a><!--]--></div><div class="tm-article-author__separator"></div></div><!--]--><!--]--><div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true"><div class="tm-user-card__info-container"><div class="tm-user-card__header"><div class="tm-user-card__header-data"><a class="tm-user-card__userpic tm-user-card__userpic_size-40" href="/ru/users/spring_aio/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/8e0/5e8/a1c/8e05e8a1c5fd4560f661efb2cb00e77e.png"/></div></a><div class="tm-user-card__meta"><div class="tm-counter-container tm-karma tm-karma" title=" 85 голосов "><div class="tm-counter-container__header"><!--[--><div class="karma-display positive" data-v-7635202e="">45</div><!-- --><!--]--></div><div class="tm-counter-container__footer"><!--[--><div class="tm-karma__text">Карма</div><!--teleport start--><!--teleport end--><!--]--></div></div><div class="tm-counter-container" title="Рейтинг пользователя"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">105.9</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div></div></div></div><div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info"><div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title"><span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Spring АйО</span><a class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article" href="/ru/users/spring_aio/"> @spring_aio</a><!-- --></div><p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Главный по Spring</p></div></div><div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons"><!-- --><div class="tm-user-card__button"><div class="tm-button-follow tm-user-card__button-follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div></div><!-- --><div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations"><svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16"><title>Отправить сообщение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#mail"></use></svg></div><!-- --></div><!-- --></div><!-- --></div><!--]--></div><!--]--><!-- --></section><!-- --><!--[--><!--]--><!--]--><div class="tm-article-blocks__comments"><div class="tm-article-page-comments" id="publication-comments"><div><!--[--><div class="tm-article-comments-counter-link tm-article-comments-counter-button"><a class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments" href="/ru/companies/spring_aio/articles/849086/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 2 </span><!--]--></a><!-- --></div><!--]--></div></div></div><!--[--><!--[--><!--]--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header tm-block__header_variant-borderless"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim"><!--[--><!--[--><div class="tm-tabs tm-tabs"><div class=""><!--[--><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]--></div><!-- --></div><div class="similar-and-daily__tab-view"><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-article-cards"><!--[--><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><!--]--></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!-- --></div><!--]--><!--]--></div><!--]--><!-- --></section><!--[--><!--]--><!-- --><!--[--><!--]--><!--]--></div><!--]--><!--]--></div></div><!--]--><!--]--></div></div><div class="tm-page__sidebar"><!--[--><div class="tm-layout-sidebar"><div class="tm-layout-sidebar__placeholder_initial"></div><div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;"><!--[--><!--]--><!-- --><div class="tm-layout-sidebar__placeholder_initial"></div><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body"><!--[--><div class="tm-company-basic-info"><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Сайт</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><a class="tm-company-basic-info__link" href="https://t.me/spring_aio" target="_blank">t.me</a><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Дата регистрации</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><time datetime="2024-05-27T07:08:22.000Z" title="2024-05-27, 10:08">27  мая  2024</time><!--]--></dd></dl><!-- --><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Численность</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[-->11–30 человек<!--]--></dd></dl><!-- --><!-- --></div><!--]--></div><!--]--><!-- --></section><div class="tm-company-widgets"><!--[--><!--]--></div><!-- --><!-- --><!--]--><!-- --></div></div><!--]--></div></div><!-- --><!--]--></div></div></main><!-- --></div><div class="tm-footer-menu"><div class="tm-page-width"><!--[--><div class="tm-footer-menu__container"><!--[--><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Ваш аккаунт</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/spring_aio/articles/849086/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/spring_aio/articles/849086/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Разделы</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/articles/">Статьи</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/news/">Новости</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/hubs/">Хабы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/companies/">Компании</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/users/">Авторы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/sandbox/">Песочница</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Информация</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/help/">Устройство сайта</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/authors/codex/">Для авторов</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/companies/corpblogs/">Для компаний</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/docs/transparency/">Документы</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Услуги</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]--></ul></div></div><!--]--></div><!--]--></div></div><div class="tm-footer"><div class="tm-page-width"><!--[--><div class="tm-footer__container"><!-- --><div class="tm-footer__social"><!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Facebook</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Twitter</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>VK</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Telegram</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Youtube</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Яндекс Дзен</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use></svg></a><!--]--></div><!--teleport start--><!--teleport end--><button class="tm-footer__link"><!-- --> Настройка языка</button><a class="tm-footer__link" href="/ru/feedback/">Техническая поддержка</a><div class="tm-footer-copyright"><span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span></div></div><!--]--></div></div><!-- --><!--]--></div><!-- --></div></div>
+<div id="overlays"><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--></div>
+</body>
+</html>

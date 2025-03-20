@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<title>Koin: как сделать свой DI за 10 минут / Хабр</title>
+</head>
+<body>
+<div id="mount"><div data-async-called="true" id="app"><div class="tm-layout__wrapper"><!--[--><!-- --><div></div><!-- --><header class="tm-header" data-test-id="header"><div class="tm-page-width"><!--[--><div class="tm-header__container"><!-- --><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/"><svg class="tm-svg-img tm-header__icon" height="16" width="16"><title>Хабр</title><use xlink:href="/img/habr-logo-ru.svg#logo"></use></svg></a><span class="tm-header__beta-sign" style="display:none;">β</span></span><!--[--><div class="tm-dropdown tm-header__projects"><div class="tm-dropdown__head"><!--[--><button class="tm-header__dropdown-toggle"><svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16"><title>Открыть список</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#arrow-down"></use></svg></button><!--]--></div><!-- --></div><a class="tm-header__become-author-btn" href="/ru/sandbox/start/">Как стать автором</a><div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature"><!-- --></div><!-- --><!--]--><!-- --></div><!--]--></div></header><div class="tm-layout"><div class="tm-page-progress-bar"></div><div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true"><div class="tm-page-width"><!--[--><div class="tm-base-layout__header-wrapper"><div class="tm-main-menu"><div class="tm-main-menu__section"><nav class="tm-main-menu__section-content"><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]--></nav></div></div><div class="tm-header-user-menu tm-base-layout__user-menu"><a class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button" href="/ru/search/"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24"><title>Поиск</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#search"></use></svg></a><!-- --><!-- --><div class="tm-header-user-menu__item tm-header-user-menu__write"><div><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24"><title>Написать публикацию</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#write"></use></svg></div><!-- --></div><!--[--><div class="tm-header-user-menu__item"><button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24"><title>Настройки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#page-settings"></use></svg></button></div><a class="tm-header-user-menu__item" href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/ozontech/articles/846482/&amp;hl=ru" rel="nofollow"><!--[--><button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!-- --><!--teleport start--><!--teleport end--><!-- --></div></div><!--]--></div></div><!-- --><div class="tm-page-width"><!--[--><!--]--></div><main class="tm-layout__container"><div class="tm-page" companyname="ozontech" data-async-called="true" hl="ru" style="--0c809c5a:16px;--a086013e:100%;--7c457026:0;"><div class="tm-page-width"><!--[--><div class="tm-page__header"><!--[--><div class="tm-company-card__branding tm-company-card__branding_loading tm-company-article__branding" data-test-id="company-card-branding"><div class="tm-company-card__branding-placeholder"><!-- --></div><a href="https://tech.ozon.ru/"><img class="tm-company-card__branding-image" src="//habrastorage.org/getpro/habr/branding/dc2/5b7/38f/dc25b738f6237ce587fc0485e20c87bb.jpg"/></a></div><!--]--></div><div class="tm-page__wrapper"><div class="tm-page__main_has-sidebar tm-page__main"><div class="pull-down"><!-- --><div class="pull-down__header" style="height:0px;"><div class="pull-down__content" style="bottom:10px;"><svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24"><title>Обновить</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#pull-arrow"></use></svg></div></div><!--[--><!--[--><div class="tm-article-presenter"><!--[--><!--[--><!-- --><div class="tm-company-profile-card tm-company-article__profile-card"><div class="tm-company-card tm-company-profile-card__info"><div class="tm-company-card__header"><a class="tm-company-card__avatar" href="/ru/companies/ozontech/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/4c8/542/883/4c8542883ef14a62b065425db4a6e6cf.jpg" width="48"/></div></a><!--[--><!-- --><div class="tm-counter-container tm-company-card__rating"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">388.37</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div><!-- --><!--]--></div><div class="tm-company-card__info"><a class="tm-company-card__name" href="/ru/companies/ozontech/profile/"><span>Ozon Tech</span></a><div class="tm-company-card__description">Команда разработки ведущего e‑com в России</div></div></div><div class="tm-company-profile-card__buttons"><div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div><!-- --><!-- --><!-- --></div></div><!-- --><!--]--><!--]--><div class="tm-article-presenter__body" data-test-id="article-body"><div class="tm-misprint-area"><div class="tm-misprint-area__wrapper"><!--[--><article class="tm-article-presenter__content tm-article-presenter__content_narrow"><!--[--><div class="tm-article-presenter__header"><!--[--><!--]--><div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet"><!--[--><!--]--><div class="tm-article-snippet__meta-container"><div class="tm-article-snippet__meta"><span class="tm-user-info tm-article-snippet__author"><a class="tm-user-info__userpic" data-test-id="user-info-pic" href="/ru/users/Inkompetent/" title="Inkompetent"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/49a/6ce/13e/49a6ce13ebe5d80f399517651a6d3780.jpg" width="24"/></div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a class="tm-user-info__username" href="/ru/users/Inkompetent/">Inkompetent <!-- --></a><!--[--><span class="tm-article-datetime-published"><time datetime="2024-09-30T08:49:47.000Z" title="2024-09-30, 11:49">30  сен  2024 в 11:49</time></span><!--]--></span></span></div><!-- --></div><h1 class="tm-title tm-title_h1" data-test-id="articleTitle" lang="ru"><span>Koin: как сделать свой DI за 10 минут</span></h1><div class="tm-article-snippet__stats" data-test-id="articleStats"><!-- --><div class="tm-article-reading-time"><span class="tm-svg-icon__wrapper tm-article-reading-time__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Время на прочтение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#clock"></use></svg></span><span class="tm-article-reading-time__label">19 мин</span></div><span class="tm-icon-counter tm-data-icons__item"><svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24"><title>Количество просмотров</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-views"></use></svg><span class="tm-icon-counter__value" title="6923">6.9K</span></span></div><div class="tm-publication-hubs__container" data-test-id="articleHubsList"><div class="tm-publication-hubs"><!--[--><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/companies/ozontech/articles/"><!--[--><span>Блог компании Ozon Tech</span><!-- --><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/programming/"><!--[--><span>Программирование</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/mobile_dev/"><!--[--><span>Разработка мобильных приложений</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]--></div></div><div class="tm-article-labels" data-test-id="articleLabels"><div class="tm-article-labels__container"><div class="tm-publication-label tm-publication-label_variant-tutorial"><span>Туториал</span></div><!--[--><!--]--></div></div><!-- --><!-- --></div></div><!--[--><!-- --><div class="tm-article-body" data-gallery-root="" lang="ru"><div><!--[--><!--]--></div><div id="post-content-body"><div><div class="article-formatted-body article-formatted-body article-formatted-body_version-2"><div xmlns="http://www.w3.org/1999/xhtml"><p>Привет, меня зовут Иван Курак, я Android-разработчик приложения Ozon Job. В этой статье мы реализуем свой механизм, на котором построен Koin. Тем самым мы пройдём путь, который проходили его авторы при решении проблемы построения собственного DI.</p><p>Эта статья будет полезна тем, кто использует Koin в своих приложениях, и тем, кто хочет сделать свой простой DI. Ведь только понимание того, как что-то устроено, поможет создавать новые решения, учитывая при этом опыт прошлых разработок, и модифицировать существующие решения без трагических последствий. </p><p>Дополнительная (но от того не менее важная) цель статьи — показать, что базовый механизм, на котором построен Koin, не такой уж и страшный :)<br/></p><figure class="full-width"><img data-src="https://habrastorage.org/getpro/habr/upload_files/f64/5e2/7b7/f645e27b7b322db76f4e5feb37ef1c80.png" height="1080" src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/f64/5e2/7b7/f645e27b7b322db76f4e5feb37ef1c80.png" width="1920"/></figure><details class="spoiler"><summary>Оглавление</summary><div class="spoiler__content"><p><a href="#1">Кратко о Koin и Service Locator</a></p><p><a href="#2">Как отличать одинаковые объекты</a></p><p><a href="#3">Создание концепции модулей и удаление объектов из Map</a></p><p><a href="#4">Возможность создания Singleton</a></p><p><a href="#5">Проброс параметров</a></p><p><a href="#6">Выводы</a></p></div></details><p>Мы напишем DI для такой группы классов:</p><pre><code class="kotlin">// Интерфейс для зависимости
+interface Engine {
+   fun start()
+}
+
+
+// Реализация зависимости
+class ElectricEngine : Engine {
+   override fun start() {
+       println("Запуск электрического двигателя")
+   }
+}
+
+
+// Реализация зависимости
+class GasolineEngine : Engine {
+   override fun start() {
+       println("Запуск бензинового двигателя")
+   }
+}
+
+
+// Класс, использующий зависимость
+class Car(private val engine: Engine) {
+   fun start() {
+       engine.start()
+   }
+}
+</code></pre><p>Всё довольно просто: у нас есть <code>Car</code>, и ему нужен какой-то тип двигателя.</p><a class="anchor" id="1" name="1"></a><h2>Кратко о Koin и ServiceLocator</h2><p>Что такое Koin?</p><p>Koin — это фреймворк для инъекции зависимостей, и мы можем условно сравнить его со свиньёй-копилкой, наполненной разными монетами. Когда у вас возникает потребность в деньгах, вы можете обратиться к ней, и она (недовольно хрюкнув) будет готова предоставить вам необходимую сумму. </p><p>Аналогично, Koin «собирает» зависимости внутри себя и готов предоставить их. Когда вы запрашиваете какой-то объект, Koin выдаёт не только его, но и все связанные с ним зависимости.</p><p>Начнём с того, что Koin это реализация шаблона проектирования Service Locator. В нём центральное место отведено хранению всех зависимостей приложения в одном месте. Вместо того, чтобы каждый компонент приложения напрямую создавал свои зависимости, для получения зависимостей мы обращаемся за ними к объекту <code>ServiceLocator.</code> </p><p>Простая реализация для нашего примера может выглядеть так:</p><pre><code class="kotlin">fun main() {
+   ServiceLocator.save(Engine::class) { ElectricEngine() }
+
+
+   //Проброс зависимости через Service Locator
+   Car(engine = ServiceLocator.get(Engine::class)).start()
+}
+
+
+object ServiceLocator{
+   private val instances = ConcurrentHashMap&lt;KClass&lt;out Any&gt;, () -&gt; Any&gt;()
+
+
+   fun save(
+       сlazz: KClass&lt;out Any&gt;,
+       definition: () -&gt; Any
+   ) {
+       instances[сlazz] = definition
+   }
+
+
+   fun &lt;T: Any&gt; get(сlazz: KClass&lt;T&gt;,): T {
+       val definition = instances[clazz] ?: error("Не найден объект")
+       @Suppress("UNCHECKED_CAST")
+       return definition.invoke() as T
+   }
+}
+</code></pre><p>Что тут происходит? Местом хранения всех данных является объект <code>ServiceLocator</code>, под собой (в нашем примере) он имеет <code>Map&lt;KClass, () -&gt; Any&gt;</code> и методы, чтобы сложить значения в <code>Map</code>.</p><a class="anchor" id="2" name="2"></a><h2>Как различать одинаковые объекты?</h2><p>Что если нам понадобится пробрасывать экземпляры <code>GasolineEngine</code> и <code>ElectricEngine</code>, причём выбор зависит от ситуации?</p><pre><code class="kotlin">fun main() {
+   &lt;...&gt;
+   // Хотим ElectricEngine
+   Car(engine = ServiceLocator.get(Engine::class)).start()
+ // Хотим GasolineEngine
+   Car(engine = ServiceLocator.get(Engine::class)).start()
+}
+</code></pre><p>Возможно, кто-то предложит прокидывать реализации напрямую:</p><pre><code class="kotlin">Car(engine = ServiceLocator.get(ElectricEngine::class)).start()</code></pre><p>И это будет работать, но обычно нам неизвестен наш класс реализации (допустим, мы пытаемся создать <code>Engine</code> в другом модуле). Если делать этот класс видимым в местах, где о нём знать не должны, ты мы будем зависеть от реализации. К тому же, если класс поменяет имя или мы захотим везде и разом начать использовать другую реализацию, то будем вынуждены пробежаться по всему коду и править всё на ходу.</p><p>Поэтому мы оставим доступ к классу по полю <code>Engine::class</code>, но научим наш <code>ServiceLocator</code> различать объекты. Для этого модернизируем наши методы сохранения и получения.</p><pre><code class="kotlin">object ServiceLocator{
+  
+   fun save(
+       ++ qualifier: String? = null, - добавилось
+       сlazz: KClass&lt;out Any&gt;,
+       definition: () -&gt; Any
+   ) 
+
+   fun &lt;T: Any&gt; get(
+       ++ qualifier: String? = null, - добавилось
+       сlazz: KClass&lt;T&gt;
+   ): T 
+}
+</code></pre><p>Если мы хотим отличать две одинаковые реализации друг от друга, то можем передать строку, которая будет своего рода уникальным ключом для одинаковых классов, но различных экземпляров. А если нам данная логика не нужна, то просто оставим <code>null</code>.</p><p>И теперь возникает вопрос: как хранить экземпляры в <code>ServiceLocator</code>? Первая мысль — создать data-класс, который внутри себя будет держать это значение.</p><p>Что-то такое, например:</p><pre><code class="kotlin">data class Key&lt;T: Any&gt;(
+   val qualifier: String?,
+   val clazz: KClass&lt;T&gt;
+)
+
+
+object ServiceLocator{
+   private val instances = hashMapOf&lt;Key&lt;out Any&gt;, () -&gt; Any&gt;()
+}
+</code></pre><p>В чём проблема такого решения? В оптимизации. Безусловно, это будет работать. Но у нас будет много классов <code>Key</code>, каждый из которых содержит экземпляры классов <code>String</code> и <code>KClass</code>. А ведь они нужны просто для того, чтобы получить необходимый экземпляр из <code>ServiceLocator.instances</code>. Кажется, здесь есть пространство для оптимизации…</p><p>Заменим наш <code>Key -&gt; String</code> и получим что-то типа такого:</p><pre><code class="kotlin">object ServiceLocator{
+   —- private val instances = ConcurrentHashMap&lt;Key&lt;out Any&gt;, () -&gt; Any&gt;() - было
+   ++ private val instances = ConcurrentHashMap&lt;String, () -&gt; Any&gt;() - стало
+}
+</code></pre><p>Напишем эту функцию:</p><pre><code class="kotlin">fun indexKey(
+   qualifier: String?,
+   clazz: KClass&lt;*&gt;,
+): String {
+   return "${clazz.java.name}:${qualifier.orEmpty()}"
+}
+</code></pre><p>Основное преимущество этого решения в том, что мы выделяем память только на строки, вместо хранения нескольких обьектов <code>Key</code> (который содержит <code>String</code> и <code>KClass</code>) При таком способе создания строки, мы не будет каждый раз создавать новую строку для один и тех же значений, а будем ее брать со StringPool.  В конечном итоге это решение эквивалентно решение с <code>Key</code>, ведь мы будем получать для одних и тех же <code>qualifier</code> и <code>KClass</code> одну и ту же строку. Добавим это решение к <code>ServiceLocator</code>.</p><pre><code class="kotlin">object ServiceLocator{
+   private val instances = ConcurrentHashMap&lt;String, () -&gt; Any&gt;()
+
+   fun save(
+       qualifier: String? = null,
+       clazz: KClass&lt;out Any&gt;,
+       definition: () -&gt; Any
+   ) {
+       val indexKey = indexKey(qualifier, clazz) - расчет ключа
+       instances[indexKey] = definition
+   }
+
+   fun &lt;T: Any&gt; get(
+       qualifier: String? = null,
+       clazz: KClass&lt;T&gt;
+   ): T {
+       val indexKey = indexKey(qualifier, clazz) - расчет ключа
+       val factory = instances[indexKey] ?: error("Не найден”)
+	  ...
+   }
+
+
+}
+</code></pre><p>И, запустив наше решение, мы получим работающий код:</p><pre><code class="kotlin">fun main() {
+   ServiceLocator.save(
+       qualifier = "Electric",
+       clazz = Engine::class,
+       factory = { ElectricEngine() }
+   )
+   ServiceLocator.save(
+       qualifier = "Gasoline",
+       clazz = Engine::class,
+       factory = { GasolineEngine() }
+   )
+
+
+   Car(engine = ServiceLocator
+       .get(
+           qualifier = "Electric",
+           clazz = Engine::class))
+       .start()
+
+
+   Car(engine = ServiceLocator
+       .get(
+           qualifier = "Gasoline",
+           clazz = Engine::class))
+       .start()
+}
+</code></pre><a class="anchor" id="3" name="3"></a><h2>Создание концепции модулей и удаление объектов из Map</h2><p>Теперь возникает вопрос о читаемости и независимости мест, откуда мы можем наполнять наш <code>ServiceLocator.</code> Например, у нас есть сетевые зависимости и зависимости для локальных сторов. Мы не хотим в одном и том же месте перечислять их все, а хотим сделать наш код понятнее для тех, кто будет смотреть его потом. И здесь, вроде бы, проблем нет: ничто не мешает в двух разных файлах (или модулях) создать такие классы:</p><pre><code class="kotlin">//Один файл
+class CacheDep{
+  
+   fun loadDependencies(){
+      ServiceLocator.save(clazz = Cache) { CacheImpl() }
+   }
+}
+
+
+//Второй файл
+class RemoveDep{
+
+   fun loadDependencies(){
+       ServiceLocator.save(clazz = Remote) { RemoteImpl() }
+   }
+}
+</code></pre><p>Но с подобным  решением сразу появляется два вопроса: </p><ol><li><p>Что будет, если мы попросим зависимость <code>Remote</code> до того, как вызвали <code>RemoveDep.loadDependencies()</code>? </p></li><li><p>Что будет, если наш <code>RemoteImpl()</code> внутри себя будет делать инъекцию какой-нибудь сетевой зависимости (например, API от Retrofit или HttpClient от Ktor), чтобы делать сетевые запросы, но в сам ServiceLocator никто не клал эти сетевые зависимости?</p></li></ol><p>Ответ простой — падение с ошибкой. Чтобы избавиться от такой проблемы, необходимо правило, которое позволит нам загрузить все наши зависимости в <code>ServiceLocator</code> до того, как мы попытаемся получить какую-нибудь зависимость оттуда. </p><p>Сделать это можно при запуске приложения. Но мы не хотим чтобы какие-то классы, помеченные как <code>internal</code> (видимые на уровне модуля) или <code>private</code> (видимые на уровне файла), были видны там, где не должны. Поэтому мы создадим абстракцию, которая внутри себя будет вызывать ServiceLocator.save для каждой переменной, которую мы хотим сложить в <code>ServiceLocator</code>. Назовём мы этот класс <code>Module</code>, и добавим соответствующий метод в <code>ServiceLocator</code>.</p><pre><code class="kotlin">class Module { ... }
+
+
+object ServiceLocator{
+   &lt;...&gt; 
+   fun loadModules(list: List&lt;Module&gt;){
+      
+   }
+}
+</code></pre><p>Остаётся вопрос, чем будет являться <code>Module</code>? Что же давайте думать. Что если сделать <code>Module</code> отдельным интерфейсом, а его реализации и будут ответственны за наполнение <code>SerivceLocator</code>?</p><pre><code class="kotlin">object ServiceLocator{
+  
+   &lt;...&gt;
+   fun loadModules(list: List&lt;Module&gt;){
+       list.forEach {module: Module -&gt; 
+           module.loadDependencies()
+       }
+   }
+}
+
+
+interface Module {
+  
+   fun loadDependencies()
+}
+
+
+class EngineModule: Module {
+   override fun loadDependencies() {
+       ServiceLocator.save(clazz = Engine::class) { ElectricEngine() }
+   }
+}
+</code></pre><p>Это будет работать, но наш модуль берёт на себя лишнюю ответственность. При такой реализации он не просто собирает зависимости, но также отвечает за то, как их положить в <code>ServiceLocator</code>. Ничем не лучше прошлого примера: модули всё так же напрямую работают с <code>ServiceLocator,</code> разве что мы создали единое место, где эти модули будут вызваны.</p><p><br/>В идеале хотелось бы скрыть возможность явно наполнять наш <code>ServiceLocator</code>. Ведь он является сердцем нашего механизма по работе с зависимостями и работа с <code>ServiceLocator</code> напрямую с отсутствием строгого правила о месте его наполнения может выстрелить нам в ногу. И как гласит закон Мерфи:</p><blockquote><p>«Если что-то может пойти не так, оно пойдёт не так в самое неподходящее время».</p></blockquote><p>Сделаем наш <code>Module</code> классом и создадим промежуточный <code>Map</code> внутри модулей. Затем в методе <code>loadModules</code> просто переберём данные и запишем значения из них в <code>Map</code>, внутрь <code>ServiceLocator.</code></p><pre><code class="kotlin">object ServiceLocator{
+   &lt;...&gt;  
+
+   fun loadModules(list: List&lt;Module&gt;){
+       list.forEach { module: Module -&gt;
+           module.mappings.forEach { (indexKey, factory) -&gt;
+               instances[indexKey] = factory
+           }
+       }
+   }
+}
+
+
+class Module {
+
+   //Так промежуточная Map называется в Koin
+   val mappings = ConcurrentHashMap&lt;String, () -&gt; Any&gt;()
+
+   fun save(
+       qualifier: String? = null,
+       clazz: KClass&lt;out Any&gt;,
+       definition: () -&gt; Any
+   ) {
+       val indexKey = indexKey(qualifier, clazz)
+       mappings[indexKey] = definition
+   }
+
+}
+
+
+val engineModule = Module()
+   .apply {
+       save(
+           clazz = Engine::class,
+           definition = { ElectricEngine() }
+       )
+   }</code></pre><p>Мы убрали реализацию метода <code>save</code> из <code>ServiceLocator</code> и реализовали её в классе <code>Module</code>.Теперь наши модули действительно являются просто способом наполнения <code>ServiceLocator</code>, и ничем более. А <code>ServiceLocator</code> занимается только загрузкой и получением значений по ключу.</p><p>Способ, которым мы создали наш <code>engineModule</code>, наталкивает на мысль, что можно сделать момент инициализации модуля более читаемым. Для этого напишем простой DSL.</p><pre><code class="kotlin">fun myModule(block: Module.() -&gt; Unit): Module {
+   return Module().apply(block)
+}
+
+val engineModule = myModule {
+   save(clazz = Engine::class) { ElectricEngine() }
+}
+</code></pre><p>Стало более читаемо. В такой реализации есть один мини-бонус: внутри нашего <code>Map</code> (<code>Module.mapping</code>) будут лежать все ключи, по которым мы сохраняли значения в <code>ServiceLocator</code>. Достав эти ключи, мы, не напрягаясь, можем добавить функцию удаления из <code>ServiceLocator</code> всех лямбд, что были вставлены в него из определённого модуля.</p><pre><code class="kotlin">fun unLoadModules(list: List&lt;Module&gt;){
+   list.forEach { module: Module -&gt;
+       module.mappings.keys.forEach { key -&gt;
+           instances.remove(key)
+       }
+   }
+}
+</code></pre><p>И никаких проблем!</p><p>Стоит сказать, что Koin позволяет динамически добавлять и удалять какие-то модули, и тем самым идёт в обход идеи сложить всё сразу. Но при этом на вас ложится вся ответственность за то, чтобы та или иная зависимость была найдена.</p><a class="anchor" id="4" name="4"></a><h2>Возможность создания Singleton</h2><p>Сейчас наш <code>ServiceLocator</code> умеет только собирать лямбда-функции, которые могут нам создать экземпляр. Но мы также можем захотеть иметь один экземпляр на протяжении жизни приложения. Назовём его <code>Singleton</code>. Как это сделать? Первая идея  — иметь отдельный <code>Map</code> для синглтонов. Что-то вроде этого:</p><pre><code class="kotlin">object ServiceLocator {
+  &lt;...&gt;
+   private val instances = ConcurrentHashMap&lt;String, () -&gt; Any&gt;()
+   private val singleInstances = ConcurrentHashMap&lt;String, Any&gt;()
+  &lt;...&gt;
+}
+</code></pre><p>Но как наполнять этот <code>Map</code>? И как управлять сразу двумя <code>Map</code>? Например, если в двух  <code>Map</code>будет одинаковый ключ, то какую <code>Map</code> использовать? У нас появляется несколько источников, за которыми надо следить. И неизвестно, а понадобится ли нам третий <code>Map</code>? А ведь нам надо просто получать единый экземпляр для определённой реализации, и мы пойдем путём создания класса <code>Provider</code>, который заменит наши лямбды в <code>ServiceLocator</code>.</p><p>Сейчас объясню. Создадим этот класс и чуть-чуть изменим <code>ServiceLocator</code>:</p><pre><code class="kotlin">object ServiceLocator {
+   &lt;...&gt;
+   private val instances = ConcurrentHashMap&lt;String, Provider&gt;()
+   &lt;...&gt;
+}
+
+//В Koin данный класс носит имя InstanceFactory
+abstract class Provider(
+   private val definition: () -&gt; Any
+) {
+   protected fun create(): Any {
+       return definition.invoke()
+   }
+   abstract fun get(): Any
+}
+</code></pre><p>Мы неспроста сделали его абстрактным. Именно наследники этого класса будут решать, как именно мы будем создавать и получать зависимости.</p><p>Напишем реализацию для Singleton-зависимостей:</p><pre><code class="kotlin">class SingletonProvider(definition: () -&gt; Any): Provider(factory){
+   private var instance: Any? = null
+  
+   override fun get(): Any {
+       synchronized(this){
+           if (instance == null) {
+               instance = create()
+           }
+       }
+       return instance!!
+   }
+
+}
+</code></pre><p>При обращении к методу <code>get</code> мы проверяем, создан ли экземпляр. И либо создаём и отдаём, либо просто отдаём.</p><p>И реализуем такой же для Factory-зависимостей:</p><pre><code class="go">class FactoryProvider(definition: () -&gt; Any): Provider(factory){
+   override fun get(): Any = create()
+}
+</code></pre><p>Да, что может быть проще простого пересоздания экземпляра при каждом обращении.</p><p>Теперь метод <code>get</code> внутри <code>ServiceLocator</code> будет выглядеть так же просто, как и до этого. Один источник хранения всех возможных переменных, и при обращении к нему через <code>get</code> мы даже не имеем понятия, как именно он был создан.</p><pre><code class="kotlin">
+
+fun &lt;T: Any&gt; get(
+   qualifier: String? = null,
+   clazz: KClass&lt;T&gt;
+): T {
+   val indexKey = indexKey(qualifier, clazz)
+   @Suppress("UNCHECKED_CAST")
+   return instances[indexKey]?.get() as? T
+			?: error("Не найдена реализация")
+}
+</code></pre><p>В классе <code>Module</code> заменим на save методы для создания <code>Singleton</code> и <code>Factory</code>:</p><pre><code class="kotlin">val mappings = hashMapOf&lt;String, Provider&gt;()
+
+fun factory(
+   qualifier: String? = null,
+   clazz: KClass&lt;out Any&gt;,
+   definition: () -&gt; Any
+) {
+   val indexKey = indexKey(qualifier, clazz)
+   mappings[indexKey] = FactoryProvider(definition)
+}
+
+fun single(
+   qualifier: String? = null,
+   clazz: KClass&lt;out Any&gt;,
+   definition: () -&gt; Any
+) {
+   val indexKey = indexKey(qualifier, clazz)
+   mappings[indexKey] = SingletonProvider(definition)
+}
+</code></pre><p>Теперь мы можем использовать метод <code>factory</code> для создания зависимости, который будет пересоздавать значение при каждой новой попытке создать экземпляр. А если нам нужен <code>singleton</code> на всё время жизни приложения, то используем метод <code>single</code>.</p><p>Теперь перепишем это всё на inline-функции, чтобы стало ещё удобнее. </p><pre><code class="kotlin">inline fun &lt;reified T: Any&gt; factory(
+   qualifier: String? = null,
+   noinline definition: () -&gt; Any
+) {
+   val indexKey = indexKey(qualifier, T::class)
+   mappings[indexKey] = FactoryProvider(definition)
+}
+
+
+inline fun &lt;reified T: Any&gt; singleton(
+   qualifier: String? = null,
+   noinline definition: () -&gt; Any
+) {
+   val indexKey = indexKey(qualifier, T::class)
+   mappings[indexKey] = SingletonProvider(definition)
+}
+</code></pre><details class="spoiler"><summary>Лирическое отступление про inline-функции</summary><div class="spoiler__content"><p>Чтобы понять, что сейчас произошло, проведу краткий ликбез по inline-функциям. Начнём вот с такого примера:</p><pre><code class="kotlin">fun main() {
+   addFour(16) { result -&gt;
+       println(result + 1)
+   }
+}
+
+
+fun addFour(value: Int, callback: (Int) -&gt; Unit){
+   callback(value + 4)
+}
+</code></pre><p>Что здесь происходит? </p><ul><li><p>Мы вызвали функцию <code>addFour</code>, передав ей какое-то значение (16).</p></li><li><p>Внутри функции мы прибавили к значению число 4. </p></li></ul><p>И вернули этот результат в <code>callback</code> назад в функцию, из которой мы изначально вызвали метод <code>addFour</code>. </p><p>Чтобы стало ещё понятнее, вот так этот код выглядит на Java (чуть изменён для понимания, но без потери смысла):</p><pre><code class="java">static class Callback{
+
+   public void invoke(int value) {
+       System.out.println(value);
+   }
+}
+
+public static final void main() {
+   addFour(16, new Callback());
+}
+
+public static final void addFour(int value, Callback callback) {
+   callback.invoke(value + 4);
+}
+</code></pre><p>Вот что мы получим при преобразовании из Kotlin в Java.</p><p>А теперь чуть изменим наш код, пометив метод <code>addFour</code> модификатором <code>inline</code>.</p><pre><code class="kotlin">fun main() {
+   addFour(16) { result -&gt;
+       println(result)
+   }
+}
+
+
+inline fun addFour(value: Int, callback: (Int) -&gt; Unit){
+   callback(value + 4)
+}
+</code></pre><p>Вроде бы ничего не поменялось. Посмотрим, как будет выглядеть наш Java-код (чуть изменён для понимания, но без потери смысла):</p><pre><code class="java">public static final void main() {
+   int value = 16;
+   int result = value + 4;
+   System.out.println(result);
+}
+</code></pre><p>Как видите, мы избавились от лишнего вызова метода <code>addFour</code>. Весь код был встроен вместо вызова нашего метода.</p><p>А теперь разберёмся в <code>noInline</code>. Для этого опять немного модернизируем наш код.</p><pre><code class="kotlin">var timeVarious: ((Int) -&gt; Unit)? = null
+
+
+fun main() {
+   addFour(
+       value = 16,
+       callback = { result -&gt; println(result) },
+       secondCallback = { result -&gt; println("second $result") }
+   )
+}
+
+
+inline fun addFour(
+   value: Int,
+   callback: (Int) -&gt; Unit,
+   noinline secondCallback: (Int) -&gt; Unit
+){
+   callback(value + 4)
+   timeVarious = secondCallback
+   secondCallback(value + 4)
+}
+</code></pre><p>Мы добавили ещё один метод, но пометили его как <code>noinline</code>. Также мы добавили переменную <code>timeVarious</code>, в которую сохраняем нашу noinline-лямбду. Зачем? Расскажу чуть позже.<br/>Как сейчас будет выглядеть Java-код (чуть изменён для понимания, но без потери смысла):</p><pre><code class="java">static class SecondCallback{
+
+   public void invoke(int value) {
+       System.out.println(“second” + value);
+   }
+}
+
+static SecondCallback timeVarious;
+
+public static final void main() {
+   int value = 16;
+   SecondCallback secondCallback = new SecondCallback();
+   int result = value + 4;
+   System.out.println(result);
+   secondCallback.invoke(result);
+}
+</code></pre><p>Весь <code>callback</code>, который не был помечен как <code>noinline</code>, полностью встроился вместо вызова функции <code>addFour</code>. А <code>secondCallback</code> создал специальный класс, как в примере без inline-функции.</p><p>Inline-функция позволяет весь код внутри встроить вместо вызова. А <code>noinline</code> позволяет отменить встраивание определённых <code>callback</code>. Зачем это нужно?<br/>Специально для этой цели и была создана переменная <code>timeVarious</code>. Благодаря тому, что noinline-функция не встроилась, мы можем с ней обращаться как с отдельным объектом и даже куда-то сохранить. А с первым <code>callback</code> такое действие не дозволено.</p><pre><code class="kotlin">inline fun addFour(
+   value: Int,
+   callback: (Int) -&gt; Unit,
+   noinline secondCallback: (Int) -&gt; Unit
+){
+   timeVarious = callback - // ошибка
+   callback(value + 4)
+   timeVarious = secondCallback
+   secondCallback(value + 4)
+}
+</code></pre><p>Теперь обсудим ещё одну фишку inline-функций, а именно — <code>reified</code>. Для начала создадим вот такую переменную:</p><pre><code class="kotlin">val cacheName = mapOf&lt;KClass&lt;*&gt;, String&gt;(
+   Int::class to "Int"
+)
+</code></pre><p>Просто по <code>KClass</code> будем получать строку, которая является именем класса. Как получить такую строку из <code>Map</code>? Довольно просто:</p><pre><code class="kotlin">fun main() {
+   val name = cacheName[Int::class]
+}
+</code></pre><p>Подобный синтаксис выглядит не очень привлекательно. Что же, попробуем вынести в отдельную функцию:</p><pre><code class="kotlin">fun main() {
+   val name = superGet&lt;Int&gt;()
+}
+
+
+fun &lt;T: Any&gt; superGet(): String? {
+   return cacheName[T::class] // - ошибка
+}
+</code></pre><p>Но мы видим проблему: нашей функции просто негде взять экземпляр <code>KClass</code> во время выполнения кода ведь при переходе из функции в функцию наши <code>generic</code> типы стираются. На помощь может прийти inline-функция, ведь в месте вызова (в методе <code>main</code>) мы точно знаем, что хотим получить <code>Int::class</code>. Сделаем нашу функцию <code>inline</code>:</p><pre><code class="kotlin">inline fun &lt;T: Any&gt; superGet(): String? {
+   return cacheName[T::class] // - ошибка
+}
+</code></pre><p>Но это всё равно приводит нас к ошибке. Несмотря на то, что функция встроилась, информация о конкретном типе всё равно стерлась в момент вставки, исходя из расчёта, что вам этот тип внутри функции попросту не нужен. Поэтому существует ключевое слово <code>reified</code>, которое сообщает компилятору, что необходимо сохранить тип класса и после встраивания. При добавлении одного ключевого слова:</p><pre><code class="kotlin">inline fun &lt;reified T: Any&gt; superGet(): String? {
+   return cacheName[T::class]
+}
+</code></pre><p>мы получим после компиляции вот такой код:</p><pre><code class="kotlin">public static final void main() {
+  String name = (String)getCacheName().get(
+     Reflection.getOrCreateKotlinClass(Integer.class) 
+  );
+}
+</code></pre><p></p></div></details><p>Если вы попробуете воспользоваться такими лямбдами, то студия вас отругает:</p><pre><code class="kotlin">val engineModule = myModule {
+   factory { ElectricEngine() } // ошибка
+}
+</code></pre><p>Проблема в том, что компилятору не хватает информации о типе. И он требует явно прописать это руками в <code>&lt;&gt;</code>. Это правильная подсказка, ведь сейчас у нас нет строгого правила, что если мы хотим создавать экземпляр <code>ElectricEngine</code>, то нам нужно именно попросить передать какой-то экземпляр типа <code>Engine</code> или сам <code>ElectricEngine</code>.</p><p>Объясню на примере. Наша текущая реализация позволяет сделать так:</p><pre><code class="kotlin">val engineModule = myModule {
+   factory&lt;Car&gt; { ElectricEngine() }
+}
+</code></pre><p>И при попытке получить <code>Car</code> мы получим ошибку, ведь <code>ElectricEngine</code> не является ни наследником, ни реализацией класса <code>Car</code>. Что же, давайте это исправим. Пример будет для метода <code>factory</code>, но для <code>single</code> всё работает аналогично:</p><pre><code class="kotlin">object ServiceLocator {
+   &lt;....&gt;
+   private val instances = ConcurrentHashMap&lt;String, Provider&lt;*&gt;&gt;()
+   &lt;....&gt;
+}
+
+
+class Module {
+
+
+   //Так промежуточная Map называется в Koin
+   val mappings = hashMapOf&lt;String, Provider&lt;*&gt;&gt;()
+
+
+   inline fun &lt;reified T&gt; factory(
+       qualifier: String? = null,
+       —- noinline definition: () -&gt; Any - было
+       ++ noinline definition: () -&gt; T - стало
+   ) {
+       val indexKey = indexKey(qualifier, T::class)
+       mappings[indexKey] = FactoryProvider(definition)
+   }
+   &lt;.....&gt;
+}
+
+
+class FactoryProvider&lt;T&gt;(
+     —- factory: () -&gt; Any - было
+     ++ factory: () -&gt; T - стало
+): Provider&lt;T&gt;(factory){
+   override fun get() = create()
+}
+
+
+//В Koin данный класс носит имя InstanceFactory
+abstract class Provider&lt;T&gt;(
+   —- private val definition: () -&gt; Any - было
+   ++ private val definition: () -&gt; T - стало
+) {
+
+
+   //Также поменялись возвращаемые типы
+   protected fun create(): T {
+       return definition.invoke()
+   }
+   abstract fun get(): T
+}</code></pre><p>Использовать везде <code>generic</code> у нас не получится. Мы вводим строгое правило, какими классами и лямбда-функциями мы можем наполнять наш <code>ServiceLocator</code>. Теперь пример просто не скомпилируется, и студия нам это подскажет:</p><pre><code class="kotlin">val engineModule = myModule {
+   factory&lt;Car&gt; { ElectricEngine() } // ошибка
+}
+</code></pre><p>Попробуем теперь создать экземпляр класса <code>Car</code>:</p><pre><code class="kotlin">val carModule = myModule {
+   single {
+       Car( /* Нужен параметр*/ )
+    }
+}
+</code></pre><p>Мы видим явную проблему: для создания <code>Car</code> нужен экземпляр <code>Engine</code>. А решается это просто:</p><pre><code class="kotlin">single {
+   Car(ServiceLocator.get(clazz = Engine::class))
+}
+</code></pre><p>Здесь мы опять руками напрямую общаемся с <code>ServiceLocator,</code> а хотелось бы что-то простое.</p><pre><code class="kotlin">single {
+   Car(engine = get())
+}
+</code></pre><p>Но есть нюанс, о котором стоит сообщить. Дело в том в самом Koin: при вызове метода <code>get</code> мы ищем ближайший <code>Koin scope</code> (имеется в виду область, в рамках которой можно получить какие-то зависимости, но при выходе из неё или удалении этой области все ссылки на зависимости удаляются). И если не удалось найти ближайший <code>scope</code>, то зависимости ищутся в <code>rootScope</code> (именно в него по умолчанию складываются наши переменные, созданные через <code>single</code> и <code>factory</code>). Сам <code>scope</code> служит дополнительным параметром для создания ключа, по которому ищутся значения в <code>ServiceLocator</code>.</p><p>Но в нашем примере мы не будет работать с такими фичами как <code>scope</code>. Вместо этого мы будет брать зависимости напрямую у <code>ServiceLocator</code>, но реализуем работу с ним так же же красиво, как и со <code>scope</code>. То есть получим похожий способ поиска зависимостей при наполнении <code>ServiceLocator</code>.</p><p>Начнём с того, что, как и в примере с созданием методов <code>factory</code> и <code>single</code>, сделаем наш метод <code>get</code> лямбда-функцией.</p><pre><code class="kotlin">object ServiceLocator {
+   private val instances = ConcurrentHashMap&lt;String, Provider&lt;*&gt;&gt;()
+
+   inline fun &lt;reified T&gt; get(
+       qualifier: String? = null
+   ): T {
+       val indexKey = indexKey(qualifier, T::class)
+       return instances[indexKey]?.get() as? T
+				?: error("Не найдена реализация")
+   }
+</code></pre><p>Студия сообщает об ошибке при обращении к переменной <code>instances</code>, поскольку она <code>private</code>. Код из лямбда-функции после встраивания в место вызова не сможет обращаться к чужим приватным переменным, поэтому пойдём на такую хитрость:</p><pre><code class="kotlin">object ServiceLocator {
+   private val _instances = ConcurrentHashMap&lt;String, Provider&lt;*&gt;&gt;()
+   val instances: Map&lt;String, Provider&lt;*&gt;&gt; = _instances
+}
+</code></pre><p>Проблема решена наполовину, теперь мы можем создать наш экземпляр.</p><pre><code class="kotlin">single {
+   Car(ServiceLocator.get())
+}
+</code></pre><p>Но ещё не идеально. Чтобы решить оставшуюся половину проблемы, мы пойдём в наш лямбда-параметр <code>definition</code> и немного его модернизируем.</p><pre><code class="kotlin">inline fun &lt;reified T&gt; factory(
+   qualifier: String? = null,
+   —- noinline definition: () -&gt; T — было
+   ++ noinline definition: ServiceLocator.() -&gt; T - стало
+) {
+   val indexKey = indexKey(qualifier, T::class)
+   mappings[indexKey] = FactoryProvider(definition)
+}
+</code></pre><p>Также нужно во всех местах, где мы работали с нашей лямбдой, сделать замену. Хм… не слишком удобно при каждом изменении везде переписывать эту функцию. Поэтому создадим <code>typealias</code> (то есть ёмкое слово, которое при компиляции, подставит в места, где используется всё, что идёт после =).</p><pre><code class="kotlin">typealias Definition&lt;T&gt; = ServiceLocator.() -&gt; T</code></pre><p>И заменим везде, чтобы было однородно:</p><pre><code class="kotlin">inline fun &lt;reified T&gt; factory(
+   qualifier: String? = null,
+—- noinline definition: ServiceLocator.() -&gt; T - было 
+++ noinline definition: Definition&lt;T&gt; - стало
+) {
+   val indexKey = indexKey(qualifier, T::class)
+   mappings[indexKey] = FactoryProvider(definition)
+}
+
+
+//////
+
+
+class FactoryProvider&lt;T&gt;(
+—- definition: ServiceLocator.() -&gt; T - было
+++ definition: Definition&lt;T&gt; - стало
+): Provider&lt;T&gt;(definition){
+   override fun get() = create()
+}
+</code></pre><p>Что же, теперь осталось в месте, где мы вызываем лямбду, прокинуть <code>ServiceLocator</code>, а именно в метод <code>create</code> класса <code>Provider&lt;T&gt;</code>.</p><pre><code class="kotlin">//В Koin данный класс носит имя InstanceFactory
+abstract class Provider&lt;T&gt;(
+   private val definition: Definition&lt;T&gt;
+) {
+   protected fun create(): T {
+      // имеет вид ServiceLocator.() -&gt; T, и проброс нашего ServiceLocator как первого параметра здесь — это хитрость чтобы работать с таким лямбдами
+       return definition.invoke(ServiceLocator)
+   }
+}
+</code></pre><p>И мы добились того, чего хотели.</p><pre><code class="kotlin">singleton {
+   Car(get())
+}
+</code></pre><p>Как бонус, давайте реализуем ещё метод <code>inject</code>:</p><pre><code class="kotlin">inline fun &lt;reified T&gt; inject(
+   qualifier: String? = null
+): Lazy&lt;T&gt; = lazy {
+   ServiceLocator.get(qualifier)
+}
+</code></pre><details class="spoiler"><summary>Немного про lazy</summary><div class="spoiler__content"><p>Короткий пример про то, что такое <code>lazy</code>, если вдруг есть сомнения, как это работает. Будет считать вот такой код:</p><pre><code class="kotlin">val repository by lazy { ExampleRepository() }
+
+fun call(){
+   repository.loadData()
+}
+</code></pre><p>эквивалентным такому (просто раскрыли, на что заменяется by в коде):</p><pre><code class="kotlin">val repository = lazy { ExampleRepository() }
+
+fun call(){
+   repository.value.loadData()
+}
+</code></pre><p>Думаю, при таком виде становится понятно, что при первом обращении к value переменная просто будет инициализирована. В простом примере это может выглядеть так (упрощённый пример):</p><pre><code class="kotlin">object UNINITIALIZED_VALUE
+
+
+fun &lt;T&gt; lazy(block: () -&gt; T): Lazy&lt;T&gt; = object : Lazy&lt;T&gt; {
+   private var initializer: (() -&gt; T)? = block
+   private var _value: Any? = UNINITIALIZED_VALUE
+
+
+   override val value: T
+       get() {
+           if (_value === UNINITIALIZED_VALUE) {
+               _value = initializer!!()
+               initializer = null
+           }
+           @Suppress("UNCHECKED_CAST")
+           return _value as T
+       }
+
+
+   override fun isInitialized(): Boolean = _value !== UNINITIALIZED_VALUE
+}
+</code></pre><p>Настоящая <code>lazy</code>-обёртка чуть сложнее, так как поддерживает пару режимов для создания переменной. Что тут происходит?</p><p>При первом обращении к <code>value</code> мы проверяем переменную <code>_value</code>, чтобы понять, была ли она уже инициализирована. Если нет — инициализируем и возвращаем. А если да, то просто возвращаем сохранённое значение.</p></div></details><p>Это всё. Теперь мы можем сделать так:</p><pre><code class="kotlin">val engine: Engine by inject()</code></pre><p>И наш код будет работать.</p><a class="anchor" id="5" name="5"></a><h2>Проброс параметров</h2><p>Отойдём от машины и её двигателя. Представим, что мы находимся на экране со списком товаров. Кликая по какому-нибудь из них мы открываем другой экран с детальной информацией об этом товаре. И хотим при этом сразу создавать вот такую <code>ViewModel</code>:</p><pre><code class="kotlin">class ProduceViewModel(
+   val productId: String // Id определенного продукта
+): ViewModel() {
+   &lt;...&gt;
+}
+</code></pre><p>Но как нам это сделать внутри модуля? Ведь <code>productId</code> нам будет известен только в момент открытия. Реализуем механизм, чтобы иметь возможность передавать часть каких-то параметров именно в момент инициализации. Для этого создадим класс <code>ParametersHolder</code>, внутри него и будут лежать параметры, которые должны нам быть известны в момент инициализации.</p><pre><code class="kotlin">class ParametersHolder(
+   val _values: List&lt;Any&gt;
+) {
+
+   @Suppress("UNCHECKED_CAST")
+   operator fun &lt;T&gt; get(i: Int) = _values[i] as T
+  
+}
+</code></pre><p>Ключевое слово operator позволяет обращаться к элементам класса <code>ParametersHolder</code>, как мы привыкли это делать у массивов и списков через <code>[]</code>. </p><pre><code class="kotlin">val parametersHolder = ParametersHolder(listOf&lt;Any&gt;(&lt;....&gt;))
+val first = parametersHolder[0] // вернет первый параметр
+</code></pre><p>И дальше нам осталось для метода get и всех последующих методов в цепочке вызова добавить возможность прокидывать параметры:</p><pre><code class="kotlin">inline fun &lt;reified T&gt; get(
+   qualifier: String? = null,
+   noinline parameters: (() -&gt; ParametersHolder)? = null - лямда для создания ParametersHolder
+: T {
+   val indexKey = indexKey(qualifier, T::class)
+   return instances[indexKey]?.get(parameters) as? T
+			?: error("Не найдена реализация")
+}
+
+
+class FactoryProvider&lt;T&gt;(factory: Definition&lt;T&gt;): Provider&lt;T&gt;(factory){
+
+   override fun get(
+   ++ parameters:  (() -&gt; ParametersHolder)? - добавилось
+   ) = create(parameters)
+   
+}
+
+
+//В Koin данный класс носит имя InstanceFactory
+abstract class Provider&lt;T&gt;(
+   private val factory: Definition&lt;T&gt;
+) {
+   protected fun create(
+   ++ parameters:  (() -&gt; ParametersHolder)? - добавилось
+   ): T {
+       //тут пока остановимся
+       return factory.invoke(ServiceLocator)
+   }
+   
+   abstract fun get(parameters: (() -&gt; ParametersHolder)?): T
+}
+</code></pre><p>Мы неспроста сделали это действие как функцию <code>() -&gt; ParametersHolder:</code> теперь мы можем лениво инициализировать список наших параметров при инициализации через <code>inject</code>. Осталось только добавить в нашу лямбду список параметров:</p><pre><code class="kotlin">typealias Definition&lt;T&gt; = ServiceLocator.(ParametersHolder) -&gt; T
+
+abstract class Provider&lt;T&gt;(
+   private val definition: Definition&lt;T&gt;
+) {
+   protected fun create(parameters:  (() -&gt; ParametersHolder)?): T {
+       val parametersHolder = parameters?.invoke() ?: ParametersHolder(emptyList())
+       return definition.invoke(ServiceLocator, parametersHolder)
+   }
+}
+</code></pre><p>Мы получили возможность прокидывать параметры из места вызова get.</p><pre><code class="kotlin">class ProduceViewModel(
+   val productId: String // Id определенного продукта
+): ViewModel() {
+   &lt;...&gt;
+}
+
+
+//место, где создается наша ViewModel
+val viewModel: ProduceViewModel by viewModels { 
+ 	ServiceLocator.get(
+   		parameters = { ParametersHolder(listOf("ownProdictId")) }
+    )
+}
+
+
+// или через inject, предварительно добавив в него поле с лямбдой parameters
+val viewModel: ProduceViewModel by inject(
+    parameters = { ParametersHolder(listOf("ownProdictId")) }
+)
+
+
+//как это выглядит внутри Module
+factory&lt;ProduceViewModel&gt; { parametrHolder -&gt;
+   ProduceViewModel(parametrHolder[0]) // под индексом 0 лежит наш "ownProdictId"
+}
+</code></pre><p>Ну вот и всё. Каждый шаг сам по себе не такой и сложный, но в сумме мы получаем довольно гибкий и удобный механизм.</p><a class="anchor" id="6" name="6"></a><h2>Выводы</h2><p>В этой статье мы рассмотрели механизм работы Koin, написав свою реализацию. Некоторые механизмы не были рассмотрены (например, создание отдельных scope), но и изученного нам хватило, чтобы создать легковесное решение для инъекции зависимостей в приложениях на языке Kotlin.</p><p>Чего мы добились: </p><ol><li><p>Наше решение предоставляет удобный и гибкий механизм для управления зависимостями в приложениях на Kotlin.</p></li><li><p>Мы можем легко передавать параметры в зависимости при их создании, что повышает гибкость и настраиваемость приложения. </p></li><li><p>Решение поддерживает различные виды хранения зависимостей, такие как <code>Singleton</code> и <code>Factory</code>, и при желании можно добавить новые. </p></li><li><p>Механизм обеспечивает лёгкость конфигурирования и настройки зависимостей через простой и понятный DSL. </p></li><li><p>Наше решение позволяет легко создавать <code>singleton</code>-объекты, которые могут быть доступны во всём приложении и обеспечивают единую точку доступа к ресурсам. </p></li><li><p>Оно обеспечивает хорошую производительность и минимальные расходы за счёт отложенной инициализации зависимостей и их кэширования.</p></li></ol><p></p></div></div></div><!-- --><!-- --></div><!-- --><!-- --></div><!--]--><!-- --><div class="tm-article-presenter__meta" data-test-id="article-meta-links"><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Теги:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[koin]"><span>koin</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[android]"><span>android</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[development]"><span>development</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[kotlin]"><span>kotlin</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[servicelocator]"><span>servicelocator</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[ozon]"><span>ozon</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[ozon+tech]"><span>ozon tech</span></a><!--]--></li><!--]--><!-- --></ul></div><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Хабы:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/companies/ozontech/articles/"><!--[--><span>Блог компании Ozon Tech</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/programming/"><!--[--><span>Программирование</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/mobile_dev/"><!--[--><span>Разработка мобильных приложений</span><!--]--></a><!--]--></li><!--]--><!-- --></ul></div></div><!-- --><!--]--></article><!--]--></div><!-- --></div><div class="tm-article-sticky-panel" data-test-id="article-sticky-panel" style=""><div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons"><div class="tm-article-rating tm-data-icons__item"><div class="tm-votes-meter tm-article-rating__votes-switcher"><svg class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon tm-votes-meter__icon_appearance-article" height="24" width="24"><title>Всего голосов 16: ↑16 и ↓0</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-rating"></use></svg><span class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating tm-votes-meter__value" data-test-id="votes-meter-value" title="Всего голосов 16: ↑16 и ↓0">+23</span></div><!--teleport start--><!--teleport end--><!-- --></div><!-- --><!-- --><button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Добавить в закладки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-favorite"></use></svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">41</span></button><div class="tm-sharing tm-data-icons__item" title="Поделиться"><button class="tm-sharing__button" type="button"><svg class="tm-sharing__icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z" fill="currentColor"></path></svg></button><!--teleport start--><!--teleport end--></div><div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии"><a class="tm-article-comments-counter-link__link" data-test-id="counter-comments" href="/ru/companies/ozontech/articles/846482/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value">9</span><!--]--></a><!-- --></div><!--[--><!--[--><!--[--><!-- --><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!-- --></div></div></div><!--[--><!--]--><div class="tm-article-presenter__footer"><!--[--><!--[--><div class="tm-article-blocks"><!-- --><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><!-- --><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-balanced"><!--[--><div class="tm-article-author" data-test-id="article-author-info"><!--[--><!--[--><div class="tm-article-author__company"><div class="tm-article-author__company-card"><div class="tm-company-snippet"><a class="tm-company-snippet__logo-link" href="/ru/companies/ozontech/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/4c8/542/883/4c8542883ef14a62b065425db4a6e6cf.jpg" width="40"/></div></a><div class="tm-company-snippet__info"><a class="tm-company-snippet__title" data-test-id="company-title" href="/ru/companies/ozontech/profile/"><span>Ozon Tech</span></a><div class="tm-company-snippet__description">Команда разработки ведущего e‑com в России</div></div></div><div class="tm-article-author__buttons"><!-- --><!-- --></div></div><!-- --><div class="tm-article-author__separator"></div></div><!--]--><!--]--><div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true"><div class="tm-user-card__info-container"><div class="tm-user-card__header"><div class="tm-user-card__header-data"><a class="tm-user-card__userpic tm-user-card__userpic_size-40" href="/ru/users/Inkompetent/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/49a/6ce/13e/49a6ce13ebe5d80f399517651a6d3780.jpg"/></div></a><div class="tm-user-card__meta"><div class="tm-counter-container tm-karma tm-karma" title=" 5 голосов "><div class="tm-counter-container__header"><!--[--><div class="karma-display positive" data-v-7635202e="">5</div><!-- --><!--]--></div><div class="tm-counter-container__footer"><!--[--><div class="tm-karma__text">Карма</div><!--teleport start--><!--teleport end--><!--]--></div></div><div class="tm-counter-container" title="Рейтинг пользователя"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">0</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div></div></div></div><div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info"><div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title"><!-- --><a class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article" href="/ru/users/Inkompetent/"> @Inkompetent</a><!-- --></div><p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p></div></div><div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons"><!-- --><div class="tm-user-card__button"><div class="tm-button-follow tm-user-card__button-follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div></div><!-- --><div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations"><svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16"><title>Отправить сообщение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#mail"></use></svg></div><!-- --></div><!-- --></div><!-- --></div><!--]--></div><!--]--><!-- --></section><!-- --><!--[--><!--]--><!--]--><div class="tm-article-blocks__comments"><div class="tm-article-page-comments" id="publication-comments"><div><!--[--><div class="tm-article-comments-counter-link tm-article-comments-counter-button"><a class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments" href="/ru/companies/ozontech/articles/846482/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 9 </span><!--]--></a><!-- --></div><!--]--></div></div></div><!--[--><!--[--><!--]--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header tm-block__header_variant-borderless"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim"><!--[--><!--[--><div class="tm-tabs tm-tabs"><div class=""><!--[--><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]--></div><!-- --></div><div class="similar-and-daily__tab-view"><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-article-cards"><!--[--><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><!--]--></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!-- --></div><!--]--><!--]--></div><!--]--><!-- --></section><!--[--><!--[--><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-inset tm-placeholder-vacancies"><div class="tm-placeholder-inset__header"><div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div></div><div class="tm-placeholder-inset__body"><ul class="tm-placeholder-list"><!--[--><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><!--]--></ul></div><div class="tm-placeholder-inset__footer"><div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div></div></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!--]--><!--]--><!-- --><!--[--><!--]--><!--]--></div><!--]--><!--]--></div></div><!--]--><!--]--></div></div><div class="tm-page__sidebar"><!--[--><div class="tm-layout-sidebar"><div class="tm-layout-sidebar__placeholder_initial"></div><div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;"><!--[--><!--]--><!-- --><div class="tm-layout-sidebar__placeholder_initial"></div><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body"><!--[--><div class="tm-company-basic-info"><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Сайт</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><a class="tm-company-basic-info__link" href="https://ozon.tech" target="_blank">ozon.tech</a><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Дата регистрации</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><time datetime="2018-12-03T19:49:05.000Z" title="2018-12-03, 22:49">3  декабря  2018</time><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Дата основания</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><time datetime="1998-02-08T21:00:00.000Z" title="1998-02-09, 00:00">9  февраля  1998</time><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Численность</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[-->5 001–10 000 человек<!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Местоположение</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[-->Россия<!--]--></dd></dl><!-- --></div><!--]--></div><!--]--><!-- --></section><div class="tm-company-widgets"><!--[--><!--]--></div><!-- --><!-- --><!--]--><!-- --></div></div><!--]--></div></div><!-- --><!--]--></div></div></main><!-- --></div><div class="tm-footer-menu"><div class="tm-page-width"><!--[--><div class="tm-footer-menu__container"><!--[--><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Ваш аккаунт</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/ozontech/articles/846482/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/ozontech/articles/846482/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Разделы</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/articles/">Статьи</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/news/">Новости</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/hubs/">Хабы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/companies/">Компании</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/users/">Авторы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/sandbox/">Песочница</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Информация</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/help/">Устройство сайта</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/authors/codex/">Для авторов</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/companies/corpblogs/">Для компаний</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/docs/transparency/">Документы</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Услуги</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]--></ul></div></div><!--]--></div><!--]--></div></div><div class="tm-footer"><div class="tm-page-width"><!--[--><div class="tm-footer__container"><!-- --><div class="tm-footer__social"><!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Facebook</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Twitter</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>VK</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Telegram</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Youtube</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Яндекс Дзен</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use></svg></a><!--]--></div><!--teleport start--><!--teleport end--><button class="tm-footer__link"><!-- --> Настройка языка</button><a class="tm-footer__link" href="/ru/feedback/">Техническая поддержка</a><div class="tm-footer-copyright"><span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span></div></div><!--]--></div></div><!-- --><!--]--></div><!-- --></div></div>
+<div id="overlays"><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--></div>
+</body>
+</html>

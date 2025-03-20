@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<title>Интересные приёмы, взятые из исходников Android / Хабр</title>
+</head>
+<body>
+<div id="mount"><div data-async-called="true" id="app"><div class="tm-layout__wrapper"><!--[--><!-- --><div></div><!-- --><header class="tm-header" data-test-id="header"><div class="tm-page-width"><!--[--><div class="tm-header__container"><!-- --><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/"><svg class="tm-svg-img tm-header__icon" height="16" width="16"><title>Хабр</title><use xlink:href="/img/habr-logo-ru.svg#logo"></use></svg></a><span class="tm-header__beta-sign" style="display:none;">β</span></span><!--[--><div class="tm-dropdown tm-header__projects"><div class="tm-dropdown__head"><!--[--><button class="tm-header__dropdown-toggle"><svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16"><title>Открыть список</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#arrow-down"></use></svg></button><!--]--></div><!-- --></div><a class="tm-header__become-author-btn" href="/ru/sandbox/start/">Как стать автором</a><div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature"><!-- --></div><!-- --><!--]--><!-- --></div><!--]--></div></header><div class="tm-layout"><div class="tm-page-progress-bar"></div><div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true"><div class="tm-page-width"><!--[--><div class="tm-base-layout__header-wrapper"><div class="tm-main-menu"><div class="tm-main-menu__section"><nav class="tm-main-menu__section-content"><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]--></nav></div></div><div class="tm-header-user-menu tm-base-layout__user-menu"><a class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button" href="/ru/search/"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24"><title>Поиск</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#search"></use></svg></a><!-- --><!-- --><div class="tm-header-user-menu__item tm-header-user-menu__write"><div><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24"><title>Написать публикацию</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#write"></use></svg></div><!-- --></div><!--[--><div class="tm-header-user-menu__item"><button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24"><title>Настройки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#page-settings"></use></svg></button></div><a class="tm-header-user-menu__item" href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/ruvds/articles/838330/&amp;hl=ru" rel="nofollow"><!--[--><button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!-- --><!--teleport start--><!--teleport end--><!-- --></div></div><!--]--></div></div><!-- --><div class="tm-page-width"><!--[--><!--]--></div><main class="tm-layout__container"><div class="tm-page" companyname="ruvds" data-async-called="true" hl="ru" style="--0c809c5a:16px;--a086013e:100%;--7c457026:0;"><div class="tm-page-width"><!--[--><div class="tm-page__header"><!--[--><div class="tm-company-card__branding tm-company-card__branding_loading tm-company-article__branding" data-test-id="company-card-branding"><div class="tm-company-card__branding-placeholder"><!-- --></div><a href="https://ruvds.com/ru/ispmanager?utm_source=habr&amp;utm_medium=banner&amp;utm_campaign=promo&amp;utm_content=link&amp;?erid=LjN8KAR3S"><img class="tm-company-card__branding-image" src="//habrastorage.org/getpro/habr/branding/fb6/ef6/713/fb6ef6713c7ac645ad9668af3b7aa161.png"/></a></div><!--]--></div><div class="tm-page__wrapper"><div class="tm-page__main_has-sidebar tm-page__main"><div class="pull-down"><!-- --><div class="pull-down__header" style="height:0px;"><div class="pull-down__content" style="bottom:10px;"><svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24"><title>Обновить</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#pull-arrow"></use></svg></div></div><!--[--><!--[--><div class="tm-article-presenter"><!--[--><!--[--><!-- --><div class="tm-company-profile-card tm-company-article__profile-card"><div class="tm-company-card tm-company-profile-card__info"><div class="tm-company-card__header"><a class="tm-company-card__avatar" href="/ru/companies/ruvds/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/18c/bff/d8f/18cbffd8f66af293efcc352f43cdca35.png" width="48"/></div></a><!--[--><!-- --><div class="tm-counter-container tm-company-card__rating"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">2699.57</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div><!-- --><!--]--></div><div class="tm-company-card__info"><a class="tm-company-card__name" href="/ru/companies/ruvds/profile/"><span>RUVDS.com</span></a><div class="tm-company-card__description">VDS/VPS-хостинг. Скидка 15% по коду <b>HABR15</b></div></div></div><div class="tm-company-profile-card__buttons"><div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div><!-- --><!-- --><!-- --></div></div><!-- --><!--]--><!--]--><div class="tm-article-presenter__body" data-test-id="article-body"><div class="tm-misprint-area"><div class="tm-misprint-area__wrapper"><!--[--><article class="tm-article-presenter__content tm-article-presenter__content_narrow"><!--[--><div class="tm-article-presenter__header"><!--[--><!--]--><div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet"><!--[--><!--]--><div class="tm-article-snippet__meta-container"><div class="tm-article-snippet__meta"><span class="tm-user-info tm-article-snippet__author"><a class="tm-user-info__userpic" data-test-id="user-info-pic" href="/ru/users/DmitryTsyvtsyn/" title="DmitryTsyvtsyn"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/db6/bea/5ea/db6bea5ea945afec3614eae955a8f2b1.jpeg" width="24"/></div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a class="tm-user-info__username" href="/ru/users/DmitryTsyvtsyn/">DmitryTsyvtsyn <!-- --></a><!--[--><span class="tm-article-datetime-published"><time datetime="2024-09-04T09:01:01.000Z" title="2024-09-04, 12:01">4  сен  2024 в 12:01</time></span><!--]--></span></span></div><!-- --></div><h1 class="tm-title tm-title_h1" data-test-id="articleTitle" lang="ru"><span>Интересные приёмы, взятые из исходников Android</span></h1><div class="tm-article-snippet__stats" data-test-id="articleStats"><div class="tm-article-complexity tm-article-complexity_complexity-low"><span class="tm-svg-icon__wrapper tm-article-complexity__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Уровень сложности</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#complexity-low"></use></svg></span><span class="tm-article-complexity__label">Простой</span></div><div class="tm-article-reading-time"><span class="tm-svg-icon__wrapper tm-article-reading-time__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Время на прочтение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#clock"></use></svg></span><span class="tm-article-reading-time__label">8 мин</span></div><span class="tm-icon-counter tm-data-icons__item"><svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24"><title>Количество просмотров</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-views"></use></svg><span class="tm-icon-counter__value" title="13713">14K</span></span></div><div class="tm-publication-hubs__container" data-test-id="articleHubsList"><div class="tm-publication-hubs"><!--[--><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/companies/ruvds/articles/"><!--[--><span>Блог компании RUVDS.com</span><!-- --><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/java/"><!--[--><span>Java</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]--></div></div><div class="tm-article-labels" data-test-id="articleLabels"><div class="tm-article-labels__container"><div class="tm-publication-label tm-publication-label_variant-review"><span>Обзор</span></div><!--[--><!--]--></div></div><!-- --><!-- --></div></div><!--[--><!-- --><div class="tm-article-body" data-gallery-root="" lang="ru"><div><!--[--><!--]--></div><div id="post-content-body"><div><div class="article-formatted-body article-formatted-body article-formatted-body_version-1"><div xmlns="http://www.w3.org/1999/xhtml"><a href="https://habr.com/ru/companies/ruvds/articles/838330/"><div style="text-align:center;"><img data-src="https://habrastorage.org/r/w1560/webt/vi/ey/fo/vieyfowzhrn2xld6wu8vxvbwrum.png" src="https://habrastorage.org/r/w1560/webt/vi/ey/fo/vieyfowzhrn2xld6wu8vxvbwrum.png"/></div></a><i><font color="#999999">Интересные приёмы, взятые из исходников Android</font></i><br/>
+<br/>
+В процессе чтения исходников Android SDK я замечал интересные механики и приёмы написания кода, какие-то из них до сих пор используются при создании новых библиотек, другие, напротив, заменены более логичными и понятными конструкциями. В этой статье я постараюсь перечислить всё, что смог заметить сам при изучении исходников Android'а. Сразу отмечу: эта статья не претендует на полноту материала и возможно вы нашли даже больше интересных моментов при чтении кода, ладно, погнали, короче!<br/>
+<a name="habracut"></a><br/>
+<h2><font color="#3AC1EF">▍ Переопределение protected метода на public в наследуемом классе</font></h2><br/>
+Думаю все, кто изучал Java, знают, что можно сделать так (в Kotlin такой возможности нет):<br/>
+<br/>
+<pre><code class="java">public abstract class Property&lt;T&gt; {
+
+    private T value;
+
+    public Property(T value) {
+        this.value = value;
+    }
+
+    // метод setValue() недоступен, так как он protected
+    protected void setValue(T value) {
+        this.value = value
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+}
+
+public class MutableProperty&lt;T&gt; extends Property&lt;T&gt; {
+
+    // метод setValue() переопределён как public, в Kotlin так нельзя(
+    @Override
+    public void setValue(T value) { super.setValue(value); }
+
+}</code></pre><br/>
+Такая механика языка используется для реализации <a href="https://developer.android.com/reference/android/arch/lifecycle/MutableLiveData">MutableLiveData</a>:<br/>
+<br/>
+<pre><code class="java">public abstract class LiveData&lt;T&gt; {
+
+    protected void postValue(T value) {
+        ...
+    }
+
+    @MainThread
+    protected void setValue(T value) {
+        ...
+    }
+
+}
+
+public class MutableLiveData&lt;T&gt; extends LiveData&lt;T&gt; {
+
+    ...
+
+    @Override
+    public void postValue(T value) {
+        super.postValue(value);
+    }
+
+    @Override
+    public void setValue(T value) {
+        super.setValue(value);
+    }
+    
+}</code></pre><br/>
+На самом деле такой способ создания изменяемых/неизменяемых классов нарушает концепцию наследования, так как мы не добавляем новую функциональность, а «включаем» её.<br/>
+Более предпочтительный способ, как это можно сделать, используя наследование:<br/>
+<br/>
+<pre><code class="java">public class LiveData&lt;T&gt; {
+    
+    protected T value;
+    
+    public LiveData(T value) {
+        this.value = value;
+    }
+    
+    public T getValue() {
+        return value;
+    }
+    
+}
+
+class MutableLiveData&lt;T&gt; extends LiveData&lt;T&gt; {
+    
+    public MutableLiveData(T value) {
+        super(value);
+    }
+    
+    public void setValue(T newValue) {
+        this.value = newValue;
+    }
+    
+}</code></pre><br/>
+В любом случае механика переопределения protected на public имеет место.<br/>
+<br/>
+<h2><font color="#3AC1EF">▍ ThreadLocal переменные</font></h2><br/>
+Если вы никогда не слышали, есть такая штука, которая позволяет создать уникальный экземпляр объекта в пределах одного потока, своеобразный Singleton потока.<br/>
+<br/>
+Посмотрим, для чего это можно использовать:<br/>
+<br/>
+<pre><code class="java">public final class Looper {
+
+    static final ThreadLocal&lt;Looper&gt; sThreadLocal = new ThreadLocal&lt;Looper&gt;();
+
+    private static void prepare(boolean quitAllowed) {
+        if (sThreadLocal.get() != null) {
+            throw new RuntimeException("Only one Looper may be created per thread");
+        }
+        sThreadLocal.set(new Looper(quitAllowed));
+    }
+
+}</code></pre><br/>
+<a href="https://developer.android.com/reference/android/os/Looper">Looper</a> — один из самых базовых классов Android SDK, на котором построен бесконечный цикл и очередь событий (сообщений).<br/>
+<br/>
+<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html">ThreadLocal</a> гарантирует, что Looper будет единственным экземпляром в пределах текущего потока, так как в одном потоке может быть только один бесконечный цикл для обработки событий.<br/>
+<br/>
+Если вы создадите новый поток и вызовете Looper.prepare() на нём, то для него будет создан свой уникальный экземпляр Looper и т. д.<br/>
+<br/>
+Сложно предположить, где ThreadLocal может пригодиться в повседневной Android разработке, но имейте в виду, если вам нужен уникальный экземпляр в пределах потока, используйте ThreadLocal и обязательно посмотрите документацию с примером.<br/>
+<br/>
+<h2><font color="#3AC1EF">▍ Проксирование/Делегирование методов другому классу</font></h2><br/>
+Гораздо проще показать на примере <a href="https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity">AppCompatActivity</a> из библиотеки <a href="https://developer.android.com/jetpack/androidx/releases/appcompat">appcompat</a>:<br/>
+<br/>
+<pre><code class="java">public class AppCompatActivity extends ... {
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(getDelegate().attachBaseContext2(newBase));
+    }
+
+    @Override
+    public void setTheme(@StyleRes final int resId) {
+        super.setTheme(resId);
+        getDelegate().setTheme(resId);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getDelegate().onPostCreate(savedInstanceState);
+    }
+
+    @Nullable
+    public ActionBar getSupportActionBar() {
+        return getDelegate().getSupportActionBar();
+    }
+
+    public void setSupportActionBar(@Nullable Toolbar toolbar) {
+        getDelegate().setSupportActionBar(toolbar);
+    }
+
+}</code></pre><br/>
+Метод getDelegate() возвращает объект класса <a href="https://developer.android.com/reference/androidx/appcompat/app/AppCompatDelegate">AppCompatDelegate</a>, методы которого реализуют функциональность для методов AppCompatActivity.<br/>
+<br/>
+Это может пригодиться, когда требуется прозрачно добавить новую функциональность для класса с дальнейшей возможностью на её расширение, «прозрачно» — значит, без влияния на пользователей этого класса.<br/>
+<br/>
+Приведу простой пример добавления новой функциональности:<br/>
+<br/>
+<pre><code class="java">class AppCompatActivity extends ... {
+
+    @NonNull
+    public AppCompatDelegate getDelegate() {
+        if (mDelegate == null) {
+            // в Android 34 появились специфичные штуки 
+            if (Build.VERSION.SDK_INT &gt;= 34) {
+                mDelegate = AppCompatDelegate.create34(this, this);
+            } else {
+                mDelegate = AppCompatDelegate.create(this, this);
+            }
+        }
+        return mDelegate;
+    }
+
+}</code></pre><br/>
+Пользователю Android SDK не придётся менять свой код + на более свежих версиях Android'а будут работать новые фишки.<br/>
+<br/>
+<h2><font color="#3AC1EF">▍ Наследование с реализацией интерфейсов для построения единого API</font></h2><br/>
+Многие AppCompat*View классы реализованы таким образом для обеспечения единого API:<br/>
+<br/>
+<pre><code class="java">public class AppCompatImageView extends ImageView implements TintableBackgroundView, ... {}
+
+public class AppCompatButton extends Button implements TintableBackgroundView, ... {}
+
+public class AppCompatTextView extends TextView implements TintableBackgroundView, ... {}</code></pre><br/>
+<a href="https://developer.android.com/reference/androidx/core/view/TintableBackgroundView">TintableBackgroundView</a> — это простой интерфейс для изменения цвета background'а:<br/>
+<br/>
+<pre><code class="java">public interface TintableBackgroundView {
+
+    void setSupportBackgroundTintList(@Nullable ColorStateList tint);
+
+    @Nullable
+    ColorStateList getSupportBackgroundTintList();
+
+    @Nullable
+    PorterDuff.Mode getSupportBackgroundTintMode();
+  
+}</code></pre><br/>
+Такой механизм использования интерфейсов имеет несколько преимуществ:<br/>
+<br/>
+<ol>
+<li>легко добавить новую функциональность в независимости от существующей: например, изменение цвета для background'а,</li>
+<li>простой и единый интерфейс: не нужно смотреть документацию для каждого компонента, чтобы понять, как у него поменять цвет,</li>
+<li>полиморфизм.</li>
+</ol><br/>
+Последнее проще продемонстрировать:<br/>
+<br/>
+<pre><code class="kotlin">val views: List&lt;TintableBackgroundView&gt; = listOf(
+    AppCompatTextView(this),
+    AppCompatButton(this),
+    AppCompatImageView(this)
+)
+
+val newColor = ColorStateList.valueOf(0xff333333.toInt())
+
+views.forEach { view -&gt;
+    view.supportBackgroundTintList = newColor
+}</code></pre><br/>
+<h2><font color="#3AC1EF">▍ Создание дополнительного типа в качестве пустого значения</font></h2><br/>
+Иногда возникают ситуации, когда null не совсем подходит на роль «нет значения», и в таких случаях приходится выкручиваться дополнительным типом:<br/>
+<br/>
+<pre><code class="java">private class SynchronizedLazyImpl&lt;out T&gt;(initializer: () -&gt; T, lock: Any? = null) : Lazy&lt;T&gt;, Serializable {
+    private var initializer: (() -&gt; T)? = initializer
+
+    // дополнительный тип UNINITIALIZED_VALUE указывает, что поле _value ещё не было инициализировано
+    @Volatile private var _value: Any? = UNINITIALIZED_VALUE
+
+    private val lock = lock ?: this
+
+    override val value: T
+        get() {
+            val _v1 = _value
+            // проверка состояния поля
+            if (_v1 !== UNINITIALIZED_VALUE) {
+                @Suppress("UNCHECKED_CAST")
+                return _v1 as T
+            }
+
+            return synchronized(lock) {
+                val _v2 = _value
+                // вторая проверка состояния поля на случай, если другой поток уже проинициализировал его
+                if (_v2 !== UNINITIALIZED_VALUE) {
+                    @Suppress("UNCHECKED_CAST") (_v2 as T)
+                } else {
+                    val typedValue = initializer!!()
+                    _value = typedValue
+                    initializer = null
+                    typedValue
+                }
+            }
+        }
+
+    // если поле не равно UNINITIALIZED_VALUE значит оно уже было проинициализировано,
+    // неважно каким значением, им может быть даже null
+    override fun isInitialized(): Boolean = _value !== UNINITIALIZED_VALUE
+    
+}</code></pre><br/>
+Дополнительным типом здесь является UNINITIALIZED_VALUE:<br/>
+<br/>
+<pre><code class="kotlin">internal object UNINITIALIZED_VALUE</code></pre><br/>
+Здесь нельзя обойтись null значением, так как оно входит в диапазон возможных значений:<br/>
+<br/>
+<pre><code class="kotlin">// временный кэш может быть пустым и тогда значение будет null
+val temporaryCache by lazy { getTemporaryCache() }</code></pre><br/>
+<h2><font color="#3AC1EF">▍ Переиспользуемый пул объектов, реализованный с помощью связанного списка</font></h2><br/>
+Возвращаемся к системе обработки событий в Android, а конкретнее нас интересует класс <a href="https://developer.android.com/reference/android/os/Message">Message</a>:<br/>
+<br/>
+<pre><code class="java">public final class Message implements Parcelable {
+
+    public static final Object sPoolSync = new Object();
+    private static Message sPool;
+    private static int sPoolSize = 0;
+
+    private static final int MAX_POOL_SIZE = 50;
+
+    // поле для организации связанного списка
+    Message next;
+
+    public static Message obtain() {
+        synchronized (sPoolSync) {
+            // если пул сообщений не пустой, берём первое доступное 
+            // и возвращаем для переиспользования
+            if (sPool != null) {
+                Message m = sPool;
+                sPool = m.next;
+                m.next = null;
+                m.flags = 0; // clear in-use flag
+                sPoolSize--;
+                return m;
+            }
+        }
+        // в случае, если пул был пустым или закончился, создаём новое сообщение
+        return new Message();
+    }
+
+    void recycleUnchecked() {
+        // очистить поля для переиспользования объекта сообщения
+        flags = FLAG_IN_USE;
+        what = 0;
+        arg1 = 0;
+        arg2 = 0;
+        obj = null;
+        replyTo = null;
+        sendingUid = UID_NONE;
+        workSourceUid = UID_NONE;
+        when = 0;
+        target = null;
+        callback = null;
+        data = null;
+
+        synchronized (sPoolSync) {
+            // если лимит сообщений в пуле не превышен, добавляем текущее для переиспользования
+            // в противном случае объект сообщения будет собран сборщиком мусора
+            if (sPoolSize &lt; MAX_POOL_SIZE) {
+                next = sPool;
+                sPool = this;
+                sPoolSize++;
+            }
+        }
+    }
+
+}</code></pre><br/>
+Пул реализуется с помощью статических полей и методов, конструктор в таком случае желательно делать приватным, чтобы пользователь вашего класса случайно не обошёл логику переиспользования объектов.<br/>
+<br/>
+<h2><font color="#3AC1EF">▍ Хранение нескольких значений в целочисленном типе с помощью битовых масок</font></h2><br/>
+В Android есть так называемый <a href="https://developer.android.com/reference/android/view/View.MeasureSpec">MeasureSpec</a>, кто писал кастомные вьюшки тот в курсе, как извлекаются значения из него:<br/>
+<br/>
+<pre><code class="kotlin">class CustomView(ctx: Context) : View(ctx) {
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+
+        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+                
+        val height = MeasureSpec.getSize(heightMeasureSpec)
+        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+
+        ...
+    }
+
+}</code></pre><br/>
+Если глянуть внутрь этих методов, то можно увидеть битовые операции с одним и тем же целочисленным значением:<br/>
+<br/>
+<pre><code class="java">public static int getSize(int measureSpec) {
+    return (measureSpec &amp; ~MODE_MASK)
+}
+
+public static int getMode(int measureSpec) {
+    return (measureSpec &amp; MODE_MASK);
+}
+
+private static final int MODE_SHIFT = 30;
+private static final int MODE_MASK  = 0x3 &lt;&lt; MODE_SHIFT;</code></pre><br/>
+Чтобы понять, как это работает, распишем значение константы MODE_MASK в двоичной системе (битовые операции работают с отдельными битами):<br/>
+<br/>
+<pre><code class="plaintext">MODE_MASK = 00000000 00000000 00000000 00000011 &lt;&lt; 30
+// выполняем побитовый сдвиг влево и получаем значение:
+MODE_MASK = 11000000 00000000 00000000 00000000</code></pre><br/>
+Снова вернёмся к методу MeasureSpec.getMode():<br/>
+<br/>
+<pre><code class="java">public static int getMode(int measureSpec) {
+    return (measureSpec &amp; MODE_MASK);
+}</code></pre><br/>
+Оператор &amp; выполняет побитовую операцию И (bitwise AND), простыми словами, выставляет единичный бит, если оба бита являются таковыми:<br/>
+<br/>
+<pre><code class="plaintext">01101110 00110001 10001100 01101111 &amp; 11000000 00000000 00000000 00000000 = 
+01000000 00000000 00000000 00000000</code></pre><br/>
+Таким образом метод MeasureSpec.getMode() берёт только первые два бита целочисленного числа, а остальные зануляет.<br/>
+<br/>
+Два бита нужны для хранения одного из следующих режимов при измерении вьюшек:<br/>
+<br/>
+<pre><code class="java">// 00000000 00000000 00000000 00000000
+public static final int UNSPECIFIED = 0 &lt;&lt; MODE_SHIFT;
+
+// 01000000 00000000 00000000 00000000
+public static final int EXACTLY = 1 &lt;&lt; MODE_SHIFT;
+
+// 10000000 00000000 00000000 00000000
+public static final int AT_MOST = 2 &lt;&lt; MODE_SHIFT;</code></pre><br/>
+Второй метод работает практически аналогично, но только извлекает все биты, кроме первых двух:<br/>
+<br/>
+<pre><code class="java">public static int getSize(int measureSpec) {
+    return (measureSpec &amp; ~MODE_MASK)
+}</code></pre><br/>
+Оператор ~ выполняет побитовую инверсию, меняет нулевые биты на единичные и наоборот:<br/>
+<br/>
+<pre><code class="plaintext">~11000000 00000000 00000000 00000000 = 00111111 11111111 11111111 11111111</code></pre><br/>
+После применения инвертированной маски ~MODE_MASK остаются все биты кроме первых двух:<br/>
+<br/>
+<pre><code class="plaintext">01101110 00110001 10001100 01101111 &amp; 00111111 11111111 11111111 11111111 =
+00101110 00110001 10001100 01101111</code></pre><br/>
+Обобщим полученные результаты:<br/>
+<br/>
+<ol>
+<li>MeasureSpec.getMode() берёт только первые два бита целочисленного значения, а остальные зануляет.</li>
+<li>MeasureSpec.getSize() зануляет первые два бита целочисленного значения и берёт все остальные.</li>
+</ol><br/>
+Вот таким элегантным и эффективным способом MeasureSpec хранит в одном целом числе два значения: <br/>
+<br/>
+<ol>
+<li>одно из значений: UNSPECIFIED, EXACTLY, AT_MOST,</li>
+<li>размер вьюшки, может быть высота или ширина.</li>
+</ol><br/>
+Чтобы создать MeasureSpec из отдельных кусочков, нужно сначала пропустить каждое значение через свою битовую маску, а затем сложить получившиеся значения с помощью побитового оператора ИЛИ (bitwise OR):<br/>
+<br/>
+<pre><code class="java">final int mode = EXACTLY;
+final int size = 320;
+final int measureSpec = (size &amp; ~MODE_MASK) | (mode &amp; MODE_MASK);</code></pre><br/>
+Для более любопытных предлагаю чекнуть исходники android.graphics.Color и глянуть, как извлекаются отдельные компоненты <a href="https://ru.wikipedia.org/wiki/RGB">RGB</a> модели.<br/>
+<br/>
+<h2><font color="#3AC1EF">▍ Заключение</font></h2><br/>
+Надеюсь, статья оказалась вам полезной, и вы подчерпнули для себя что-то новое, а самое главное, увидели на примерах, что чтение исходников может быть хорошей книгой, где можно узнать что-то новое.<br/>
+<br/>
+Полезные ссылки:<br/>
+<br/>
+<ol>
+<li><a href="https://t.me/android_under_the_hood">Мой телеграм канал.</a></li>
+<li><a href="https://github.com/DmitryTsyvtsyn/android-under-the-hood">Мой Github репозиторий с полезными материалами.</a></li>
+<li><a href="https://habr.com/en/users/DmitryTsyvtsyn/publications/articles/">Другие статьи.</a></li>
+</ol><br/>
+Пишите в комментах ваше мнение и всем хорошего кода!<br/>
+<br/>
+© 2024 ООО «МТ ФИНАНС»<br/>
+<br/>
+<blockquote><b><font color="#3AC1EF"><a href="https://t.me/ruvds_community">Telegram-канал со скидками, розыгрышами призов и новостями IT 💻</a></font></b></blockquote><a href="http://ruvds.com/ru-rub?utm_source=habr&amp;utm_medium=article&amp;utm_campaign=DmitryTsyvtsyn&amp;utm_content=interesnye_priyomy_vzyatye_iz_isxodnikov_android"><img data-blurred="true" data-src="https://habrastorage.org/webt/7u/o0/_9/7uo0_9itb0bkl_y8_0_n1a57vuc.jpeg" src="https://habrastorage.org/r/w780q1/webt/7u/o0/_9/7uo0_9itb0bkl_y8_0_n1a57vuc.jpeg"/></a></div></div></div><!-- --><!-- --></div><!-- --><!-- --></div><!--]--><!-- --><div class="tm-article-presenter__meta" data-test-id="article-meta-links"><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Теги:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[android]"><span>android</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[android+development]"><span>android development</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[android+sdk]"><span>android sdk</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[java]"><span>java</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[kotlin]"><span>kotlin</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[looper]"><span>looper</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[handler]"><span>handler</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[customview]"><span>customview</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[bitwise+operators]"><span>bitwise operators</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[object+pool]"><span>object pool</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[ruvds_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8]"><span>ruvds_статьи</span></a><!--]--></li><!--]--><!-- --></ul></div><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Хабы:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/companies/ruvds/articles/"><!--[--><span>Блог компании RUVDS.com</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/java/"><!--[--><span>Java</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><!--]--></a><!--]--></li><!--]--><!-- --></ul></div></div><!-- --><!--]--></article><!--]--></div><!-- --></div><div class="tm-article-sticky-panel" data-test-id="article-sticky-panel" style=""><div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons"><div class="tm-article-rating tm-data-icons__item"><div class="tm-votes-meter tm-article-rating__votes-switcher"><svg class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon tm-votes-meter__icon_appearance-article" height="24" width="24"><title>Всего голосов 31: ↑28 и ↓3</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-rating"></use></svg><span class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating tm-votes-meter__value" data-test-id="votes-meter-value" title="Всего голосов 31: ↑28 и ↓3">+43</span></div><!--teleport start--><!--teleport end--><!-- --></div><!-- --><!-- --><button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Добавить в закладки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-favorite"></use></svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">65</span></button><div class="tm-sharing tm-data-icons__item" title="Поделиться"><button class="tm-sharing__button" type="button"><svg class="tm-sharing__icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z" fill="currentColor"></path></svg></button><!--teleport start--><!--teleport end--></div><div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии"><a class="tm-article-comments-counter-link__link" data-test-id="counter-comments" href="/ru/companies/ruvds/articles/838330/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value">3</span><!--]--></a><!-- --></div><!--[--><!--[--><!--[--><!-- --><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!-- --></div></div></div><!--[--><!--]--><div class="tm-article-presenter__footer"><!--[--><!--[--><div class="tm-article-blocks"><!-- --><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><!-- --><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-balanced"><!--[--><div class="tm-article-author" data-test-id="article-author-info"><!--[--><!--[--><div class="tm-article-author__company"><div class="tm-article-author__company-card"><div class="tm-company-snippet"><a class="tm-company-snippet__logo-link" href="/ru/companies/ruvds/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/18c/bff/d8f/18cbffd8f66af293efcc352f43cdca35.png" width="40"/></div></a><div class="tm-company-snippet__info"><a class="tm-company-snippet__title" data-test-id="company-title" href="/ru/companies/ruvds/profile/"><span>RUVDS.com</span></a><div class="tm-company-snippet__description">VDS/VPS-хостинг. Скидка 15% по коду <b>HABR15</b></div></div></div><div class="tm-article-author__buttons"><!-- --><!-- --></div></div><div class="tm-article-author__company-contacts"><!--[--><a class="tm-article-author__contact" href="https://telegram.me/ruvds_community" rel="noopener" target="_blank">Telegram</a><a class="tm-article-author__contact" href="https://vk.com/ru_vds" rel="noopener" target="_blank">ВКонтакте</a><a class="tm-article-author__contact" href="https://twitter.com/ru_vds" rel="noopener" target="_blank">Twitter</a><!--]--></div><div class="tm-article-author__separator"></div></div><!--]--><!--]--><div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true"><div class="tm-user-card__info-container"><div class="tm-user-card__header"><div class="tm-user-card__header-data"><a class="tm-user-card__userpic tm-user-card__userpic_size-40" href="/ru/users/DmitryTsyvtsyn/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/db6/bea/5ea/db6bea5ea945afec3614eae955a8f2b1.jpeg"/></div></a><div class="tm-user-card__meta"><div class="tm-counter-container tm-karma tm-karma" title=" 24 голоса "><div class="tm-counter-container__header"><!--[--><div class="karma-display positive" data-v-7635202e="">20</div><!-- --><!--]--></div><div class="tm-counter-container__footer"><!--[--><div class="tm-karma__text">Карма</div><!--teleport start--><!--teleport end--><!--]--></div></div><div class="tm-counter-container" title="Рейтинг пользователя"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">4</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div></div></div></div><div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info"><div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title"><span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Dmitry Tsyvtsyn</span><a class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article" href="/ru/users/DmitryTsyvtsyn/"> @DmitryTsyvtsyn</a><!-- --></div><p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Android developer, photographer and traveler</p></div></div><div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons"><!-- --><div class="tm-user-card__button"><div class="tm-button-follow tm-user-card__button-follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div></div><!-- --><div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations"><svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16"><title>Отправить сообщение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#mail"></use></svg></div><!-- --></div><!-- --></div><!-- --></div><!--]--></div><!--]--><!-- --></section><!-- --><!--[--><!--]--><!--]--><div class="tm-article-blocks__comments"><div class="tm-article-page-comments" id="publication-comments"><div><!--[--><div class="tm-article-comments-counter-link tm-article-comments-counter-button"><a class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments" href="/ru/companies/ruvds/articles/838330/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 3 </span><!--]--></a><!-- --></div><!--]--></div></div></div><!--[--><!--[--><!--]--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header tm-block__header_variant-borderless"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim"><!--[--><!--[--><div class="tm-tabs tm-tabs"><div class=""><!--[--><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]--></div><!-- --></div><div class="similar-and-daily__tab-view"><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-article-cards"><!--[--><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><!--]--></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!-- --></div><!--]--><!--]--></div><!--]--><!-- --></section><!--[--><!--[--><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-inset tm-placeholder-vacancies"><div class="tm-placeholder-inset__header"><div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div></div><div class="tm-placeholder-inset__body"><ul class="tm-placeholder-list"><!--[--><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><!--]--></ul></div><div class="tm-placeholder-inset__footer"><div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div></div></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!--]--><!--]--><!-- --><!--[--><!--]--><!--]--></div><!--]--><!--]--></div></div><!--]--><!--]--></div></div><div class="tm-page__sidebar"><!--[--><div class="tm-layout-sidebar"><div class="tm-layout-sidebar__placeholder_initial"></div><div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;"><!--[--><!--]--><!-- --><div class="tm-layout-sidebar__placeholder_initial"></div><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body"><!--[--><div class="tm-company-basic-info"><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Сайт</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><a class="tm-company-basic-info__link" href="https://ruvds.com" target="_blank">ruvds.com</a><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Дата регистрации</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><time datetime="2016-03-18T05:43:01.000Z" title="2016-03-18, 08:43">18  марта  2016</time><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Дата основания</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><time datetime="2015-07-26T21:00:00.000Z" title="2015-07-27, 00:00">27  июля  2015</time><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Численность</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[-->11–30 человек<!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Местоположение</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[-->Россия<!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Представитель</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><a class="tm-company-basic-info__link" href="/ru/users/ruvds/">ruvds</a><!--]--></dd></dl></div><!--]--></div><!--]--><!-- --></section><div class="tm-company-widgets"><!--[--><!--]--></div><!-- --><!-- --><!--]--><!-- --></div></div><!--]--></div></div><!-- --><!--]--></div></div></main><!-- --></div><div class="tm-footer-menu"><div class="tm-page-width"><!--[--><div class="tm-footer-menu__container"><!--[--><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Ваш аккаунт</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/ruvds/articles/838330/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/ruvds/articles/838330/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Разделы</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/articles/">Статьи</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/news/">Новости</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/hubs/">Хабы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/companies/">Компании</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/users/">Авторы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/sandbox/">Песочница</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Информация</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/help/">Устройство сайта</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/authors/codex/">Для авторов</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/companies/corpblogs/">Для компаний</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/docs/transparency/">Документы</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Услуги</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]--></ul></div></div><!--]--></div><!--]--></div></div><div class="tm-footer"><div class="tm-page-width"><!--[--><div class="tm-footer__container"><!-- --><div class="tm-footer__social"><!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Facebook</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Twitter</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>VK</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Telegram</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Youtube</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Яндекс Дзен</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use></svg></a><!--]--></div><!--teleport start--><!--teleport end--><button class="tm-footer__link"><!-- --> Настройка языка</button><a class="tm-footer__link" href="/ru/feedback/">Техническая поддержка</a><div class="tm-footer-copyright"><span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span></div></div><!--]--></div></div><!-- --><!--]--></div><!-- --></div></div>
+<div id="overlays"><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--></div>
+</body>
+</html>

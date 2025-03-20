@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<title>Подключаем GigaCode к мобильной разработке / Хабр</title>
+</head>
+<body>
+<div id="mount"><div data-async-called="true" id="app"><div class="tm-layout__wrapper"><!--[--><!-- --><div></div><!-- --><header class="tm-header" data-test-id="header"><div class="tm-page-width"><!--[--><div class="tm-header__container"><!-- --><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/"><svg class="tm-svg-img tm-header__icon" height="16" width="16"><title>Хабр</title><use xlink:href="/img/habr-logo-ru.svg#logo"></use></svg></a><span class="tm-header__beta-sign" style="display:none;">β</span></span><!--[--><div class="tm-dropdown tm-header__projects"><div class="tm-dropdown__head"><!--[--><button class="tm-header__dropdown-toggle"><svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16"><title>Открыть список</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#arrow-down"></use></svg></button><!--]--></div><!-- --></div><a class="tm-header__become-author-btn" href="/ru/sandbox/start/">Как стать автором</a><div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature"><!-- --></div><!-- --><!--]--><!-- --></div><!--]--></div></header><div class="tm-layout"><div class="tm-page-progress-bar"></div><div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true"><div class="tm-page-width"><!--[--><div class="tm-base-layout__header-wrapper"><div class="tm-main-menu"><div class="tm-main-menu__section"><nav class="tm-main-menu__section-content"><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]--></nav></div></div><div class="tm-header-user-menu tm-base-layout__user-menu"><a class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button" href="/ru/search/"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24"><title>Поиск</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#search"></use></svg></a><!-- --><!-- --><div class="tm-header-user-menu__item tm-header-user-menu__write"><div><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24"><title>Написать публикацию</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#write"></use></svg></div><!-- --></div><!--[--><div class="tm-header-user-menu__item"><button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings"><svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24"><title>Настройки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#page-settings"></use></svg></button></div><a class="tm-header-user-menu__item" href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/usetech/articles/825470/&amp;hl=ru" rel="nofollow"><!--[--><button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!-- --><!--teleport start--><!--teleport end--><!-- --></div></div><!--]--></div></div><!-- --><div class="tm-page-width"><!--[--><!--]--></div><main class="tm-layout__container"><div class="tm-page" companyname="usetech" data-async-called="true" hl="ru" style="--0c809c5a:16px;--a086013e:100%;--7c457026:0;"><div class="tm-page-width"><!--[--><div class="tm-page__header"><!--[--><!--]--></div><div class="tm-page__wrapper"><div class="tm-page__main_has-sidebar tm-page__main"><div class="pull-down"><!-- --><div class="pull-down__header" style="height:0px;"><div class="pull-down__content" style="bottom:10px;"><svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24"><title>Обновить</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#pull-arrow"></use></svg></div></div><!--[--><!--[--><div class="tm-article-presenter"><!--[--><!--[--><!-- --><div class="tm-company-profile-card tm-company-article__profile-card"><div class="tm-company-card tm-company-profile-card__info"><div class="tm-company-card__header"><a class="tm-company-card__avatar" href="/ru/companies/usetech/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/9b4/e60/3a4/9b4e603a442181766d7e595ac994a46a.jpg" width="48"/></div></a><!--[--><a class="tm-grade tm-company-card__rating" href="https://career.habr.com/companies/usetech" rel="noopener" target="_blank"><div class="tm-counter-container"><div class="tm-counter-container__header"><!--[--><!--[--><svg class="tm-svg-img tm-svg-grade__icon" height="18" width="18"><title>Оценка компании на Хабр Карьере</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#grade"></use></svg><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-grade"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-grade tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_grade tm-votes-lever__score-counter" data-test-id="votes-score-counter">4.62</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text_variant-grade tm-rating__text">Оценка</span><!--]--></div></div></a><div class="tm-counter-container tm-company-card__rating"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">111.81</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div><!-- --><!--]--></div><div class="tm-company-card__info"><a class="tm-company-card__name" href="/ru/companies/usetech/profile/"><span>Usetech</span></a><div class="tm-company-card__description">Международная IT-компания</div></div></div><div class="tm-company-profile-card__buttons"><div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div><!-- --><!-- --><!-- --></div></div><!-- --><!--]--><!--]--><div class="tm-article-presenter__body" data-test-id="article-body"><div class="tm-misprint-area"><div class="tm-misprint-area__wrapper"><!--[--><article class="tm-article-presenter__content tm-article-presenter__content_narrow"><!--[--><div class="tm-article-presenter__header"><!--[--><!--]--><div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet"><!--[--><!--]--><div class="tm-article-snippet__meta-container"><div class="tm-article-snippet__meta"><span class="tm-user-info tm-article-snippet__author"><a class="tm-user-info__userpic" data-test-id="user-info-pic" href="/ru/users/anioutka/" title="anioutka"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/abc/686/402/abc68640208c443185b15194039396b1.jpg" width="24"/></div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a class="tm-user-info__username" href="/ru/users/anioutka/">anioutka <!-- --></a><!--[--><span class="tm-article-datetime-published"><time datetime="2024-06-28T22:00:59.000Z" title="2024-06-29, 01:00">29  июн  2024 в 01:00</time></span><!--]--></span></span></div><!-- --></div><h1 class="tm-title tm-title_h1" data-test-id="articleTitle" lang="ru"><span>Подключаем GigaCode к мобильной разработке</span></h1><div class="tm-article-snippet__stats" data-test-id="articleStats"><div class="tm-article-complexity tm-article-complexity_complexity-medium"><span class="tm-svg-icon__wrapper tm-article-complexity__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Уровень сложности</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#complexity-medium"></use></svg></span><span class="tm-article-complexity__label">Средний</span></div><div class="tm-article-reading-time"><span class="tm-svg-icon__wrapper tm-article-reading-time__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Время на прочтение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#clock"></use></svg></span><span class="tm-article-reading-time__label">8 мин</span></div><span class="tm-icon-counter tm-data-icons__item"><svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24"><title>Количество просмотров</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-views"></use></svg><span class="tm-icon-counter__value" title="11218">11K</span></span></div><div class="tm-publication-hubs__container" data-test-id="articleHubsList"><div class="tm-publication-hubs"><!--[--><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/companies/usetech/articles/"><!--[--><span>Блог компании Usetech</span><!-- --><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/mobile_dev/"><!--[--><span>Разработка мобильных приложений</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a class="tm-publication-hub__link" href="/ru/hubs/txt_ide/"><!--[--><span>Текстовые редакторы и IDE</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]--></div></div><div class="tm-article-labels" data-test-id="articleLabels"><div class="tm-article-labels__container"><div class="tm-publication-label tm-publication-label_variant-tutorial"><span>Туториал</span></div><!--[--><!--]--></div></div><!-- --><!-- --></div></div><!--[--><!-- --><div class="tm-article-body" data-gallery-root="" lang="ru"><div><!--[--><!--]--></div><div id="post-content-body"><div><div class="article-formatted-body article-formatted-body article-formatted-body_version-1"><div xmlns="http://www.w3.org/1999/xhtml"><img data-src="https://habrastorage.org/webt/t6/fq/i5/t6fqi560_bxhtrskcx1rjyuu53e.png" src="https://habrastorage.org/r/w1560/webt/t6/fq/i5/t6fqi560_bxhtrskcx1rjyuu53e.png" width="720"/><br/>
+<br/>
+Всем привет! С вами Анна Жаркова, руководитель группы разработки в компании Usetech. Сегодня я вам принесла необычный материал. 27 июня 2024 года для сторонних разработчиков открыли и презентовали российскую среду разработки Giga IDE со встроенным ИИ-ассистентом от «Сбера» и «СберТеха». Заявлено, что встроенный в среду ИИ-ассистент GigaCode анализирует контекст, предлагает полные конструкции функций, циклов и других элементов, что позволяет писать код в среднем на 25% быстрее. Ассистент поддерживает как автокомплит кода, так и интеллектуальные подсказки для ввода, генерацию кода для поддерживаемых язык. Также его можно использовать для выполнения разных команд.<br/>
+<br/>
+Мы посмотрим, как подключить, настроить и применить GigaCode AI к мобильной разработке.<br/>
+Для начала нам потребуется скачать специальную <a href="https://gigacode.ru/#/#chat">IDE GigaCode </a>. Нам предложит перейти на ресурс GitVerse (аналоги GitHub, полностью совместим с Git), где потребуется создать аккаунт и авторизоваться через СберID:<br/>
+<br/>
+<img data-src="https://habrastorage.org/webt/9w/o0/dl/9wo0dlwhuiakk2siizixbv4eau0.png" src="https://habrastorage.org/r/w1560/webt/9w/o0/dl/9wo0dlwhuiakk2siizixbv4eau0.png" width="720"/><br/>
+<a name="habracut"></a><br/>
+После регистрации мы окажемся на дашборде, где можем смотреть инфо по своим репозиториям, своей активности:<br/>
+<img data-src="https://habrastorage.org/webt/md/ze/ns/mdzensvaviz7cbvl9arpas_tnps.png" src="https://habrastorage.org/r/w1560/webt/md/ze/ns/mdzensvaviz7cbvl9arpas_tnps.png" width="720"><br/>
+<br/>
+Также здесь мы можем скачать установочный файл IDE под свою версию ОС:<br/>
+<img data-src="https://habrastorage.org/webt/cw/f8/mb/cwf8mbuezf1vb5izvmlp9ouz5e8.png" src="https://habrastorage.org/r/w1560/webt/cw/f8/mb/cwf8mbuezf1vb5izvmlp9ouz5e8.png" width="720"><br/>
+<br/>
+Если у вас Mac, как у меня, вы можете столкнуться с проблемой:<br/>
+<img data-src="https://habrastorage.org/webt/-1/p9/zv/-1p9zvsavv8bocx-pfhv7d04ir0.png" src="https://habrastorage.org/r/w1560/webt/-1/p9/zv/-1p9zvsavv8bocx-pfhv7d04ir0.png" width="360"/><br/>
+<br/>
+Не пугайтесь. На самом деле, это просто Mac OS блокирует установку из неизвестного источника. Для разблокировки приложения введем в терминале команду:<br/>
+<pre><code class="swift">sudo xattr -rd com.apple.quarantine /Applications/GIGA\ IDE\ CE\ 2024.1.1.app</code></pre><br/>
+<br/>
+После этого мы можем спокойно запустить IDE. Т.к GigaCode IDE базируется на PyChar и JB Idea, то окно приложения очень похоже на оригинал:<br/>
+<img data-src="https://habrastorage.org/webt/4p/62/pf/4p62pf6-cu44rwjcxjryotozhoe.png" src="https://habrastorage.org/r/w1560/webt/4p/62/pf/4p62pf6-cu44rwjcxjryotozhoe.png" width="720"/><br/>
+Без дополнительных плагинов мы можем создавать и работать с теми же проектами на тех же технологиях, что в Intelij Idea:<br/>
+<img data-src="https://habrastorage.org/webt/yt/om/pa/ytompa-3gls9qsk9q_rsez7y-f0.png" src="https://habrastorage.org/r/w1560/webt/yt/om/pa/ytompa-3gls9qsk9q_rsez7y-f0.png" width="720"/><br/>
+<br/>
+А вот чтобы работать с Android проектами, нам потребуется активировать GigaChat AI-ассистента и подключить его к Android. Для этого переходим <a href="https://gigacode.ru/#/#IDEs">по ссылке</a> и выбираем нужную IDE.<br/>
+<img data-src="https://habrastorage.org/webt/7v/t8/ga/7vt8gaz7fm31zpktd3uhl7zqbha.png" src="https://habrastorage.org/r/w1560/webt/7v/t8/ga/7vt8gaz7fm31zpktd3uhl7zqbha.png" width="720"/><br/>
+Попадаем на страницу активации расширения на GitVerse. В процессе может снова потребоваться снова авторизоваться через СберID. <br/>
+Далее мы попадаем на страницу подробных инструкций для подключения.<br/>
+Для начала нужно зайти в настройки Android Studio и добавить в разделе управления репозиториями плагинов ссылку на хранилище плагинов GigaCode:<br/>
+<pre><code class="swift">
+https://gigacode.ru/jarvis/updatePlugins.xml
+</code></pre><br/>
+Во вкладке Marketplace выберите GigaCode и нажмите «Install»:<br/>
+<img data-src="https://habrastorage.org/webt/-f/ps/of/-fpsofk5tt7s5g5w5_bhsbicu7o.png" src="https://habrastorage.org/r/w1560/webt/-f/ps/of/-fpsofk5tt7s5g5w5_bhsbicu7o.png" width="720"/><br/>
+Перезапускаем IDE и открываем, либо создаем проект. Наш плагин активирован.<br/>
+Внизу окна появится кнопка GigaCode. Нажав попадаем снова на GitVerse, где наш экземпляр IDE добавляется в список активированных устройств:<br/>
+<img data-src="https://habrastorage.org/webt/fx/9m/4i/fx9m4iuqnltlph81zbggk_ejgfw.png" src="https://habrastorage.org/r/w1560/webt/fx/9m/4i/fx9m4iuqnltlph81zbggk_ejgfw.png" width="720"/><br/>
+Снова перезапускаем IDE. Теперь мы, наконец, можем использовать AI-ассистента Giga в работе.<br/>
+Давайте посмотрим, что он умеет делать. Тапаем на иконку чата и открываем его:<br/>
+<img data-src="https://habrastorage.org/webt/qe/29/wu/qe29wuxdcyxdf_wd7izwgkxxzm4.png" src="https://habrastorage.org/r/w1560/webt/qe/29/wu/qe29wuxdcyxdf_wd7izwgkxxzm4.png" width="720"/><br/>
+Визуально это похоже на Gemini AI, который встроен в Koala Preview версию Android Studio. Только работает без впн, и активировать в Gemini нужно не под экземпляр IDE, а под каждый проект с помощью ключа.<br/>
+<br/>
+Что же нам предлагается: <br/>
+ — создать тест для выделенного блока кода<br/>
+ — объяснить блок кода<br/>
+ — сгенерировать документацию.<br/>
+Для этого есть готовые команды, которые мы можем ввести в поле ввода.<br/>
+<br/>
+Что ж. Начнем с генерации теста.<br/>
+Итак, у нас есть код:<br/>
+<pre><code class="kotlin">class MainTestConfig : IConfigurator {
+
+    override fun create(view: IView): IInteractor? {
+        val presenter = MainTestPresenter(view = view)
+        val router = MainTestRouter(view = view)
+        val interactor: IMainTestInteractor = MainTestInteractor(
+            presenter = presenter,
+            router = router
+        )
+
+        view.interactor = interactor
+
+        return interactor
+    }
+}
+</code></pre><br/>
+Просто выделим его и вобьем в поле чата /test. Нам сгенерирует сэмпл теста:<br/>
+<img data-src="https://habrastorage.org/webt/uu/mh/a3/uumha30uetivqesd5nynd9hdscq.png" src="https://habrastorage.org/r/w1560/webt/uu/mh/a3/uumha30uetivqesd5nynd9hdscq.png" width="720"/><br/>
+<br/>
+При повторном вызове для того же блока кода сэмпл усложняется и даже становится похожим на настоящий с импортами:<br/>
+<pre><code class="kotlin">import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.verify
+import org.mockito.junit.MockitoJUnitRunner
+
+@RunWith(MockitoJUnitRunner::class)
+class MainTestConfigTest {
+
+    @Mock
+    lateinit var view: IView
+
+    lateinit var config: MainTestConfig
+
+    @Before
+    fun setup() {
+        config = MainTestConfig()
+    }
+
+    @Test
+    fun testCreate() {
+        val interactor = config.create(view)
+
+        assert(interactor is MainTestInteractor)
+    }
+
+    @Test
+    fun testCreate_Presenter() {
+        val interactor = config.create(view)
+
+        verify(view).interactor = interactor
+
+        assert(view.interactor is MainTestInteractor)
+    }
+
+    @Test
+    fun testCreate_Presenter_Router() {
+        val interactor = config.create(view)
+
+        assert(view.interactor is MainTestInteractor)
+        assert((view.interactor as MainTestInteractor).presenter is MainTestPresenter)
+        assert((view.interactor as MainTestInteractor).router is MainTestRouter)
+    }
+}
+
+</code></pre><br/>
+Бонусом получаем объяснение:<br/>
+<img data-src="https://habrastorage.org/webt/sn/qo/se/snqosenrc0ifrsc6zk_rucxwdfu.png" src="https://habrastorage.org/r/w1560/webt/sn/qo/se/snqosenrc0ifrsc6zk_rucxwdfu.png" width="720"/><br/>
+<br/>
+Попробуем сгенерировать документацию для того же блока кода с помощью команды /doc:<br/>
+<pre><code class="kotlin">class MainTestConfig : IConfigurator {
+
+    /**
+     * This method creates an instance of `MainTestInteractor` and sets it on the `view`.
+     *
+     * @param view The view to set the interactor on.
+     * @return The created `MainTestInteractor` instance.
+     */
+    override fun create(view: IView): IInteractor? {
+        // Create an instance of MainTestPresenter and MainTestRouter.
+        val presenter = MainTestPresenter(view = view)
+        val router = MainTestRouter(view = view)
+
+        // Create an instance of MainTestInteractor and set it on the view.
+        val interactor: IMainTestInter
+</code></pre><br/>
+<br/>
+Вот тут получается довольно хорошо.<br/>
+Теперь перейдем на сэмплы для Android. Попросим нам создать composable функцию для Image с плейсхолдером:<br/>
+<img data-src="https://habrastorage.org/webt/2n/9c/_x/2n9c_xi9phbc2ulkesqvsmel4fm.png" src="https://habrastorage.org/r/w1560/webt/2n/9c/_x/2n9c_xi9phbc2ulkesqvsmel4fm.png" width="720"/><br/>
+Получим вменяемый код:<br/>
+<pre><code class="kotlin">@Composable
+fun ImagePlaceholder(
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    placeholder: Painter = painterResource(id = R.drawable.ic_placeholder),
+) {
+    Image(
+        painter = placeholder,
+        contentDescription = contentDescription,
+        contentScale = ContentScale.Crop,
+        modifier = modifier
+    )
+}
+</code></pre><br/>
+Поменяем наш промпт: <b>Create a composable function for image placeholder. Also add all needed imports to support Material 3</b><br/>
+Получим тот же код, но с добавленными импортами под Material3:<br/>
+<img data-src="https://habrastorage.org/webt/24/zi/1b/24zi1bqltvpj_sxv5yb5vyu7rs8.png" src="https://habrastorage.org/r/w1560/webt/24/zi/1b/24zi1bqltvpj_sxv5yb5vyu7rs8.png" width="720"/><br/>
+Попробуем пример посложнее. Возьмем Json для SDUI и попросим нам его распарсить:<br/>
+<div class="spoiler" role="button" tabindex="0">
+<b class="spoiler_title">длинный json</b>
+<div class="spoiler_text"><pre><code class="json">{
+            "data": [
+                {
+                    "type": "SCAFFOLD",
+                    "top_bar": [
+                        {
+                            "type": "CENTER_ALIGNED_TOP_APP_BAR",
+                            "children": [
+                                {
+                                    "type": "TEXT",
+                                    "value": "Server Driven Ui"
+                                }
+                            ]
+                        }
+                    ],
+                    "children": [
+                        {
+                            "type": "VERTICAL_LIST",
+                            "children": [
+                                {
+                                    "type": "ROW",
+                                    "children": [
+                                        {
+                                            "type": "TEXT",
+                                            "value": "Hi 1"
+                                        },
+                                        {
+                                            "type": "IMAGE",
+                                            "value": "https://www.fonstola.ru/images/201510/fonstola.ru_209312.jpg"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "ROW",
+                                    "children": [
+                                        {
+                                            "type": "TEXT",
+                                            "value": "Hi 2"
+                                        },
+                                        {
+                                            "type": "IMAGE",
+                                            "value": "https://fanibani.ru/wp-content/uploads/2022/12/1617975830_18-p-kotyata-milie-i-pushistie-18.jpg"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "ROW",
+                                    "children": [
+                                        {
+                                            "type": "TEXT",
+                                            "value": "Hi 3"
+                                        },
+                                        {
+                                            "type": "IMAGE",
+                                            "value": "https://fanibani.ru/wp-content/uploads/2022/12/pushistye-lapki-na-krasnom-barzate.jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }</code></pre><br/>
+</div>
+</div><br/>
+Если в качестве промпта используем что-то типа: «Parse selected text to composable», то получим вот такой код с сэмплом использования:<br/>
+<pre><code class="kotlin">@Composable
+fun Scaffold() {
+    val scaffold = remember { Scaffold() }
+    val topBar = remember { CenterAlignedTopAppBar() }
+    val text = remember { Text("Server Driven Ui") }
+    val verticalList = remember { VerticalList() }
+    val row1 = remember { Row() }
+    val text1 = remember { Text("Hi 1") }
+    val image1 = remember { Image("https://www.fonstola.ru/images/201510/fonstola.ru_209312.jpg") }
+    val row2 = remember { Row() }
+    val text2 = remember { Text("Hi 2") }
+    val image2 = remember { Image("https://fanibani.ru/wp-content/uploads/2022/12/1617975830_18-p-kotyata-milie-i-pushistie-18.jpg") }
+    val row3 = remember { Row() }
+    val text3 = remember { Text("Hi 3") }
+    val image3 = remember { Image("https://fanibani.ru/wp-content/uploads/2022/12/pushistye-lapki-na-krasnom-barzate.jpg") }
+
+    Scaffold(topBar = { topBar { text } }) {
+        verticalList {
+            row1 {
+                text1
+                image1
+            }
+            row2 {
+                text2
+                image2
+            }
+            row3 {
+                text3
+                image3
+            }
+        }
+    }
+}
+</code></pre><br/>
+<br/>
+Да, он странный, с претензией на DSL и неправильный. Работать это не будет.<br/>
+<br/>
+Попробуем добавить деталей:<br/>
+<img data-src="https://habrastorage.org/webt/zf/qn/bk/zfqnbkcwvwk3cgjme18lbr-a_sq.png" src="https://habrastorage.org/r/w1560/webt/zf/qn/bk/zfqnbkcwvwk3cgjme18lbr-a_sq.png" width="720"/> <br/>
+Получаем более осмысленную реализацию:<br/>
+<img data-src="https://habrastorage.org/webt/u3/pc/fg/u3pcfgljpow3ut4y9xpg2r6ibzm.png" src="https://habrastorage.org/r/w1560/webt/u3/pc/fg/u3pcfgljpow3ut4y9xpg2r6ibzm.png" width="720"/><br/>
+Тут у нас и импорты, и модели данных, и даже корректная комбинация элементов экрана:<br/>
+<div class="spoiler" role="button" tabindex="0">
+<b class="spoiler_title">много кода</b>
+<div class="spoiler_text"><pre><code class="kotlin">import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
+import kotlinx.serialization.json.Json
+
+@Composable
+fun ImagePlaceholder(
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    imageUrl: String? = null,
+) {
+    val painter = rememberImagePainter(
+        data = imageUrl,
+        builder = {
+            crossfade(true)
+        }
+    )
+
+    Image(
+        painter = painter,
+        contentDescription = contentDescription,
+        contentScale = ContentScale.Crop,
+        modifier = modifier
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ServerDrivenUi(json: String) {
+    val ui = Json.decodeFromString&lt;Ui&gt;(json)
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text(text = ui.topBar.title) }
+            )
+        }
+    ) { padding -&gt;
+        LazyColumn(
+            modifier = Modifier.padding(padding)
+        ) {
+            items(ui.children) { child -&gt;
+                Row {
+                    Text(text = child.text)
+                    ImagePlaceholder(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp),
+                        contentDescription = "Placeholder image",
+                        imageUrl = child.image
+                    )
+                }
+            }
+        }
+    }
+}
+
+data class Ui(
+    val topBar: TopBar,
+    val children: List&lt;Child&gt;
+)
+
+data class TopBar(
+    val title: String
+)
+
+data class Child(
+    val text: String,
+    val image: String?
+)
+</code></pre><br/>
+</div>
+</div><br/>
+Добавляем сами в gradle Kotlinx.serialization и Coil (версию Jetpack Compose). <br/>
+<br/>
+Также нам вывело и объяснение с кратким примером использования:<br/>
+<img data-src="https://habrastorage.org/webt/l7/oc/-o/l7oc-or4qygzq759t2whqxnkkws.png" src="https://habrastorage.org/r/w1560/webt/l7/oc/-o/l7oc-or4qygzq759t2whqxnkkws.png" width="720"/><br/>
+<br/>
+Только десериализовало нам неверно, и работать это не будет. Дубль еще раз. Указываем, что нужна правильная иерархия и имена полей:<br/>
+<img data-src="https://habrastorage.org/webt/zw/ex/vu/zwexvuqfjf0gw5lsbnf1_9btywe.png" src="https://habrastorage.org/r/w1560/webt/zw/ex/vu/zwexvuqfjf0gw5lsbnf1_9btywe.png" width="720"/><br/>
+<br/>
+Получаем верные модели данных:<br/>
+<pre><code class="kotlin">import kotlinx.serialization.Serializable
+
+@Serializable
+data class ServerDrivenUi(
+    val data: List&lt;Data&gt;
+)
+
+@Serializable
+data class Data(
+    val type: String,
+    @SerialName("top_bar")
+    val topBar: List&lt;TopBar&gt;,
+    val children: List&lt;Children&gt;
+)
+
+@Serializable
+data class TopBar(
+    val type: String,
+    val children: List&lt;Children&gt;
+)
+
+@Serializable
+data class Children(
+    val type: String,
+    val value: String? = null,
+    val children: List&lt;Children&gt;? = null
+)
+</code></pre><br/>
+<br/>
+Уже ближе, но все равно не то. Нам еще нужен enum типов, правильный маппинг и соединение всего вместе.<br/>
+Через какое-то время AI начинает лениться:<br/>
+<img data-src="https://habrastorage.org/webt/in/uj/mi/inujmit7qhx9t_pxqiu6xohe_xi.png" src="https://habrastorage.org/r/w1560/webt/in/uj/mi/inujmit7qhx9t_pxqiu6xohe_xi.png" width="480"/><br/>
+Постепенно качество ответов снижается, а ошибок увеличивается. Будто бы AI становится невменяемым. <br/>
+В итоге нам придется собирать код по частям из сниппетов, чтобы получилось то, что мы хотим:<br/>
+<br/>
+<img data-src="https://habrastorage.org/webt/9w/wt/wx/9wwtwx67ojx0c05pt9ajc3tihoi.png" src="https://habrastorage.org/r/w1560/webt/9w/wt/wx/9wwtwx67ojx0c05pt9ajc3tihoi.png" width="360"/><br/>
+Времени ушло у меня много. Полностью код для примера сгенерировать у меня так и не удалось, поэтому финальную версию сюда приводить не буду. <br/>
+Через 30 промптов примерно AI устал, перестал слушаться и стал генерировать какую-то <a href="https://gist.github.com/anioutkazharkova/e1fa1ba094745d3f9fddbef0344a013d">кодовую кашу.</a> Также он перестал учиться. <br/>
+Если сравнивать с аналогами, то Gemini он местами уступает по качеству. О подробностях работы с Gemini будет в одной из следующих статей.<br/>
+<br/>
+Для начала, конечно, неплохо. Но хотелось бы большей устойчивости. При этом количество промптов не сказывается на заготовленных командах и автокомплите. Также подойдет для решения маленьких атомарных задач.<br/>
+Но попробовать свою IDE (пусть и на базе JB IDEA, хотя многие технологии рождались из форков, а не с нуля) точно стоит.<br/>
+<br/>
+<a href="https://gigacode.ru/">gigacode.ru</a><br/>
+И полезные статьи на тему:<br/>
+<a href="https://habr.com/ru/companies/sberbank/articles/816107/">habr.com/ru/companies/sberbank/articles/816107</a><br/></img></img></div></div></div><!-- --><!-- --></div><!-- --><!-- --></div><!--]--><!-- --><div class="tm-article-presenter__meta" data-test-id="article-meta-links"><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Теги:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[gigachat]"><span>gigachat</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[gigacode]"><span>gigacode</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[gigacode+ide]"><span>gigacode ide</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0+%D0%BF%D0%BE%D0%B4+android]"><span>разработка под android</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[android]"><span>android</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[AI]"><span>AI</span></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-tags-list__link" href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BA%D0%BE%D0%B4%D0%BE%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F]"><span>кодогенерация</span></a><!--]--></li><!--]--><!-- --></ul></div><div class="tm-separated-list tm-article-presenter__meta-list"><span class="tm-separated-list__title">Хабы:</span><ul class="tm-separated-list__list"><!--[--><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/companies/usetech/articles/"><!--[--><span>Блог компании Usetech</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/kotlin/"><!--[--><span>Kotlin</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/mobile_dev/"><!--[--><span>Разработка мобильных приложений</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/android_dev/"><!--[--><span>Разработка под Android</span><!--]--></a><!--]--></li><li class="tm-separated-list__item"><!--[--><a class="tm-hubs-list__link" href="/ru/hubs/txt_ide/"><!--[--><span>Текстовые редакторы и IDE</span><!--]--></a><!--]--></li><!--]--><!-- --></ul></div></div><!-- --><!--]--></article><!--]--></div><!-- --></div><div class="tm-article-sticky-panel" data-test-id="article-sticky-panel" style=""><div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons"><div class="tm-article-rating tm-data-icons__item"><div class="tm-votes-meter tm-article-rating__votes-switcher"><svg class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon tm-votes-meter__icon_appearance-article" height="24" width="24"><title>Всего голосов 16: ↑12 и ↓4</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-rating"></use></svg><span class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating tm-votes-meter__value" data-test-id="votes-meter-value" title="Всего голосов 16: ↑12 и ↓4">+10</span></div><!--teleport start--><!--teleport end--><!-- --></div><!-- --><!-- --><button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Добавить в закладки</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-favorite"></use></svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">34</span></button><div class="tm-sharing tm-data-icons__item" title="Поделиться"><button class="tm-sharing__button" type="button"><svg class="tm-sharing__icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z" fill="currentColor"></path></svg></button><!--teleport start--><!--teleport end--></div><div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии"><a class="tm-article-comments-counter-link__link" data-test-id="counter-comments" href="/ru/companies/usetech/articles/825470/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value">21</span><!--]--></a><!-- --></div><!--[--><!--[--><!--[--><!-- --><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!-- --></div></div></div><!--[--><!--]--><div class="tm-article-presenter__footer"><!--[--><!--[--><div class="tm-article-blocks"><!-- --><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><!-- --><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-balanced"><!--[--><div class="tm-article-author" data-test-id="article-author-info"><!--[--><!--[--><div class="tm-article-author__company"><div class="tm-article-author__company-card"><div class="tm-company-snippet"><a class="tm-company-snippet__logo-link" href="/ru/companies/usetech/profile/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/9b4/e60/3a4/9b4e603a442181766d7e595ac994a46a.jpg" width="40"/></div></a><div class="tm-company-snippet__info"><a class="tm-company-snippet__title" data-test-id="company-title" href="/ru/companies/usetech/profile/"><span>Usetech</span></a><div class="tm-company-snippet__description">Международная IT-компания</div></div></div><div class="tm-article-author__buttons"><!-- --><!-- --></div></div><div class="tm-article-author__company-contacts"><!--[--><a class="tm-article-author__contact" href="https://usetech.ru/" rel="noopener" target="_blank">Сайт</a><a class="tm-article-author__contact" href="https://twitter.com/usetech_pro" rel="noopener" target="_blank">Twitter</a><a class="tm-article-author__contact" href="https://vk.com/usetech_pro" rel="noopener" target="_blank">ВКонтакте</a><a class="tm-article-author__contact" href="https://career.usetech.ru/new_project/" rel="noopener" target="_blank">Сайт</a><!--]--></div><div class="tm-article-author__separator"></div></div><!--]--><!--]--><div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true"><div class="tm-user-card__info-container"><div class="tm-user-card__header"><div class="tm-user-card__header-data"><a class="tm-user-card__userpic tm-user-card__userpic_size-40" href="/ru/users/anioutka/"><div class="tm-entity-image"><img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/abc/686/402/abc68640208c443185b15194039396b1.jpg"/></div></a><div class="tm-user-card__meta"><div class="tm-counter-container tm-karma tm-karma" title=" 72 голоса "><div class="tm-counter-container__header"><!--[--><div class="karma-display positive" data-v-7635202e="">58</div><!-- --><!--]--></div><div class="tm-counter-container__footer"><!--[--><div class="tm-karma__text">Карма</div><!--teleport start--><!--teleport end--><!--]--></div></div><div class="tm-counter-container" title="Рейтинг пользователя"><div class="tm-counter-container__header"><!--[--><!--[--><!--]--><div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating"><!-- --><div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score"><!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">0</span></span><!--]--></div><!-- --></div><!--]--></div><div class="tm-counter-container__footer"><!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]--></div></div></div></div></div><div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info"><div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title"><span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Анна Жаркова</span><a class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article" href="/ru/users/anioutka/"> @anioutka</a><!-- --></div><p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Lead mobile developer в Usetech, Kotlin GDE</p></div></div><div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons"><!-- --><div class="tm-user-card__button"><div class="tm-button-follow tm-user-card__button-follow"><!-- --><button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button></div></div><!-- --><div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations"><svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16"><title>Отправить сообщение</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#mail"></use></svg></div><!-- --></div><!-- --></div><div class="tm-article-author__user-contacts" data-test-id="author-contacts"><!--[--><a class="tm-article-author__contact" data-test-id="author-contact-link" href="https://career.habr.com/anioutka?utm_source=habr&amp;utm_medium=profile_header&amp;utm_campaign=button_habr_career" rel="noopener" target="_blank">Хабр Карьера</a><a class="tm-article-author__contact" data-test-id="author-contact-link" href="https://twitter.com/anioutkajarkova" rel="noopener" target="_blank">Twitter</a><a class="tm-article-author__contact" data-test-id="author-contact-link" href="https://github.com/anioutkazharkova/" rel="noopener" target="_blank">Github</a><a class="tm-article-author__contact" data-test-id="author-contact-link" href="https://telegram.me/prettygeeknotes" rel="noopener" target="_blank">Telegram</a><!--]--></div></div><!--]--></div><!--]--><!-- --></section><!-- --><!--[--><div class="banner-wrapper leaderboard tm-company-article__banner" data-v-ad758baa="" style="--467224fc:200px;--58ff5eba:auto;"><!--[--><div class="placeholder-wrapper placeholder" data-v-ad758baa=""><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca=""><div class="image loads" data-v-12f7bcca=""></div><div class="lines" data-v-12f7bcca=""><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div></div></div><!-- --></div><div class="tm-adfox-banner" data-v-ad758baa="" id="adfox_164725660339535756"></div><!--]--></div><!-- --><!--]--><!--]--><div class="tm-article-blocks__comments"><div class="tm-article-page-comments" id="publication-comments"><div><!--[--><div class="tm-article-comments-counter-link tm-article-comments-counter-button"><a class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments" href="/ru/companies/usetech/articles/825470/comments/"><!--[--><svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24"><title>Комментарии</title><use xlink:href="/img/megazord-v28.371b7fa3..svg#counter-comments"></use></svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 21 </span><!--]--></a><!-- --></div><!--]--></div></div></div><!--[--><!--[--><!--]--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header tm-block__header_variant-borderless"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim"><!--[--><!--[--><div class="tm-tabs tm-tabs"><div class=""><!--[--><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item"><button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]--></div><!-- --></div><div class="similar-and-daily__tab-view"><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-article-cards"><!--[--><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><div class="tm-placeholder-article-card"><div class="tm-placeholder__user"><div class="tm-placeholder__user-pic loads"></div><div class="tm-placeholder__user-date loads"></div></div><div class="tm-placeholder-article-card__title"><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div><div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div></div><div class="tm-placeholder-article-card__icons tm-placeholder__counters"><!--[--><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><div class="tm-placeholder-data-icon"><div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div><div class="tm-placeholder__line tm-placeholder__line_icon-text"></div></div><!--]--></div></div><!--]--></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!-- --></div><!--]--><!--]--></div><!--]--><!-- --></section><!--[--><!--[--><div><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-promo"><div class="tm-placeholder-promo__header"><div class="tm-placeholder__line tm-placeholder__line_promo-title"></div></div><div class="tm-placeholder-promo__body"><div class="tm-placeholder-promo__posts"><div class="tm-placeholder-promo__post"><div class="tm-placeholder-promo__image"></div><div class="tm-placeholder__line tm-placeholder__line_post-title"></div></div><div class="tm-placeholder-promo__post"><div class="tm-placeholder-promo__image"></div><div class="tm-placeholder__line tm-placeholder__line_post-title"></div></div><div class="tm-placeholder-promo__post"><div class="tm-placeholder-promo__image"></div><div class="tm-placeholder__line tm-placeholder__line_post-title"></div></div></div><div class="tm-placeholder-promo__dots"><div class="tm-placeholder-promo__dot"></div><div class="tm-placeholder-promo__dot"></div><div class="tm-placeholder-promo__dot"></div></div></div></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div></div><div class="placeholder-wrapper"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="tm-placeholder-inset tm-placeholder-vacancies"><div class="tm-placeholder-inset__header"><div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div></div><div class="tm-placeholder-inset__body"><ul class="tm-placeholder-list"><!--[--><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><li class="tm-placeholder-list__item tm-placeholder-list__item_inset"><div class="tm-placeholder-list__title-container"><div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div></div><div class="tm-project-block-items__properties"><!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]--></div></li><!--]--></ul></div><div class="tm-placeholder-inset__footer"><div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div></div></div><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div><!--]--><!--]--><!-- --><!--[--><!--]--><!--]--></div><!--]--><!--]--></div></div><!--]--><!--]--></div></div><div class="tm-page__sidebar"><!--[--><div class="tm-layout-sidebar"><div class="tm-layout-sidebar__placeholder_initial"></div><div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;"><!--[--><!--]--><!-- --><div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads"><div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" data-v-ad758baa="" style="--467224fc:600px;--58ff5eba:auto;"><!--[--><div class="placeholder-wrapper placeholder" data-v-ad758baa=""><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="adfox-banner-placeholder half-page" data-v-12f7bcca=""><div class="image loads" data-v-12f7bcca=""></div><div class="lines" data-v-12f7bcca=""><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div></div></div><!-- --></div><div class="tm-adfox-banner" data-v-ad758baa="" id="adfox_164725680533065327"></div><!--]--></div></div><!--[--><section class="tm-block tm-block tm-block_spacing-bottom"><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body"><!--[--><div class="tm-company-basic-info"><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Сайт</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><a class="tm-company-basic-info__link" href="https://usetech.ru/" target="_blank">usetech.ru</a><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Дата регистрации</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><time datetime="2022-01-12T12:21:06.000Z" title="2022-01-12, 15:21">12  января  2022</time><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Дата основания</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><time datetime="2006-12-03T21:00:00.000Z" title="2006-12-04, 00:00">4  декабря  2006</time><!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Численность</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[-->501–1 000 человек<!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Местоположение</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[-->Россия<!--]--></dd></dl><dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap"><dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">Представитель</dt><dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body"><!--[--><a class="tm-company-basic-info__link" href="/ru/users/Usetech/">Usetech</a><!--]--></dd></dl></div><!--]--></div><!--]--><!-- --></section><div class="tm-company-widgets"><!--[--><!--]--></div><!-- --><section class="tm-block tm-block tm-block_spacing-around tm-stories-block" data-async-called="true" data-navigatable="" tabindex="0"><header class="tm-block__header tm-block__header"><div class="tm-block__header-container"><h2 class="tm-block__title tm-block__title">Истории</h2><!--[--><!--]--></div><!-- --></header><!--[--><div class="tm-block__body tm-block__body tm-block__body_variant-equal"><!--[--><div class="tm-stories-empty"><!--[--><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><div class="tm-stories-card-empty"><div class="tm-stories-card-empty__image"></div><div class="tm-stories-card-empty__title"><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div><div class="tm-stories-card-empty__title-block"></div></div></div><!--]--></div><!-- --><!--]--></div><!--]--><!-- --></section><!--]--><div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" data-v-ad758baa="" style="--467224fc:250px;--58ff5eba:auto;"><!--[--><div class="placeholder-wrapper placeholder" data-v-ad758baa=""><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca=""><div class="image loads" data-v-12f7bcca=""></div><div class="lines" data-v-12f7bcca=""><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div><div class="line loads" data-v-12f7bcca=""></div></div></div><!-- --></div><div class="tm-adfox-banner" data-v-ad758baa="" id="adfox_164725691003361602"></div><!--]--></div></div></div><!--]--></div></div><!-- --><!--]--></div></div></main><!-- --></div><div class="tm-footer-menu"><div class="tm-page-width"><!--[--><div class="tm-footer-menu__container"><!--[--><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Ваш аккаунт</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/usetech/articles/825470/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li><li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/usetech/articles/825470/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Разделы</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/articles/">Статьи</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/news/">Новости</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/hubs/">Хабы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/companies/">Компании</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/users/">Авторы</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/sandbox/">Песочница</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Информация</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/help/">Устройство сайта</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/authors/codex/">Для авторов</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/companies/corpblogs/">Для компаний</a></li><li class="tm-footer-menu__list-item"><a class="footer-menu__item-link" href="/ru/docs/docs/transparency/">Документы</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li><li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]--></ul></div></div><div class="tm-footer-menu__block"><p class="tm-footer-menu__block-title">Услуги</p><div class="tm-footer-menu__block-content"><ul class="tm-footer-menu__list"><!--[--><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li><li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]--></ul></div></div><!--]--></div><!--]--></div></div><div class="tm-footer"><div class="tm-page-width"><!--[--><div class="tm-footer__container"><!-- --><div class="tm-footer__social"><!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Facebook</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Twitter</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>VK</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Telegram</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Youtube</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use></svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank"><svg class="tm-svg-img tm-svg-icon" height="24" width="24"><title>Яндекс Дзен</title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use></svg></a><!--]--></div><!--teleport start--><!--teleport end--><button class="tm-footer__link"><!-- --> Настройка языка</button><a class="tm-footer__link" href="/ru/feedback/">Техническая поддержка</a><div class="tm-footer-copyright"><span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span></div></div><!--]--></div></div><!-- --><!--]--></div><!-- --></div></div>
+<div id="overlays"><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--><!-- --><!--teleport anchor--></div>
+</body>
+</html>
