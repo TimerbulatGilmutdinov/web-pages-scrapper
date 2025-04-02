@@ -1,11 +1,6 @@
 ### Основы информационного поиска - 4с2s
 Гильмутдинов Тимербулат 11-101
 
-### Task 1 - web scrapper
-Web scrapper used to scrap particular Habr hub articles 
-
-### How to run
-
 Clone repo:
 ```bash
 git clone https://github.com/TimerbulatGilmutdinov/web-pages-scrapper.git
@@ -16,12 +11,22 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+### Task 1 - web scrapper
+Web scrapper used to scrap particular Habr hub articles 
+
+### How to run
+
 Run
 
 ```bash
 cd /web-pages-scrapper
 python scrapper.py
 ```
+
+### Task 2 - lemmatizing and tokenizing
+Lemmatizing and tokenizing saved Habr pages
+
+Run
 
 ```bash
 cd /web-pages-scrapper/lemmatizer
