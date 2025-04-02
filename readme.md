@@ -14,9 +14,7 @@ pip install -r requirements.txt
 ### Task 1 - web scrapper
 Web scrapper used to scrap particular Habr hub articles 
 
-### How to run
-
-Run
+#### How to run
 
 ```bash
 cd /web-pages-scrapper
@@ -26,7 +24,7 @@ python scrapper.py
 ### Task 2 - lemmatizing and tokenizing
 Lemmatizing and tokenizing saved Habr pages
 
-Run
+#### How to run
 
 ```bash
 cd /web-pages-scrapper/lemmatizer
