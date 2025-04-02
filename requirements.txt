@@ -1,2 +1,4 @@
-requests
-beautifulsoup4
+requests~=2.32.3
+beautifulsoup4~=4.13.3
+nltk~=3.9.1
+pymorphy2~=0.9.1

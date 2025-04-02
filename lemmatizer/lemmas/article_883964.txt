@@ -1,0 +1,1057 @@
+activity activity
+add add
+additional additional
+additionally additionally
+addresssanitizer addresssanitizer
+ai ai
+allocated allocated
+allocation allocation allocations
+also also
+always always
+analysis analysis
+analyze analyze
+analyzer analyzer
+answer answer
+anthropic anthropic
+apachepdfboxdocumentparser apachepdfboxdocumentparser
+api api
+application application applications
+architecture architecture
+area areas
+array arrays
+arraylist arraylist
+artifactid artifactid
+ask ask
+assistant assistant
+augmented augmented
+authenticationdetailsprovider authenticationdetailsprovider
+automated automated
+available available
+basechatresponse basechatresponse
+bcr bcr
+boot boot
+breakdown breakdown
+build build
+catch catch
+cause cause
+challenging challenging
+change changes
+chat chat
+chatchoice chatchoice
+chatcontent chatcontent
+chatdetails chatdetails
+chatgpt chatgpt
+chatmemory chatmemory
+chatrequest chatrequest
+chatresponse chatresponse
+chatservingmode chatservingmode
+check check
+chicago chicago
+choice choices
+choose choose
+chromadb chromadb
+chromaembeddingstore chromaembeddingstore
+chunk chunk chunks
+chunkpdffiles chunkpdffiles
+circular circular
+class class
+claude claude
+clean clean
+client client
+clientconfiguration clientconfiguration
+cloud cloud
+code code
+cohere cohere
+collect collect
+collection collection
+command command
+compartment compartment
+condition conditions
+config config
+configfile configfile
+configfileauthenticationdetailsprovider configfileauthenticationdetailsprovider
+configuration configuration
+consuming consuming
+content content contents
+context context
+control control
+conversation conversation
+could could
+cpu cpu
+crash crashes
+create create
+createembeddings createembeddings
+createvectorstore createvectorstore
+credential credentials
+current current
+data data
+deallocation deallocation
+debug debug
+debugger debugger
+debugging debugging
+default default
+degradation degradation
+dependency dependency
+depending depending
+detail detail details
+detailed detailed
+detect detect
+determine determine
+diagnostic diagnostic
+different different
+directory directory
+docker docker
+document document documents
+documentsplitter documentsplitter
+double double
+due due
+dump dump dumps
+early early
+eclipse eclipse
+edition edition
+either either
+embed embed
+embedcontent embedcontent
+embedding embedding
+embeddingmatch embeddingmatch
+embeddings embeddings
+embeddingservingmode embeddingservingmode
+embeddingstore embeddingstore
+embeddingsvector embeddingsvector
+embedtextdetails embedtextdetails
+embedtextrequest embedtextrequest
+embedtextresponse embedtextresponse
+enable enable
+end end
+endpoint endpoint
+enterprise enterprise
+environment environment environments
+error errors
+examine examine
+example example
+exception exception
+exec exec
+extract extract
+extractresponsetext extractresponsetext
+extracttext extracttext
+face face
+facebook facebook
+false false
+file file
+filepath filepath
+filesystemdocumentloader filesystemdocumentloader
+final final
+find find
+fix fix fixes
+flag flags
+flight flight
+float float
+focusing focusing
+follow follow
+following following
+ga ga
+garbage garbage
+gather gather
+gdb gdb
+gemini gemini
+generally generally
+generate generate
+generateresponse generateresponse
+generation generation
+generative generative
+generativeaiinferenceclient generativeaiinferenceclient
+genericchatrequest genericchatrequest
+genericchatresponse genericchatresponse
+get get
+given given
+glob glob
+google google
+granting granting
+groupid groupid
+guide guide
+habr habr
+happy happy
+heap heap
+help help
+helpful helpful
+high high
+histogram histograms
+history history
+hold holds
+hotspot hotspot
+http http https
+hugging hugging
+hypothesis hypotheses
+id id
+ide ide
+identifier identifier
+identify identify
+including including
+increasing increasing
+inference inference
+information information
+infrastructure infrastructure
+input input inputs
+inspect inspect
+instanceof instanceof
+int int
+interaction interactions
+interpret interpret
+ioexception ioexception
+issue issues
+java java
+javascript javascript
+jcmd jcmd
+jconsole jconsole
+jdk jdk
+jep jep
+jersey jersey
+jlama jlama
+jmc jmc
+joining joining
+jvm jvm
+know know
+kotlin kotlin
+language language
+large large
+latency latency
+leak leak leaks
+leaking leaking
+len len
+level level
+like like
+list list lists
+live live
+llama llama
+llm llm llms
+load load loads
+location location
+log logs
+look look
+managed managed
+management management
+manager manager
+map map
+mat mat
+match match
+maven maven
+maximum maximum
+maxresults maxresults
+memory memory
+mentioned mentioned
+message message messages
+minscore minscore
+mission mission
+mode mode
+model model models
+modifying modifying
+monitor monitor
+monitoring monitoring
+mvn mvn
+name name
+narrow narrow
+native native
+need need
+new new
+nmt nmt
+null null
+object object objects
+oci oci
+ocigenaienv ocigenaienv
+ondemandservingmode ondemandservingmode
+open open
+openai openai
+operating operating
+option option options
+oracle oracle
+output output
+overlap overlap
+overview overview
+paging paging
+parameter parameters
+parhar parhar
+pathmatcher pathmatcher
+pattern patterns
+pdf pdf
+perfmon perfmon
+performance performance
+permission permissions
+pid pid
+piece pieces
+platform platform
+pmap pmap
+policy policies
+pom pom
+poonam poonam
+potential potential
+preparation preparation
+prevent prevent
+preview preview
+previous previous
+private private
+problem problem
+process process processes
+profile profile
+profiling profiling
+prompt prompt
+prompttemplate prompttemplate
+properly properly
+provider provider
+provides provides
+providing providing
+public public
+pull pull
+put put
+python python
+quarkus quarkus
+query query
+queryembedding queryembedding
+question question
+quickly quickly
+rag rag
+ram ram
+read read
+receive receive
+recording recordings
+reference references
+region region regions
+regularly regularly
+released released
+relevant relevant
+relevantembeddings relevantembeddings
+repeatedly repeatedly
+replace replace
+represents represents
+request request
+resolve resolve
+resource resources
+resp resp
+response response
+retrieval retrieval
+retrieved retrieved
+return return
+review review
+right right
+run run
+runtime runtime
+runtimeexception runtimeexception
+save save
+savechatresponse savechatresponse
+sdk sdk
+see see
+segment segments
+select select
+semantic semantic
+send send
+separator separator
+service service services
+serving serving
+servingmode servingmode
+set set sets
+setting settings
+several several
+signature signature
+similarity similarity
+simulate simulate
+size size
+snapshot snapshots
+source source
+specific specific
+specifying specifying
+split split
+spring spring
+standard standard
+static static
+step step steps
+store store
+storeembeddings storeembeddings
+string string
+structure structures
+studio studio
+summary summary
+symptom symptoms
+system system
+target target
+task task
+technique techniques
+telegram telegram
+template template templates
+test test
+testing testing
+text text
+textcontent textcontent
+textsegment textsegment
+textsegments textsegments
+throw throw
+time time
+tip tips
+token tokens
+tool tool tools
+top top
+topic topic
+total total
+track track
+tracking tracking
+tree trees
+troubleshoot troubleshoot
+troubleshooting troubleshooting
+try try
+twitter twitter
+type type
+understand understand
+unexpected unexpected
+unique unique
+unix unix
+update update
+usage usage
+use use
+used used
+useful useful
+user user
+usermessage usermessage
+using using
+utilize utilize
+valgrind valgrind
+variable variables
+various various
+varying varying
+vector vector
+verify verify
+version version
+virtual virtual
+visual visual
+vk vk
+void void
+want want
+windbg windbg
+within within
+without without
+would would
+wrap wraps
+xxx xxx
+yourkit yourkit
+youtube youtube
+абстракция абстракции абстракций абстракцию
+абсурдный абсурдные
+автор автор авторов автором авторы
+администрирование администрирование
+адрес адресу
+айо айо
+аккаунт аккаунт
+активно активно
+альтернатива альтернатив
+ассистент ассистент ассистента
+аутентифицироваться аутентифицироваться
+база база базах базе базу базы
+базовый базовый
+бежать бежит
+безопасно безопасно
+безопасный безопасные
+беседа бесед беседе беседы
+бесплатный бесплатном
+библиотека библиотек библиотека библиотеки библиотеку
+благодаря благодаря
+блог блог
+больший большие большим больших большую
+большой большое
+будущее будущем
+быстро быстро
+быстрый быстрого
+быть будем
+важно важно
+важный важные
+валидация валидации
+ваш ваш вашей
+вектор векторами
+векторный векторные векторный векторными векторных
+версия версий
+взаимодействие взаимодействие взаимодействии взаимодействия
+взаимодействовать взаимодействовать
+виртуальный виртуальной
+вклад вклад
+включать включает
+включая включая
+включение включению включения
+вместе вместе
+внедрение внедрение
+внимание внимание
+вносить вносят
+внутри внутри
+возвращать возвращаемый
+возможность возможностей возможности возможность возможностями
+возможный возможной возможным
+войти войти
+вооружиться вооружившись
+вопрос вопрос вопросам вопросов вопросу вопросы
+воспользоваться воспользовавшись воспользоваться воспользуемся воспользуйтесь
+время время
+встраивание встраивания
+встраивать встраивать
+вступить вступить
+вывести выведенного
+вывод вывод вывода
+выглядеть выглядит
+выдача выдачи
+вызвать вызвать вызовем
+вызов вызов
+вызывать вызывать
+вызываться вызываются
+выполнение выполнение
+выполнять выполнять
+выше выше
+гайда гайда гайде
+галлюцинировать галлюцинировать
+генерация генерации генерацию
+генерировать генерировать генерирует
+гибкий гибкие
+главный главную главный
+говорить говорят
+год года
+графика графики
+давать давайте давая дает
+далее далее
+дальнейший дальнейшем
+далёкий дальше
+данные данных
+дата дата
+дать дали
+движок движок
+движущий движущей
+действие действие
+действительно действительно
+делать делает делать делая
+дело деле
+деплоймент деплоймента
+деталь детали
+дзен дзен
+диалог диалог
+диапазон диапазон
+дизайн дизайн
+динамически динамически
+динамический динамических
+добавить добавив добавим добавить
+добавление добавление добавления
+добавляться добавляются
+добиться добиться
+довольно довольно
+документ документ документа документов документы
+должный должен должны
+дополнение дополнение дополнения
+дополнительно дополнительно
+дополнить дополненный дополненным дополним
+достигать достигая
+достижение достижения
+доступ доступ доступа
+доступный доступной доступный
+другой другая
+единый единый
+естественный естественного
+желать желающих
+жизнь жизни
+зависеть зависит
+зависимость зависимостей зависимости
+загрузить загруженные загрузить
+загрузчик загрузчики
+задавать задавали задавать
+задание задание
+задать задал заданном заданным задать
+задача задачи
+заинтересовать заинтересованы
+закладка закладки
+заключение заключение
+занимать занимать
+заполнять заполнять
+запоминание запоминания
+запоминать запоминал
+запрашивать запрашивать
+запрос запрос запроса
+запускать запускать
+запустить запустим запустите
+заслужить заслужила
+заставить заставив
+затем затем
+защита защиты
+знание знанием знаний
+знать знаем знать
+значение значения
+значительно значительно
+значительный значительное
+игрок игроков
+идеальный идеальное
+идти идёт
+известный известные
+извлекать извлекать
+извлечение извлечение извлечения
+извлечь извлеченный извлеченным извлечь
+изучить изучим
+именно именно
+иметь имеет имеют имеющий
+имплементация имплементация
+индустрия индустрии
+инновация инноваций
+инсталлировать инсталлировать
+инстанциировать инстанциируя
+инструкция инструкций инструкцию инструкциям инструкциями
+инструмент инструментов инструменты
+интеграция интеграции интеграцию
+интегрировать интегрировать интегрирующий
+интегрироваться интегрироваться интегрируется
+интеллект интеллект
+интерфейс интерфейсом интерфейсы
+информация информации информацию информация
+искусственный искусственный
+использование использование использованием использования
+использовать использовал использовать используем использует используют использующий использующих используя
+история истории историю история
+исходник исходников
+ия ии
+какой каком
+карма карма
+кастомизировать кастомизируем кастомизируемых
+каталог каталога каталоге каталогов каталогом
+качество качестве
+квантизация квантизацию
+квантизировать квантизированные
+квантование квантование
+класс класс класса
+клиент клиента клиентами
+ключевой ключевые ключевых
+код код кода кодом
+количество количество количеством количеству
+команда команда командой команду команды
+командный командной
+комбинировать комбинируем
+комментарий комментарии комментарий
+коммуникация коммуникации
+компания компании компаний компания
+компонент компоненты
+конвертируемый конвертируем
+константа константами
+контейнер контейнер
+контекст контекст контексте контекстом контексту
+контент контент
+конференция конференцию
+конфигурационный конфигурационный
+конфигурация конфигурации
+конфигурировать конфигурировать
+конфиденциальность конфиденциальность
+корпоративный корпоративный
+который которая которого которой котором которую которые который которых
+кроме кроме
+легко легко
+лента лента
+либо либо
+лидер лидеры
+локально локально
+локальный локальное локальной локальные
+локация локацию
+любимый любимой
+любой любой любому
+май мая
+маркетинг маркетинг
+масштабироваться масштабироваться
+машина машины
+медийный медийная
+менеджмент менеджмент
+мера мере
+мероприятие мероприятии
+местоположение местоположение местоположении
+метод метод метода методом методы
+механизм механизм механизмы
+мина мин
+многофункциональный многофункциональный
+модель моделей модели модель моделью моделям моделями
+модифицировать модифицировали
+модуль модулем модуль модуля
+момент момент
+мочь могла могли могут можем можете
+мощный мощную
+мы нам нами
+мысль мысль
+набор набор
+называть называют
+найти найти
+написать написав написали написанные написать
+например например
+настроить настроить
+настройка настройка настройке настройки
+нативный нативной нативные нативный
+натолкнуть натолкнул
+научпоп научпоп
+находиться находиться находящиеся
+начало начала
+начать начал начнем
+наш наш нашего нашей нашему наши нашим наших
+некоторый некоторые
+необходимо необходимо
+необходимость необходимость
+необходимый необходим необходимой
+несколько несколько
+неточный неточные
+ниже ниже
+низкий низкой
+новость новости
+новый нового новые новый новым
+нравиться нравится
+обеспечивать обеспечиваем
+обзор обзор
+область области
+облачный облачные облачных
+облегчать облегчает
+обновить обновить
+обогатить обогатить
+обработка обработку
+образ образ образа образом
+образовательный образовательные
+обратить обратили
+обратно обратно
+объект объект объектов
+объясняться объясняется
+огромный огромный
+однако однако
+окно окне
+окружение окружений окружения окружениях
+они ими
+операционный операционной
+операция операций
+опираться опираются
+опция опция
+опыт опыт
+оригинал оригинала
+оригинальный оригинальный
+ориентировать ориентированным
+основа основе
+основать основанном основанный
+основной основные
+особенно особенно
+особенность особенности
+осуществлять осуществляем
+ответ ответ ответа ответам ответе ответов ответу ответы
+ответить ответить
+отвечать отвечать
+открыть открыть
+отладка отладке отладки отладку
+отлаживать отлаживать
+отличный отличным
+отметить отметим отметить
+относиться относились относящийся
+отношение отношения
+отправить отправим отправить
+отправлять отправлять
+отсутствие отсутствие
+офлайн оффлайн
+очень очень
+пакет пакете
+память памяти память памятью
+первый первым
+перевод перевод перевода
+передать передадим
+перейти перейдите
+переключаться переключаться
+переключение переключение
+переменный переменную
+переписывать переписывая
+пересобрать пересоберем
+перечисленный перечисленных
+песочница песочница
+плавать плавающей
+платформа платформу
+повод поводу
+повысить повысим повысить
+повышать повышать
+подготовить подготовить
+поддерживать поддерживаемый поддерживает поддерживать
+поддержка поддержка поддержки поддержку
+подключить подключена
+поднять поднят
+подобный подобной
+подписаться подписаться
+подробный подробнее
+подходящий подходящим
+позволить позволим
+позволять позволяет позволяют позволяя
+поздний поздних
+позиция позиции
+поиск поиск
+показать показано
+показывать показывает
+покрывать покрывающих
+полностью полностью
+полный полный
+полтора полтора
+получать получайте получать
+получить получили получим получить
+пользователь пользователем пользователя пользователям
+пользовательский пользовательский
+помогать помогает
+помочь помочь
+помощник помощник
+помощь помощью
+понимать понимать
+попробовать попробовать
+популярный популярная популярный популярными популярных
+порт порту
+поскольку поскольку
+последний последнем
+посмотреть посмотрим
+посредством посредством
+постоянно постоянно
+постоянный постоянного
+построить построена
+посылать посылать
+поток потоки
+похожий похожие похожих
+почистить почистим
+почитать почитать
+появиться появилось появился
+появляться появляется
+правило правило
+правильный правильную
+превращать превращают
+предварительный предварительного
+предлагать предлагает
+предложение предложении
+предоставить предоставить
+предоставлять предоставляемую предоставляет предоставляющий
+предприниматель предпринимателей
+представление представление представлений
+представлять представляющий представляющими
+предшествовать предшествующую
+предыдущий предыдущем предыдущему
+прежде прежде
+привести приведен приведенные приведенный приведенным
+привлечь привлекли
+приводиться приводится
+привязка привязку
+привязывать привязывать
+пригласить приглашенные
+приемлемый приемлемого
+признание признание
+приложение приложение приложений приложению приложения приложениям приложениями
+пример пример примера примером
+примерно примерно
+принять примут
+приоритет приоритетом
+прислать пришлет
+приём приемов
+пробел пробел
+проблема проблем проблемы
+провайдер провайдер провайдерам провайдеров провайдеры
+провести провести
+программа программ программу программы
+программирование программирование
+проект проект проекта проекты
+происходить происходит
+промпт промпт промпты
+промптов промптов
+промптом промптом
+просмотр просмотров
+простой простой простую простые проще
+прохождение прохождения
+прочтение прочтение
+прямо прямо
+публикация публикации публикацию
+путём путем
+работа работе работы
+работать работает работал работать работающих
+разбить разбить
+развиваться развивается развиваться
+разговор разговор
+раздел разделе разделы
+разделить разделенные разделим
+различный различные различными
+размер размера
+разный разным разными
+разобрать разобрали
+разрабатывать разрабатывать
+разработать разработаем разработанного
+разработка разработка разработке разработки
+разработчик разработчикам разработчиков
+рамка рамках
+ранее ранее
+рантайм рантайме
+рассказать расскажет
+рассказывать рассказывающий
+рассказываться рассказывается
+рассмотреть рассмотрели
+расти растет растущей растущему
+расширение расширение
+расширять расширять расширяют
+реализация реализаций
+реальный реальным
+регистрация регистрации регистрация
+регистрироваться регистрируйтесь
+регулярно регулярно
+редакция редакции
+режим режим режима
+рейтинг рейтинг
+реклама реклама
+релевантный релевантные
+релиз релиза
+ресурс ресурсов
+речь речь
+решение решение решением решений решения решениях
+рисунок рисунок
+русский русском
+ряд ряд
+сайт сайт сайта
+сам сами самом
+самый самый самых
+свой своей свои свой
+связать связать
+сгенерировать сгенерированные сгенерированный сгенерировать
+сделать сделать
+семантический семантический
+семейство семейства
+сервис сервис сервиса сервисами сервисов сервисом сервису сервисы
+серийный серийные
+сила силой
+система системы
+сконвертировать сконвертировать
+сконструировать сконструировать
+следовать следует
+следуемый следуем
+следующий следующем следующие следующий следующим следующих
+сложность сложности
+сложный сложные
+слушать слушает
+слышать слышим
+сначала сначала
+снижать снижая
+собирать собирать
+собрать соберем
+собственный собственный
+соглашение соглашение
+содержать содержащий содержащим
+содержимое содержимого
+создавать создавать создаем создает
+создание создание создании создания
+создатель создатели
+создать создадим создали созданная созданной созданный созданных создаст создать
+сообщение сообщение сообщений сообщения
+сообщество сообщества сообществе
+соответствовать соответствующим
+сохранение сохранения
+сохранить сохраненные сохраним
+сохранять сохранять
+сохраняться сохраняться
+специализировать специализированной
+специально специально
+специфичный специфичные
+список список
+сплиттер сплиттеры
+способ способ
+способность способности
+способный способный
+спрашивать спрашивают
+среди среди
+ссылка ссылке
+ставить ставят
+становиться становится
+стартап стартапам
+стать став стал станет стать
+статья статье статьи статья
+стимулировать стимулируя
+сторона стороны
+строка строки строку
+структура структуру структуры
+сутки сутки
+суть сути
+существовать существует
+существующий существующие существующими
+сценарий сценарии
+считать считать
+также также
+такой такие таким такими таких
+тег теги
+текст текст текста текстов
+текстовый текстовых
+терминал терминала
+техника техники
+технический техническая технических
+технология технологий
+точка точкой
+точность точность
+точный точным
+требование требованию требования
+требовать требует требуют требуя
+туториал туториал
+убираться убирается
+удалённый удаленных
+узнать узнать
+уйти уйти
+умолчание умолчанию
+универсальный универсального
+унифицировать унифицированный
+упоминание упоминания
+управление управления
+управляемый управляемый
+упрощать упрощает упрощают
+упрощение упрощения
+уровень уровень уровне уровня
+услуга услуги
+усовершенствовать усовершенствовать
+установить установите установить
+устройство устройство
+утечка утечках утечки
+утилит утилиты
+уточнять уточняющие уточняющий
+ух ух
+участие участие
+файл файл файла файлы
+факт фактам
+фев фев
+фокусироваться фокусироваться фокусируется
+фон фоне
+формат формате
+фрагмент фрагментов фрагментом
+фреймворк фреймворк фреймворка фреймворками фреймворки фреймворков
+фундаментальный фундаментальные
+функционал функционал функционала
+функциональность функциональности функциональность
+функция функции функций
+хаба хабы
+хабра хабр
+хардкодить хардкодить
+хороший лучшие получше
+хостинг хостинга хостинге
+хотеть хотим хотите
+хранилище хранилищ хранилища хранилищам хранилищами хранилище хранилищем хранилищу
+хранить хранить
+храниться хранился
+хранлище хранлищами
+цель цели целью
+центральный центральным
+цепочка цепочку
+цикл циклом
+цифровой цифровом
+чанк чанки
+частность частности
+часто часто
+часть части часть
+чат чата чатов чату чаты
+чатбот чатбот
+чей чье
+человек человек
+численность численность
+число чисел число
+чрезмерный чрезмерной
+что чему
+шаг шагам шагов шагом
+широкий широкий
+эволюционировать эволюционирует
+эволюция эволюция
+эйфория эйфории
+экземпляр экземпляр
+экосистема экосистема экосистеме экосистему экосистемы
+эксперт эксперты
+эмбеддинг эмбеддинг эмбеддинги эмбеддингов
+эндпоинт эндпоинт
+это этим это
+этот эта этими этих этому
+эффективно эффективно
+эффективный эффективных
+являться является являются
+язык язык языка языке
+языковой языковой языковые языковыми языковых
+яндекс яндекс

@@ -20,5 +20,10 @@ Run
 
 ```bash
 cd /web-pages-scrapper
-python app.py
+python scrapper.py
+```
+
+```bash
+cd /web-pages-scrapper/lemmatizer
+python lemmatizer.py
 ```

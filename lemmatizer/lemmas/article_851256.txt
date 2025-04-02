@@ -1,0 +1,789 @@
+access access
+activity activity
+addthemelistener addthemelistener
+addview addview
+algorithm algorithms
+android android
+androidx androidx
+app app
+application application
+array array
+asset assets
+assetmanager assetmanager
+assetmanagerreference assetmanagerreference
+assetpath assetpath
+attr attr
+averagetimecomplexity averagetimecomplexity
+background background
+backgroundcolor backgroundcolor
+backstack backstack
+baseparams baseparams
+besttimecomplexity besttimecomplexity
+bitwise bitwise
+bold bold
+boolean boolean
+bottom bottom
+builder builder
+bundle bundle
+buttonstate buttonstate
+buttonstatechanged buttonstatechanged
+byte byte
+cache cache
+cachedstack cachedstack
+cachedstate cachedstate
+cachedviewmodel cachedviewmodel
+call call
+callback callback callbacks
+changedwith changedwith
+changeinsets changeinsets
+changetheme changetheme
+child child
+childprovider childprovider
+childprovidercache childprovidercache
+class class
+clicklistener clicklistener
+closeview closeview
+color color colors
+colorattributes colorattributes
+coloronprimary coloronprimary
+companion companion
+compared compared
+compose compose
+const const
+constructor constructor
+context context
+core core
+coreframelayout coreframelayout
+coreimagebuttonview coreimagebuttonview
+corelinearlayout corelinearlayout
+coretextview coretextview
+coretheme coretheme
+coreviewmodel coreviewmodel
+coroutines coroutines
+createchildprovider createchildprovider
+createonbackpressedcallback createonbackpressedcallback
+ctx ctx
+custom custom
+dark dark
+data data
+default default
+developer developer
+difference difference
+disabledbackgroundcolor disabledbackgroundcolor
+dmitry dmitry
+dmitrytsyvtsyn dmitrytsyvtsyn
+dp dp
+else else
+emptyalgorithm emptyalgorithm
+end end
+enum enum
+extension extension
+facebook facebook
+factory factory
+false false
+first first
+float float
+floatarray floatarray
+fontfamily fontfamily
+fontsize fontsize
+foreach foreach
+found found
+fragmentcontainerview fragmentcontainerview
+framelayout framelayout
+framelayoutparams framelayoutparams
+fun fun
+get get
+github github
+gradientdrawable gradientdrawable
+gradle gradle
+habr habr
+handleonbackpressed handleonbackpressed
+haschanged haschanged
+hashmapof hashmapof
+id id
+idres idres
+illegalstateexception illegalstateexception
+imageresource imageresource
+index index
+init init
+inset insets
+int int
+intarray intarray
+intarrayof intarrayof
+interface interface
+isaddtobackstack isaddtobackstack
+jetpack jetpack
+junit junit
+jvmoverloads jvmoverloads
+key key
+kotlin kotlin
+lastnonconfigurationinstance lastnonconfigurationinstance
+layoutparams layoutparams
+light light
+list list
+listener listener
+low low
+mainactivity mainactivity
+medium medium
+memory memory
+memoryididentitycache memoryididentitycache
+must must
+mutablelist mutablelist
+mutablelistof mutablelistof
+mutablemapof mutablemapof
+mutablesetof mutablesetof
+mvi mvi
+mvvm mvvm
+navigateback navigateback
+navigateforward navigateforward
+navigationscreen navigationscreen
+navigator navigator
+newinsets newinsets
+newtheme newtheme
+null null
+object object
+onattachedtowindow onattachedtowindow
+onbackpressedcallback onbackpressedcallback
+onbackpresseddispatcher onbackpresseddispatcher
+onclicklistener onclicklistener
+oncreate oncreate
+ondetachedfromwindow ondetachedfromwindow
+onrestorebackstack onrestorebackstack
+onretainnonconfigurationinstance onretainnonconfigurationinstance
+onsavebackstack onsavebackstack
+onthemechanged onthemechanged
+open open
+operator operator operators
+orientation orientation
+override override
+pair pair
+params params
+parent parent
+parentviewmodelprovider parentviewmodelprovider
+path path
+photographer photographer
+piecestate piecestate
+primarybackgroundcolor primarybackgroundcolor
+primarycolor primarycolor
+primarycolortextview primarycolortextview
+primarydarkcolor primarydarkcolor
+primarytextcolor primarytextcolor
+primarytextcolortextview primarytextcolortextview
+private private
+provide provide
+provider provider providers
+read read
+regular regular
+remove remove
+removechildprovider removechildprovider
+removethemelistener removethemelistener
+resource resources
+return return
+robotobold robotobold
+robotolight robotolight
+robotoregular robotoregular
+ruvds ruvds
+save save
+savedinstancestate savedinstancestate
+savedtypeface savedtypeface
+screen screen
+sdk sdk
+secondarybackgroundcolor secondarybackgroundcolor
+secondarycolortextview secondarycolortextview
+selectablebackgroundcolor selectablebackgroundcolor
+selectedalgorithm selectedalgorithm
+selectedalgorithmchanged selectedalgorithmchanged
+set set
+setassets setassets
+setcontentview setcontentview
+settextcolor settextcolor
+shape shape
+shapeattribute shapeattribute
+shapetreatmentstrategy shapetreatmentstrategy
+sorting sorting
+sortingalgorithm sortingalgorithm
+sortingalgorithmmainfragment sortingalgorithmmainfragment
+sortingalgorithmstate sortingalgorithmstate
+sortingalgorithmstep sortingalgorithmstep
+sortingalgorithmviewmodel sortingalgorithmviewmodel
+sortinganimationbuttonstate sortinganimationbuttonstate
+sortingarray sortingarray
+sortingarraychanged sortingarraychanged
+sp sp
+sparse sparse
+sparsearray sparsearray
+stack stack
+stackid stackid
+start start
+state state
+step steps
+string string
+suppresslint suppresslint
+telegram telegram
+text text
+textcolor textcolor
+textsize textsize
+textstyle textstyle
+textview textview
+theme theme
+themelisteners themelisteners
+thememanager thememanager
+thememanagerlistener thememanagerlistener
+throw throw
+title title
+toolbarview toolbarview
+top top
+transparent transparent
+traveler traveler
+true true
+tsyvtsyn tsyvtsyn
+twitter twitter
+type type
+typeface typeface typefaces
+typefaceattribute typefaceattribute
+typefacemanager typefacemanager
+typefacepath typefacepath
+typefacestyle typefacestyle
+typefaceweight typefaceweight
+ui ui
+val val
+value value
+var var
+vertical vertical
+view view
+viewcompat viewcompat
+viewconstructor viewconstructor
+viewgroup viewgroup
+viewgrouplayoutparams viewgrouplayoutparams
+viewmodel viewmodel
+viewmodelclass viewmodelclass
+viewmodelprovider viewmodelprovider
+viewmodelproviders viewmodelproviders
+viewmodelprovidr viewmodelprovidr
+viewmodels viewmodels
+vk vk
+weakreference weakreference
+weight weight
+window window
+windowcompat windowcompat
+windowinsets windowinsets
+worstspacecomplexity worstspacecomplexity
+worsttimecomplexity worsttimecomplexity
+xml xml
+youtube youtube
+автор авторов автором авторы
+администрирование администрирование
+аккаунт аккаунт
+актуальный актуальна актуальные актуальный актуальными
+алгоритм алгоритм алгоритмов алгоритмы
+анимация анимации
+арифметик арифметики
+архитектурный архитектурного
+асинхронный асинхронными
+аттрибут аттрибут аттрибутами аттрибутов аттрибуту аттрибуты
+базовый базовые
+библиотека библиотек
+библиотечный библиотечных
+битовый битовая битовой битовых
+битый бит бита биты
+блог блог
+больший больших
+брать берём берёт брать
+бросать бросает
+важно важно
+вариант вариант варианта
+ваш ваш ваше
+вернуть вернёт
+версия версии версий
+верстать верстать
+верхнеуровневый верхнеуровневый
+верхний верхние
+весить весит
+весь всем вся
+взять взято
+видео видео
+видеть видите
+вконтакте вконтакте
+вместо вместо
+внутренний внутренних
+возвращать возвращает возвращающий
+возможно возможно
+войти войти
+вообще вообще
+восстановление восстановление восстановления
+вплоть вплоть
+время время
+вроде вроде
+вспомогательный вспомогательный
+всё всё
+второй второго второй втором вторую
+вход вход
+выбрать выбрана
+выглядеть выглядит
+выигрывать выигрывают
+выполняться выполняется
+вьюшка вьюшка
+вёрстка вёрстка вёрстки вёрстку
+гибридный гибридный
+глубокий глубокий
+глянуть глянем глянуть
+год года году
+голос голосов
+давать давайте
+далёкий дальше
+данные данных
+дата дата
+дать данные
+делать делаем делали делая
+дерево дерева дерево
+дзен дзен
+дизайн дизайн
+добавить добавить
+добавлять добавляем добавляет добавлять
+добавляться добавляется
+добраться добраться
+документ документы
+дополнительный дополнительные дополнительный
+достаточно достаточно
+дочерний дочерние дочерний
+другой другие другими
+дубликат дубликатов
+думать думаем думаю
+единица единицах единице
+единый едином
+ещё ещё
+её её
+зависимость зависимости зависимостями
+завязать завязан
+задача задачами задачей
+зайти зайдёт
+закладка закладки
+заключение заключение
+закругление закругления
+закруглить закруглённые
+закусочка закусочку
+закэшировать закэширован
+заметить заметили
+заморачиваться заморачиваться
+заморочиться заморочиться
+запись запись
+запуск запуске
+запустить запустить
+затащить затащить
+знакомый знакомая
+знать знаем знаете
+значение значение значения значениями значениях
+значит значит
+идея идея
+идти идём
+иерархия иерархии иерархию иерархия
+изменение изменение изменении изменений изменения
+изменить изменено изменены изменён
+измениться изменилось
+изначально изначально
+изображение изображений
+изящно изящно
+иконка иконку
+инкапсулировать инкапсулировано
+интересно интересно
+интерфейс интерфейс интерфейса
+информация информация
+использование использования
+использовать использовать используем использую
+использоваться используется
+исходник исходниках
+итог итоге
+июль июля
+каждый каждого каждой каждом каждый
+какой какую
+канал канал канале
+капот капотом
+карма карма
+картина картина
+кастомизировать кастомизированное кастомизированной кастомизированные
+кастомный кастомной кастомные кастомный
+кейс кейс
+класс класс класса классах классе
+класть кладёт
+класться кладутся кладётся
+ключ ключами ключу
+кнопка кнопки кнопку кнопок
+код код кода кодом коду
+количество количество
+коммент комментах
+комментарий комментарии
+компания компании компаний
+компоновщик компоновщик
+конкретный конкретной конкретные конкретный конкретных
+константа константы
+конфигурация конфигурации
+конфигурировать конфигурируем
+конфиденциальность конфиденциальность
+корневой корневой
+короткий короткие
+корпоративный корпоративный
+корутинк корутинки
+который которая которое которой которые который которых
+краткий краткая
+краш краша
+кстати кстати
+кусочек кусочкам
+куча кучей кучу
+кэш кэш кэша
+кэширование кэширования
+кэшировать кэширует
+кэшироваться кэшируются
+лежать лежат лежит
+лента лента
+либо либо
+лишь лишь
+логика логика логики
+любимый любимых
+максимум максимум
+маркетинг маркетинг
+март марта
+маска маска масках маской
+массив массив
+материал материал
+медийный медийная
+менеджмент менеджмент
+менять меняем
+меняться меняется
+местоположение местоположение
+метод метод метода
+механизм механизм
+мина мин
+минимальный минимальными
+минимум минимум
+мнение мнение
+множество множество
+мобильный мобильных
+мой моего моих моём
+мочь могут можем можете
+мт мт
+наблюдатель наблюдатель
+набор набор
+навигатор навигатор
+навигация навигации навигация
+нажатие нажатия
+нажимать нажимаем нажимает
+назад назад
+название название
+найти найти
+намного намного
+наоборот наоборот
+написать написал написан написать
+напомнить напомню
+например например
+наследник наследники наследников наследником
+настройка настройка настройки
+нативный нативные
+научиться научиться
+научпоп научпоп
+находиться находится
+начало начале
+начать начал
+начёркать начеркаю
+неактуальный неактуальна неактуальный
+неважно неважно
+неизменяемый неизменяемом
+некоторый некоторое
+немного немного
+необходимость необходимости
+нижний нижние
+никакой никакого
+новость новости новостями
+новый новое новые новый новых
+ной ноя
+нужно нужно
+нужный нужен
+нуль нулю
+нюанс нюансы
+обновить обновить обновлённой
+обновлять обновляем
+обновляться обновляется
+обойтись обойтись
+обработка обработки
+обработчик обработчик
+образ образом
+образовательный образовательные
+обратиться обратиться
+объект объект
+объявление объявление
+обыкновенный обыкновенное
+обязательно обязательно
+один одна
+означать означает
+он нём
+оно оно
+ооо ооо
+оповещать оповещает
+оповещаться оповещаются
+оповещение оповещении
+оправдать оправдано
+определение определения
+определённый определённый
+основа основе
+основание основания
+основной основной
+основный основная
+особо особо
+оставаться остаётся
+остальной остальные
+отдельный отдельные
+открыть открыть
+отличие отличие
+отписываться отписываемся отписывается отписываться
+отправить отправить
+отрисовка отрисовка
+отрисовывать отрисовывать
+отсоединить отсоединена
+отступ отступов
+очень очень
+ошибка ошибку
+память памяти
+папка папке
+параметр параметр параметрами параметре параметры
+паттерн паттерн паттерна
+первый первого первом первый
+переворот переворот
+передавать передаём передаёт
+передаваться передаются
+передать передать
+переменный переменная переменной
+переопределить переопределённый
+переполнение переполнение
+перерисовка перерисовка перерисовки
+переход переходе
+переходить переходит
+песочница песочница
+пиксель пикселях
+писать писал писать пишите
+плодить плодить
+поведение поведении
+поговорить поговорим
+поддержка поддержка
+подписаться подписаться
+подписываться подписываемся подписывается подписываться
+подход подхода
+поиск поиск
+показывать показывать
+полезный полезные
+получать получаем получает
+получиться получилось
+пользователь пользователь
+поменять поменять
+поменяться поменялись поменялось поменялся
+поместить поместить
+помощь помощью
+понять поняли
+породить породит
+последний последнего последние последний
+посмотреть посмотрим
+пост пост
+построение построения
+построить построен
+потерять потерять
+поток потоки
+похожий похожее похожие похожий
+почему почему
+пошаговый пошагово
+поэтому поэтому
+появиться появилась
+правда правда
+предел пределах
+предельно предельно
+представитель представитель
+представлять представляет
+предыдущий предыдущего предыдущее
+придумывать придумывать
+приз призов
+прийтись придётся пришлось
+прикольный прикольная прикольные
+прилично прилично
+приложение приложение приложении приложений приложения
+применить применить
+примерно примерно
+принимать принимает
+принцип принципу
+присоединить присоединена
+приходиться приходится
+пробегаться пробегается
+проблема проблем проблема проблему
+проверять проверяем
+программа программы
+проект проект проекта проекте проекты
+производительный производительно
+произойти произошла произошло
+происходить происходит
+прописываться прописываются
+просмотр просмотров
+простенько простенько
+просто просто
+простой простой проще
+процесс процесса
+прочтение прочтение
+публикация публикации публикацию
+пустой пустой
+работа работы
+работать работаем работает
+равно равно
+равный равен равны
+радиус радиуса радиусом
+развернуть развёрнутая
+раздел разделы
+раздумье раздумий
+размер размер
+разметка разметки
+разный разные
+разобрать разберём
+разобраться разберёмся разобрались
+разработка разработка
+разрастись разрослась
+ранее ранее
+рассматривать рассматривать
+рассмотреть рассмотреть
+расширение расширения
+реализация реализация
+реализовать реализован реализована реализованы
+регистрация регистрации регистрация
+рейтинг рейтинг
+реклама реклама
+решение решение решений
+решить решил решить
+рисовать рисует
+родитель родителя
+родительский родительская
+розыгрыш розыгрышами
+россия россия
+сайт сайт сайта
+сам самого
+самописной самописное
+самописный самописных
+самый самая самые самый
+свой свои свой
+связанный связанными
+связать связаны
+сделать сделана сделать
+синглетон синглетоном
+ситуация ситуация
+скидка скидка скидками
+скопировать скопировал
+скорее скорее
+скрин скрины
+скрытый скрыт
+слабый слабая
+следующий следующий следующим
+сложность сложности
+сложный посложнее сложного сложный
+случай случае случай
+случиться случиться
+смерть смерти
+смотреть смотрим
+смочь смог сможете
+собственно собственно
+собственный собственный
+соглашение соглашение
+сожаление сожалению
+создавать создаём создаёт
+создаваться создаются создаётся
+создание создания
+создать создать
+сообщение сообщение
+соответствующий соответствующего
+сортировка сортировки
+состояние состояние состоянии состояний состояния
+состоять состоит
+сохранение сохранения
+сохранить сохранён
+сохранять сохраняем сохраняет сохраняя
+сохраняться сохраняется
+специальный специальный
+список список
+способ способ
+сравнение сравнения
+сравнивать сравниваем сравнивает
+сразу сразу
+средний средний
+ссылка ссылка ссылки
+старое старое
+старт старт
+стартап стартапам
+стать стал стать
+статья статьи статья
+стиль стиле стилей стиль
+стратегия стратегии
+структура структуре
+стэк стэк
+супер супер
+суперкастомизировать суперкастомизированное
+сутки сутки
+существовать существует
+схема схеме
+также также
+такой таких такого такое таком
+тд тд
+тег теги
+текст текста
+текстовка текстовки
+текущий текущее текущей текущем текущий
+телеграм телеграм
+тема тема теме тему темы
+тест тесты
+тестирование тестирования
+технический техническая
+тип типа
+тот тех тому
+точнее точнее
+третий третий
+тупо тупо
+угол угла углы
+удалять удаляем удаляет
+удаляться удаляется
+удобный удобнее удобный
+указанный указанный
+указать указанным указано
+указываться указываются
+умереть умереть
+уничтожение уничтожении
+уничтожить уничтожена
+уровень уровень
+усложнять усложнять
+услуга услуги
+устанавливать устанавливаем устанавливает
+установка установки
+установливать установливаем
+устроенный устроен
+устроить устроена устроены
+устройство устройства устройство
+файл файлов
+финанс финанс
+фишка фишки
+фрагмент фрагментов
+хаба хабы
+хабра хабр
+хороший лучшие хорошего
+хранить хранит
+храниться хранится хранятся
+цвет цвет цвета цветов
+цвета цветами
+цель целью
+частный частный
+часть части
+человек человек
+численность численность
+число числа
+чтение чтение
+шаблонный шаблонного
+шаг шаги
+шарить шарите
+шрифт шрифт шрифта шрифтами шрифты
+штука штук штука штуками штуке штуки
+эквивалент эквивалент
+экран экран экрана экране экранов экраны
+это это
+этот эта
+являться является являются
+явно явно
+язык языка
+яндекс яндекс
