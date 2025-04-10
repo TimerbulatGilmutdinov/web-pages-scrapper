@@ -9,7 +9,7 @@ lemmatizer = WordNetLemmatizer()
 
 
 def tokenize_query(query: str) -> list[str]:
-    regex = r'\(|\)|and|or|not|[^\s\(\)]+'
+    regex = r'\(|\)|and|or|not|[a-zA-Z]+'
     tokens = re.findall(regex, query, flags=re.IGNORECASE)
 
     parsed_tokens = []
