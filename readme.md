@@ -30,3 +30,14 @@ Lemmatizing and tokenizing saved Habr pages
 cd /web-pages-scrapper/lemmatizer
 python lemmatizer.py
 ```
+
+### Task 3 - inverted index building
+Building inverted index and searching lemmas with it
+
+#### How to run
+
+```bash
+cd /web-pages-scrapper/inverted_index
+python indexer.py
+python searcher.py
+```
