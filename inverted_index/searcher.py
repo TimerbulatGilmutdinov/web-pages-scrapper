@@ -38,8 +38,8 @@ def process_tokens(input_sequence: list[str]) -> list[str]:
                 operators.pop()
         elif symbol in priority:
             while (
-                operators and operators[-1] in priority and
-                priority[operators[-1]] >= priority[symbol]
+                    operators and operators[-1] in priority and
+                    priority[operators[-1]] >= priority[symbol]
             ):
                 output_queue.append(operators.pop())
             operators.append(symbol)
@@ -80,6 +80,7 @@ def process_rpn_sequence(sequence: list[str], index: dict[str, set[int]], all_do
             buffer.append(index.get(item, set()))
 
     return buffer[-1] if buffer else set()
+
 
 def boolean_search(query: str, inverted_index: dict[str, set[int]]) -> list[str]:
     tokens = tokenize_query(query)
