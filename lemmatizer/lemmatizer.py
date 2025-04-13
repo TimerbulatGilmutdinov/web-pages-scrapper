@@ -71,7 +71,7 @@ def lemmatize_page(file_path):
 
 
 def start_lemmatizing():
-    saved_pages_path = '../saved_pages'
+    saved_pages_path = '../scrapper/saved_pages'
 
     for filename in os.listdir(saved_pages_path):
         try:
