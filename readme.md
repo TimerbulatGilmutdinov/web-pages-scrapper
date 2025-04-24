@@ -41,3 +41,13 @@ cd /web-pages-scrapper/inverted_index
 python indexer.py
 python searcher.py
 ```
+
+### Task 4 - TF-IDF
+Building TF-IDF
+
+#### How to run
+
+```bash
+cd /web-pages-scrapper/tf_idf
+python tf_idf.py
+```

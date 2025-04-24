@@ -91,10 +91,10 @@ if __name__ == "__main__":
     OUTPUT_TOKEN_DIR.mkdir(parents=True, exist_ok=True)
     OUTPUT_LEMMA_DIR.mkdir(parents=True, exist_ok=True)
 
-    files = {file.name for file in TOKENS_DIR.iterdir()}
-
     doc_token_counts, token_df = load_token_data(TOKENS_DIR)
     doc_lemma_tokens, lemma_doc_set = load_lemma_data(LEMMAS_DIR, doc_token_counts)
 
-    compute_and_write_tf_idf_tokens(doc_token_counts, token_df, len(files), OUTPUT_TOKEN_DIR)
-    compute_and_write_tf_idf_lemmas(doc_token_counts, doc_lemma_tokens, lemma_doc_set, len(files), OUTPUT_LEMMA_DIR)
+    files_count = len({file.name for file in TOKENS_DIR.iterdir()})
+
+    compute_and_write_tf_idf_tokens(doc_token_counts, token_df, files_count, OUTPUT_TOKEN_DIR)
+    compute_and_write_tf_idf_lemmas(doc_token_counts, doc_lemma_tokens, lemma_doc_set, files_count, OUTPUT_LEMMA_DIR)
