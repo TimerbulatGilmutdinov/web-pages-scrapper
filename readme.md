@@ -51,3 +51,13 @@ Building TF-IDF
 cd /web-pages-scrapper/tf_idf
 python tf_idf.py
 ```
+
+### Task 5 - Cos similarity search
+Searching via cos vector similarity
+
+#### How to run
+
+```bash
+cd /web-pages-scrapper/vector_search
+python vector_search.py
+```
