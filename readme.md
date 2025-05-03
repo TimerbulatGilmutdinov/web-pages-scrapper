@@ -61,3 +61,18 @@ Searching via cos vector similarity
 cd /web-pages-scrapper/vector_search
 python vector_search.py
 ```
+
+
+### Demo
+Web interface
+
+#### How to run
+
+```bash
+cd /web-pages-scrapper/demo
+python server.py
+```
+
+Open localhost:8080
+![img_1.png](img/index.png)
+![img_2.png](img/search.png)
