@@ -35,7 +35,7 @@
         <div class="title">
             <a href="/articles/{{ result.article_id }}" target="_blank">{{ result.title }}</a>
         </div>
-        <div class="cos_similarity">Cos similarity: {{ '%.4f'|format(result.cos_similarity) }}</div>
+        <div class="cos-similarity">Cos similarity: {{ '%.4f'|format(result.cos_similarity) }}</div>
     </div>
     {% else %}
     <h2>По вашему запросу <span class="query">«{{ query }}»</span> ничего не найдено.</h2>
